@@ -5,10 +5,10 @@
 ** Login   <bridou_n@epitech.net>
 ** 
 ** Started on  Tue Oct  9 09:33:48 2012 nicolas bridoux
-** Last update Mon Jan 21 15:22:49 2013 nicolas bridoux
+** Last update Mon Jan 21 16:09:35 2013 nicolas bridoux
 */
 
-#include "main.h"
+#include "lib.h"
 
 void	my_putchar(char c)
 {

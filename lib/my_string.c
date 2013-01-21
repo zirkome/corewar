@@ -5,10 +5,10 @@
 ** Login   <bridou_n@epitech.net>
 ** 
 ** Started on  Wed Jan 16 17:59:57 2013 nicolas bridoux
-** Last update Mon Jan 21 15:17:30 2013 nicolas bridoux
+** Last update Mon Jan 21 16:09:43 2013 nicolas bridoux
 */
 
-#include "main.h"
+#include "lib.h"
 
 int	my_strcmp(char *s1, char *s2)
 {
