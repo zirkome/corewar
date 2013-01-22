@@ -5,12 +5,12 @@
 ## Login   <bridou_n@epitech.net>
 ## 
 ## Started on  Fri Nov  9 20:29:49 2012 nicolas bridoux
-## Last update Tue Jan 22 13:30:30 2013 guillaume fillon
+## Last update Tue Jan 22 14:26:27 2013 nicolas bridoux
 ##
 
 NAME	= asm
 
-CC	= gcc
+CC	= gcc -g
 
 RM	= rm -f
 
@@ -26,7 +26,7 @@ OBJS	= $(SRCS:.c=.o)
 
 LOBJS	= $(LSRCS:.c=.o)
 
-CFLAGS	+= -g -Wall -Werror
+CFLAGS	+= -Wall -Wextra -pedantic
 CFLAGS	+= -I../lib/include
 
 $(NAME): $(OBJS) $(LOBJS)
