@@ -5,10 +5,10 @@
 ## Login   <bridou_n@epitech.net>
 ## 
 ## Started on  Fri Nov  9 20:29:49 2012 nicolas bridoux
-## Last update Tue Jan 22 12:40:22 2013 guillaume fillon
+## Last update Tue Jan 22 12:42:02 2013 guillaume fillon
 ##
 
-NAME	= asm
+NAME	= corewar
 
 CC	= gcc
 

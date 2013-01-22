@@ -1,11 +1,11 @@
 /*
 ** main.h for main.h in /home/bridou_n//corewar
-** 
+**
 ** Made by nicolas bridoux
 ** Login   <bridou_n@epitech.net>
-** 
+**
 ** Started on  Wed Jan 16 17:58:40 2013 nicolas bridoux
-** Last update Mon Jan 21 16:09:13 2013 nicolas bridoux
+** Last update Tue Jan 22 12:40:56 2013 guillaume fillon
 */
 
 #ifndef LIB_H_
@@ -13,6 +13,7 @@
 
 # include <stdio.h>
 # include <stdlib.h>
+# include <unistd.h>
 
 void	my_putchar(char c);
 void	my_putstr(char *str);
