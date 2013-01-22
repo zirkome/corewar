@@ -5,46 +5,25 @@
 ## Login   <bridou_n@epitech.net>
 ## 
 ## Started on  Fri Nov  9 20:29:49 2012 nicolas bridoux
-## Last update Tue Jan 22 13:34:19 2013 guillaume fillon
+## Last update Tue Jan 22 13:39:14 2013 guillaume fillon
 ##
 
-NAME	= corewar
+all: corewar asm
 
-CC	= gcc
+asm:
+	make -Casm
 
-RM	= rm -f
-
-LPATH	= ../lib
-
-SRCS	= main.c			\
-	  check_header.c		\
-	  open_file.c			\
-	  print_file.c			\
-	  check_command.c		\
-
-
-LSRCS	= $(LPATH)/my_putchar.c		\
-	  $(LPATH)/my_string.c		\
-	  $(LPATH)/read_fd.c		\
-
-
-OBJS	= $(SRCS:.c=.o)
-
-LOBJS	= $(LSRCS:.c=.o)
-
-CFLAGS	+= -g -Wall -Werror
-CFLAGS	+= -I../lib/include
-
-$(NAME): $(OBJS) $(LOBJS)
-	$(CC) -o $(NAME) $(CFLAGS) $(OBJS) $(LOBJS)
-
-all: $(NAME)
+corewar:
+	make -Ccorewar
 
 clean:
-	$(RM) $(OBJS)
-	$(RM) $(LOBJS)
+	make clean -Ccorewar
+	make clean -Casm
 
-fclean: clean
-	$(RM) $(NAME)
+fclean:
+	make fclean -Ccorewar
+	make fclean -Casm
 
-re: fclean all
+re:
+	make re -Ccorewar
+	make re -Casm
