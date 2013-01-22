@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Tue Jan 22 10:57:56 2013 remi robert
-** Last update Tue Jan 22 13:17:11 2013 remi robert
+** Last update Tue Jan 22 15:40:01 2013 remi robert
 */
 
 #include "op.h"
@@ -13,15 +13,33 @@
 
 int	check_magic_code(char *tab, int nb_carac)
 {
-  //  int	magic;
-
   if (nb_carac < COMMENT_LENGTH)
-    my_error("Error hearder file\n", 1);
+    my_error("Error header file\n", 1);
+  my_putstr("MAGIC NUMBER : ");
   if (((tab[0] & 0xFF) << 24) + ((tab[1] & 0xFF) << 16)
       + ((tab[2] & 0xFF) << 8) + ((tab[3] & 0xFF)) != COREWAR_EXEC_MAGIC)
-    my_error("Error : file not corewar file\n", 1);
-  my_putstr("MAGIC PACKET OK\n");
+    my_error("fail\n", 1);
+  my_putstr("OK\n");
   return (0);
+}
+
+char	*extract_comment(char *tab, int nb_carac)
+{
+  int	i;
+
+  if (nb_carac < COMMENT_LENGTH)
+    my_error("Error header file\n", 1);
+  i = 128;
+  if (tab[i] == 35)
+    my_putstr("COMMENT_CHECK: OK\n");
+  my_putstr("COMMENT : ");
+  while (i < COMMENT_LENGTH)
+    {
+      my_putchar(tab[i]);
+      i = i + 1;
+    }
+  my_putstr("\n");
+  return (tab);
 }
 
 char	*extract_name(char *tab, int nb_carac)
@@ -33,7 +51,7 @@ char	*extract_name(char *tab, int nb_carac)
       (name = malloc(sizeof(128 * sizeof(char *)))) == NULL)
     my_error("Error hearder file\n", 1);
   i = 0;
-  while (i <= 128 && tab[i + 4] != 0x0)
+  while (i < 128 && tab[i + 4] != 0x0)
     {
       name[i] = tab[i + 4];
       i = i + 1;

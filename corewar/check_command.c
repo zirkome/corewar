@@ -5,13 +5,50 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Tue Jan 22 12:49:47 2013 remi robert
-** Last update Tue Jan 22 13:40:02 2013 remi robert
+** Last update Tue Jan 22 14:48:49 2013 remi robert
 */
 
 #include "vm.h"
 #include "lib.h"
+#include "couleur.h"
 
-int	detect_fonction(int number)
+int	return_number_param(int number)
+{
+  char	tab[16];
+
+  tab[0] = 4;
+  tab[1] = 2;
+  tab[2] = 2;
+  tab[3] = 3;
+  tab[4] = 3;
+  tab[5] = 3;
+  tab[6] = 3;
+  tab[7] = 3;
+  tab[8] = 1;
+  tab[9] = 2;
+  tab[10] = 3;
+  tab[11] = 1;
+  tab[12] = 1;
+  tab[13] = 1;
+  tab[14] = 1;
+  tab[15] = 2;
+  return (tab[number]);
+}
+
+int	dectect_param(int number, char *tab)
+{
+  int	i;
+
+  i = 0;
+  while (i <= return_number_param(number))
+    {
+      printf(" %X ", tab[i]);
+      i = i + 1;
+    }
+  return (i);
+}
+
+int	detect_fonction(int number, char *tab)
 {
   char	*command[16];
 
@@ -33,6 +70,6 @@ int	detect_fonction(int number)
   command[13] = "lldi";
   command[14] = "lfork";
   command[15] = "aff";
-  printf("%s\n", command[number]);
-  return (0);
+  printf("\n%s%s%s%s -> ", INTENSITE, ROUGE, command[number], REZ);
+  return (dectect_param(number, tab));
 }

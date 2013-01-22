@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 21 18:34:30 2013 remi robert
-** Last update Tue Jan 22 13:22:41 2013 remi robert
+** Last update Tue Jan 22 15:35:17 2013 remi robert
 */
 
 #include <sys/stat.h>
@@ -44,10 +44,10 @@ t_champion	*open_file_champion(char *path, t_champion *champion)
   if (fd == -1)
     my_error("File not found\n", 1);
   champion->file = read_file(fd, &(champion->nb_carac));
-  my_putstr("File ok \n");
   check_magic_code(champion->file, champion->nb_carac);
   champion->name = extract_name(champion->file, champion->nb_carac);
-  printf("%s\n", champion->name);
+  extract_comment(champion->file, champion->nb_carac);
+  printf("Name champion : %s\n", champion->name);
   print_file(champion->file, champion->nb_carac);
   return (champion);
 }

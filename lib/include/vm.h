@@ -5,7 +5,7 @@
 ** Login   <bridou_n@epitech.net>
 **
 ** Started on  Wed Jan 16 17:58:40 2013 nicolas bridoux
-** Last update Tue Jan 22 13:34:49 2013 remi robert
+** Last update Tue Jan 22 15:07:53 2013 remi robert
 */
 
 #ifndef VM_H_
@@ -34,6 +34,7 @@ char		*read_file(const int fd, int *nb_carac);
 */
 int	check_magic_code(char *tab, int nb_carac);
 char	*extract_name(char *tab, int nb_carac);
+char	*extract_comment(char *tab, int nb_carac);
 
 /*
 ** print_file.c
@@ -43,6 +44,7 @@ int	print_file(char *tab, int nb_carac);
 /*
 ** check_command.c
 */
-int	detect_fonction(int number);
+int	detect_fonction(int number, char *tab);
+int	detect_param(int number, char *tab);
 
 #endif /* LIB_H_ */
