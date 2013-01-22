@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 21 18:34:30 2013 remi robert
-** Last update Tue Jan 22 12:15:42 2013 remi robert
+** Last update Tue Jan 22 13:22:41 2013 remi robert
 */
 
 #include <sys/stat.h>
@@ -35,9 +35,8 @@ char	*read_file(const int fd, int *nb_carac)
   return (file);
 }
 
-t_champion	*open_file(char *path, t_champion *champion)
+t_champion	*open_file_champion(char *path, t_champion *champion)
 {
-  char		*file;
   int		fd;
 
   champion->nb_carac = 0;

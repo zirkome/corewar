@@ -5,14 +5,15 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Tue Jan 22 10:57:56 2013 remi robert
-** Last update Tue Jan 22 12:15:49 2013 remi robert
+** Last update Tue Jan 22 13:17:11 2013 remi robert
 */
 
+#include "op.h"
 #include "lib.h"
 
 int	check_magic_code(char *tab, int nb_carac)
 {
-  int	magic;
+  //  int	magic;
 
   if (nb_carac < COMMENT_LENGTH)
     my_error("Error hearder file\n", 1);
@@ -20,6 +21,7 @@ int	check_magic_code(char *tab, int nb_carac)
       + ((tab[2] & 0xFF) << 8) + ((tab[3] & 0xFF)) != COREWAR_EXEC_MAGIC)
     my_error("Error : file not corewar file\n", 1);
   my_putstr("MAGIC PACKET OK\n");
+  return (0);
 }
 
 char	*extract_name(char *tab, int nb_carac)

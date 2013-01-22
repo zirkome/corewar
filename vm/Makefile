@@ -5,7 +5,7 @@
 ## Login   <bridou_n@epitech.net>
 ## 
 ## Started on  Fri Nov  9 20:29:49 2012 nicolas bridoux
-## Last update Tue Jan 22 12:42:02 2013 guillaume fillon
+## Last update Tue Jan 22 13:13:04 2013 remi robert
 ##
 
 NAME	= corewar
@@ -17,6 +17,10 @@ RM	= rm -f
 LPATH	= ../lib
 
 SRCS	= main.c			\
+	  check_header.c		\
+	  open_file.c			\
+	  print_file.c			\
+	  check_command.c		\
 
 LSRCS	= $(LPATH)/my_putchar.c		\
 	  $(LPATH)/my_string.c		\
@@ -30,7 +34,7 @@ CFLAGS	+= -g -Wall -Werror
 CFLAGS	+= -I../lib/include
 
 $(NAME): $(OBJS) $(LOBJS)
-	$(CC) -o $(NAME) $(OBJS) $(LOBJS)
+	$(CC) -o $(NAME) $(CFLAGS) $(OBJS) $(LOBJS)
 
 all: $(NAME)
 

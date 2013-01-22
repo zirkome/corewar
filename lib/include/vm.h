@@ -5,7 +5,7 @@
 ** Login   <bridou_n@epitech.net>
 **
 ** Started on  Wed Jan 16 17:58:40 2013 nicolas bridoux
-** Last update Tue Jan 22 11:24:14 2013 remi robert
+** Last update Tue Jan 22 13:19:32 2013 remi robert
 */
 
 #ifndef VM_H_
@@ -13,6 +13,7 @@
 
 # include <stdio.h>
 # include <stdlib.h>
+
 # define READ 4096
 
 typedef struct	s_champion
@@ -21,5 +22,22 @@ typedef struct	s_champion
   char		*file;
   char		*name;
 }		t_champion;
+
+/*
+** open_file.c
+*/
+t_champion	*open_file_champion(char *path, t_champion *champion);
+char		*read_file(const int fd, int *nb_carac);
+
+/*
+** check_header.c
+*/
+int	check_magic_code(char *tab, int nb_carac);
+char	*extract_name(char *tab, int nb_carac);
+
+/*
+** print_file.c
+*/
+int	print_file(char *tab, int nb_carac);
 
 #endif /* LIB_H_ */
