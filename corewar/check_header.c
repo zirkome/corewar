@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Tue Jan 22 10:57:56 2013 remi robert
-** Last update Tue Jan 22 15:40:01 2013 remi robert
+** Last update Tue Jan 22 16:09:33 2013 remi robert
 */
 
 #include "op.h"
@@ -29,13 +29,14 @@ char	*extract_comment(char *tab, int nb_carac)
 
   if (nb_carac < COMMENT_LENGTH)
     my_error("Error header file\n", 1);
-  i = 128;
+  i = 128 + 12;
   if (tab[i] == 35)
     my_putstr("COMMENT_CHECK: OK\n");
   my_putstr("COMMENT : ");
   while (i < COMMENT_LENGTH)
     {
-      my_putchar(tab[i]);
+      if ((tab[i] & 0xFF) < 127 && (tab[i] & 0xFF) >= 32)
+	my_putchar(tab[i]);
       i = i + 1;
     }
   my_putstr("\n");
