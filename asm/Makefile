@@ -5,38 +5,33 @@
 ## Login   <bridou_n@epitech.net>
 ## 
 ## Started on  Fri Nov  9 20:29:49 2012 nicolas bridoux
-## Last update Tue Jan 22 14:26:27 2013 nicolas bridoux
+## Last update Tue Jan 22 15:10:29 2013 nicolas bridoux
 ##
 
-NAME	= asm
+SRCS	=	main.c\
+		my_putchar.c\
+		my_string.c\
+		my_parsing.c\
+		check_label.c\
+		read_fd.c\
 
-CC	= gcc -g
+NAME	= 	asm
 
-RM	= rm -f
+OBJS	=	$(SRCS:.c=.o)
 
-LPATH	= ../lib
+CC	= 	gcc -g
 
-SRCS	= main.c			\
+CFLAGS	= 	-Wall -Wextra -pedantic -ansi
 
-LSRCS	= $(LPATH)/my_putchar.c		\
-	  $(LPATH)/my_string.c		\
-	  $(LPATH)/read_fd.c		\
+RM	=	rm -f
 
-OBJS	= $(SRCS:.c=.o)
+$(NAME):$(OBJS)
+	$(CC) -o $(NAME) $(OBJS)
 
-LOBJS	= $(LSRCS:.c=.o)
-
-CFLAGS	+= -Wall -Wextra -pedantic
-CFLAGS	+= -I../lib/include
-
-$(NAME): $(OBJS) $(LOBJS)
-	$(CC) -o $(NAME) $(CFLAGS) $(OBJS) $(LOBJS)
-
-all: $(NAME)
+all:	$(NAME) $(NAME2)
 
 clean:
 	$(RM) $(OBJS)
-	$(RM) $(LOBJS)
 
 fclean: clean
 	$(RM) $(NAME)
