@@ -21,6 +21,7 @@ typedef struct	s_champion
   int		nb_carac;
   char		*file;
   char		*name;
+  int		nb_cmd;
 }		t_champion;
 
 typedef struct	s_options
@@ -42,12 +43,12 @@ char		*read_file(const int fd, int *nb_carac);
 */
 int	check_magic_code(char *tab, int nb_carac);
 char	*extract_name(char *tab, int nb_carac);
-char	*extract_comment(char *tab, int nb_carac);
+char	*extract_comment(char *tab, int nb_carac, int *nb_cmd);
 
 /*
 ** print_file.c
 */
-int	print_file(char *tab, int nb_carac);
+int	print_file(char *tab, t_champion *champion);
 
 /*
 ** check_command.c

@@ -23,15 +23,14 @@ int	check_magic_code(char *tab, int nb_carac)
   return (0);
 }
 
-char	*extract_comment(char *tab, int nb_carac)
+char	*extract_comment(char *tab, int nb_carac, int *nb_cmd)
 {
   int	i;
 
   if (nb_carac < COMMENT_LENGTH)
     my_error("Error header file\n", 1);
+  *nb_cmd = ((tab[126 + 12] & 0xFF) << 8) + (tab[127 + 12] & 0xFF);
   i = 128 + 12;
-  if (tab[i] == 35)
-    my_putstr("COMMENT_CHECK: OK\n");
   my_putstr("COMMENT : ");
   while (i < COMMENT_LENGTH)
     {

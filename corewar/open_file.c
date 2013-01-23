@@ -46,8 +46,9 @@ t_champion	*open_file_champion(char *path, t_champion *champion)
   champion->file = read_file(fd, &(champion->nb_carac));
   check_magic_code(champion->file, champion->nb_carac);
   champion->name = extract_name(champion->file, champion->nb_carac);
-  extract_comment(champion->file, champion->nb_carac);
+  extract_comment(champion->file, champion->nb_carac, &(champion->nb_cmd));
   printf("Name champion : %s\n", champion->name);
-  print_file(champion->file, champion->nb_carac);
+  printf("Nb_cmd : %d\n", champion->nb_cmd);
+  print_file(champion->file, champion);
   return (champion);
 }
