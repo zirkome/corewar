@@ -1,11 +1,11 @@
 /*
 ** my_putchar.c for my_putchar.c in /home/bridou_n//Jour_07
-** 
+**
 ** Made by nicolas bridoux
 ** Login   <bridou_n@epitech.net>
-** 
+**
 ** Started on  Tue Oct  9 09:33:48 2012 nicolas bridoux
-** Last update Mon Jan 21 16:09:35 2013 nicolas bridoux
+** Last update Tue Jan 22 18:16:54 2013 guillaume fillon
 */
 
 #include "lib.h"

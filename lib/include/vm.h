@@ -5,7 +5,7 @@
 ** Login   <bridou_n@epitech.net>
 **
 ** Started on  Wed Jan 16 17:58:40 2013 nicolas bridoux
-** Last update Tue Jan 22 15:07:53 2013 remi robert
+** Last update Tue Jan 22 18:47:21 2013 guillaume fillon
 */
 
 #ifndef VM_H_
@@ -22,6 +22,14 @@ typedef struct	s_champion
   char		*file;
   char		*name;
 }		t_champion;
+
+typedef struct	s_options
+{
+  int		options;
+  int		dump_nbr;
+  int		prog_nbr;
+  int		load_address;
+}		t_options;
 
 /*
 ** open_file.c
