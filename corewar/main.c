@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 21 18:27:28 2013 remi robert
-** Last update Thu Jan 24 23:21:09 2013 remi
+** Last update Thu Jan 24 23:49:59 2013 remi
 */
 
 #include "lib.h"
@@ -31,7 +31,7 @@ int		main(int argc, char **argv)
     {
       if ((header = realloc(header, sizeof(header_t) * i + 1)) == NULL)
 	return (0);
-      //header[i] = read_file(argv[i]);
+      open_file_champion(argv[i + 1], &header[i]);
     }
   return (0);
 }

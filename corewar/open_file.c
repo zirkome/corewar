@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 21 18:34:30 2013 remi robert
-** Last update Thu Jan 24 23:45:54 2013 guillaume fillon
+** Last update Thu Jan 24 23:50:35 2013 remi
 */
 
 #include <sys/stat.h>
@@ -36,13 +36,13 @@ char	*read_file(const int fd, int *nb_carac)
   return (file);
 }
 
-int	open_file_champion(char *path, header_t **header)
+int	open_file_champion(char *path, header_t *header)
 {
   int	fd;
 
   if ((fd = open(path, O_RDONLY)) == -1)
     my_error("File not found\n", 1);
-  *header = check_header(fd, *header);
+  header = check_header(fd, header);
   close(fd);
   return (0);
 }
