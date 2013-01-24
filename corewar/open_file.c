@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 21 18:34:30 2013 remi robert
-** Last update Thu Jan 24 23:50:35 2013 remi
+** Last update Thu Jan 24 23:54:46 2013 remi
 */
 
 #include <sys/stat.h>
@@ -40,6 +40,7 @@ int	open_file_champion(char *path, header_t *header)
 {
   int	fd;
 
+  printf("%s\n", path);
   if ((fd = open(path, O_RDONLY)) == -1)
     my_error("File not found\n", 1);
   header = check_header(fd, header);

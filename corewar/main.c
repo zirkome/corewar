@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 21 18:27:28 2013 remi robert
-** Last update Thu Jan 24 23:49:59 2013 remi
+** Last update Thu Jan 24 23:55:21 2013 remi
 */
 
 #include "lib.h"
@@ -25,13 +25,14 @@ int		main(int argc, char **argv)
 
   if (argc == 1 || argc > 4)
     display_usage();
-  i = -1;
+  i = 1;
   header = NULL;
-  while (i++ <= argc)
+  while (i < argc)
     {
-      if ((header = realloc(header, sizeof(header_t) * i + 1)) == NULL)
+      if ((header = realloc(header, sizeof(header_t) * i)) == NULL)
 	return (0);
-      open_file_champion(argv[i + 1], &header[i]);
+      open_file_champion(argv[i], &header[i - 1]);
+      i = i + 1;
     }
   return (0);
 }
