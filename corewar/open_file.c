@@ -5,12 +5,13 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 21 18:34:30 2013 remi robert
-** Last update Thu Jan 24 23:27:40 2013 remi
+** Last update Thu Jan 24 23:43:49 2013 remi
 */
 
 #include <sys/stat.h>
 #include <fcntl.h>
 #include "lib.h"
+#include "op.h"
 #include "vm.h"
 
 char	*read_file(const int fd, int *nb_carac)
@@ -41,7 +42,7 @@ int	open_file_champion(char *path, header_t **header)
 
   if ((fd = open(path, O_RDONLY)) == -1)
     my_error("File not found\n", 1);
-  //*header = check_header(fd, *header);
+  *header = check_header(fd, *header);
   close(fd);
   return (0);
 }
