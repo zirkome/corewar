@@ -35,20 +35,13 @@ char	*read_file(const int fd, int *nb_carac)
   return (file);
 }
 
-t_champion	*open_file_champion(char *path, t_champion *champion)
+int	open_file_champion(char *path, header_t **header)
 {
-  int		fd;
+  int	fd;
 
-  champion->nb_carac = 0;
-  fd = open(path, O_RDONLY);
-  if (fd == -1)
+  if ((fd = open(path, O_RDONLY)) == -1)
     my_error("File not found\n", 1);
-  champion->file = read_file(fd, &(champion->nb_carac));
-  check_magic_code(champion->file, champion->nb_carac);
-  champion->name = extract_name(champion->file, champion->nb_carac);
-  extract_comment(champion->file, champion->nb_carac, &(champion->nb_cmd));
-  printf("Name champion : %s\n", champion->name);
-  printf("Nb_cmd : %d\n", champion->nb_cmd);
-  print_file(champion->file, champion);
-  return (champion);
+  // champion->file = read_file(fd, &(champion->nb_carac));
+  close(fd);
+  return (0);
 }

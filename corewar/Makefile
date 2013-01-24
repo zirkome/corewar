@@ -17,10 +17,7 @@ RM	= rm -f
 LPATH	= ../lib
 
 SRCS	= main.c			\
-	  check_header.c		\
-	  open_file.c			\
-	  print_file.c			\
-	  check_command.c		\
+##	  open_file.c			\
 
 LSRCS	= $(LPATH)/my_putchar.c		\
 	  $(LPATH)/my_string.c		\

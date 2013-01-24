@@ -5,11 +5,12 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 21 18:27:28 2013 remi robert
-** Last update Tue Jan 22 23:03:03 2013 guillaume fillon
+** Last update Thu Jan 24 23:21:09 2013 remi
 */
 
 #include "lib.h"
 #include "vm.h"
+#include "op.h"
 
 void		display_usage()
 {
@@ -19,12 +20,18 @@ void		display_usage()
 
 int		main(int argc, char **argv)
 {
-  t_champion	*champion1;
+  header_t	*header;
+  int		i;
 
-  if (argc == 1)
+  if (argc == 1 || argc > 4)
     display_usage();
-  if ((champion1 = malloc(sizeof(t_champion))) == NULL)
-    return (0);
-  open_file_champion(argv[1], champion1);
+  i = -1;
+  header = NULL;
+  while (i++ <= argc)
+    {
+      if ((header = realloc(header, sizeof(header_t) * i + 1)) == NULL)
+	return (0);
+      //header[i] = read_file(argv[i]);
+    }
   return (0);
 }
