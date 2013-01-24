@@ -6,8 +6,8 @@
 */
 
 
-#ifndef _OP_H_
-# define _OP_H_
+#ifndef OP_H_
+# define OP_H_
 
 
 
@@ -26,21 +26,28 @@
 # define COMMENT_CMD_STRING      ".comment"
 
 /*
+<<<<<<< HEAD
  ** regs
  */
 
 # define REG_NUMBER      16              /* r1 <--> rx */
+=======
+** regs
+*/
+>>>>>>> fa0796fc507136011444f64ade8d5526995b54ef
 
-/*
- **
- */
+# define REG_NUMBER      16              /* r1 <--> rx */
 
 typedef char    args_type_t;
 
 # define T_REG           1       /* registre */
 # define T_DIR           2       /* directe  (ld  #1,r1  met 1 dans r1) */
 # define T_IND           4       /* indirecte toujours relatif
+<<<<<<< HEAD
                                    ( ld 1,r1 met ce qu'il y a l'adress (1+pc)
+=======
+                                   (ld 1,r1 met ce qu'il y a l'adress (1+pc)
+>>>>>>> fa0796fc507136011444f64ade8d5526995b54ef
                                    dans r1 (4 octecs )) */
 # define T_LAB           8       /* LABEL */
 
@@ -57,32 +64,43 @@ struct  op_s
 typedef struct op_s     op_t;
 
 /*
- ** size
- */
+** size
+*/
 
 # define IND_SIZE        2               /* en octet */
 # define REG_SIZE        4               /* en octet */
 # define DIR_SIZE        REG_SIZE        /* en octet */
 
 /*
- ** op_tab
- */
-
+** op_tab
+*/
 
 extern  op_t    op_tab[];
 
 
 /*
+<<<<<<< HEAD
  ** header
  */
 # define HEADER_LENGTH       PROG_NAME_LENGTH + COMMENT_LENGTH + 2 * sizeof(int)
 # define PROG_NAME_LENGTH    128
 # define COMMENT_LENGTH	     2048
+=======
+** header
+*/
+
+# define PROG_NAME_LENGTH        128
+# define COMMENT_LENGTH          2048
+>>>>>>> fa0796fc507136011444f64ade8d5526995b54ef
 
 struct header_s
 {
    int  magic;
+<<<<<<< HEAD
 # define COREWAR_EXEC_MAGIC      0xea83f3        /* why not */
+=======
+# define COREWAR_EXEC_MAGIC      0xEA83F3
+>>>>>>> fa0796fc507136011444f64ade8d5526995b54ef
    char prog_name[PROG_NAME_LENGTH+1];
    int  prog_size;
    char comment[COMMENT_LENGTH+1];
@@ -91,11 +109,17 @@ struct header_s
 typedef struct header_s header_t;
 
 /*
- ** live
- */
+** live
+*/
 
+<<<<<<< HEAD
 # define CYCLE_TO_DIE    1536    /* nombre de cycle pour etre d\'eclarer mort */
 # define CYCLE_DELTA     5
 # define NBR_LIVE        40
+=======
+#define CYCLE_TO_DIE    1536   /* nombre de cycle pour etre declarer mort */
+#define CYCLE_DELTA     5
+#define NBR_LIVE        40
+>>>>>>> fa0796fc507136011444f64ade8d5526995b54ef
 
-#endif
+#endif /* OP_H_ */
