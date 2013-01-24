@@ -24,6 +24,14 @@ typedef struct	s_champion
   int		nb_cmd;
 }		t_champion;
 
+typedef char    mem_t;
+
+typedef struct	s_vm
+{
+  mem_t		*mem;
+  int		size_rempl;
+}t_vm;
+
 typedef struct	s_options
 {
   int		options;
@@ -49,11 +57,13 @@ char	*extract_comment(char *tab, int nb_carac, int *nb_cmd);
 ** print_file.c
 */
 int	print_file(char *tab, t_champion *champion);
+void	print_memory(t_vm *vm);
 
 /*
 ** check_command.c
 */
-int	detect_fonction(int number, char *tab);
+int	return_number_param(int number);
+int	detect_fonction(int number, char *tab, int n);
 int	detect_param(int number, char *tab);
 
 #endif /* LIB_H_ */

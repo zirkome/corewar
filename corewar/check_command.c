@@ -16,7 +16,7 @@ int	return_number_param(int number)
 {
   char	tab[16];
 
-  tab[0] = 4;
+  tab[0] = 1;
   tab[1] = 2;
   tab[2] = 2;
   tab[3] = 3;
@@ -25,13 +25,13 @@ int	return_number_param(int number)
   tab[6] = 3;
   tab[7] = 3;
   tab[8] = 1;
-  tab[9] = 2;
+  tab[9] = 3;
   tab[10] = 3;
   tab[11] = 1;
-  tab[12] = 1;
-  tab[13] = 1;
+  tab[12] = 2;
+  tab[13] = 3;
   tab[14] = 1;
-  tab[15] = 2;
+  tab[15] = 1;
   return (tab[number]);
 }
 
@@ -48,12 +48,10 @@ int	dectect_param(int number, char *tab)
   return (i);
 }
 
-int	detect_fonction(int number, char *tab)
+int	detect_fonction(int number, char *tab, int n)
 {
   char	*command[16];
 
-  if (number > 15)
-    return (0);
   command[0] = "live";
   command[1] = "ld";
   command[2] = "st";
@@ -70,6 +68,7 @@ int	detect_fonction(int number, char *tab)
   command[13] = "lldi";
   command[14] = "lfork";
   command[15] = "aff";
-  printf("\n%s%s%s%s -> ", INTENSITE, ROUGE, command[number], REZ);
-  return (dectect_param(number, tab));
+  printf("\n%s%s%s%s -> ", INTENSITE, ROUGE, command[n], REZ);
+  //return (dectect_param(number + 1, tab));
+  return (1);
 }

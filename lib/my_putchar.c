@@ -13,13 +13,13 @@
 void	my_putchar(char c)
 {
   if ((write(1, &c, 1)) == -1)
-    exit(EXIT_FAILURE);
+    write(2, &c, 1);
 }
 
 void	my_putstr(char *str)
 {
   if ((write(1, str, my_strlen(str))) == -1)
-    exit(EXIT_FAILURE);
+    write(2, str, my_strlen(str));
 }
 
 int	my_strlen(char *str)

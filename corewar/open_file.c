@@ -49,6 +49,5 @@ t_champion	*open_file_champion(char *path, t_champion *champion)
   extract_comment(champion->file, champion->nb_carac, &(champion->nb_cmd));
   printf("Name champion : %s\n", champion->name);
   printf("Nb_cmd : %d\n", champion->nb_cmd);
-  print_file(champion->file, champion);
   return (champion);
 }
