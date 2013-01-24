@@ -5,7 +5,7 @@
 ** Login   <bridou_n@epitech.net>
 **
 ** Started on  Wed Jan 16 17:58:40 2013 nicolas bridoux
-** Last update Tue Jan 22 18:47:21 2013 guillaume fillon
+** Last update Thu Jan 24 23:44:22 2013 remi
 */
 
 #ifndef VM_H_
@@ -13,16 +13,9 @@
 
 # include <stdio.h>
 # include <stdlib.h>
+# include "op.h"
 
 # define READ 4096
-
-typedef struct	s_champion
-{
-  int		nb_carac;
-  char		*file;
-  char		*name;
-  int		nb_cmd;
-}		t_champion;
 
 typedef struct	s_options
 {
@@ -35,25 +28,12 @@ typedef struct	s_options
 /*
 ** open_file.c
 */
-t_champion	*open_file_champion(char *path, t_champion *champion);
-char		*read_file(const int fd, int *nb_carac);
+int	open_file_champion(char *path, header_t **header);
+char	*read_file(const int fd, int *nb_carac);
 
 /*
 ** check_header.c
 */
-int	check_magic_code(char *tab, int nb_carac);
-char	*extract_name(char *tab, int nb_carac);
-char	*extract_comment(char *tab, int nb_carac, int *nb_cmd);
-
-/*
-** print_file.c
-*/
-int	print_file(char *tab, t_champion *champion);
-
-/*
-** check_command.c
-*/
-int	detect_fonction(int number, char *tab);
-int	detect_param(int number, char *tab);
+header_t	*check_header(const int fd, header_t *header);
 
 #endif /* LIB_H_ */
