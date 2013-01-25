@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Thu Jan 24 23:12:01 2013 remi
-** Last update Fri Jan 25 16:39:46 2013 remi robert
+** Last update Fri Jan 25 21:18:40 2013 guillaume fillon
 */
 
 #include <sys/stat.h>
@@ -31,7 +31,9 @@ void	dump_memory(t_vm *vm)
   printf("%s", "\n\n");
   while (vm->mem != NULL && i < MEM_SIZE)
     {
-      printf("%0#4X ", vm->mem[i] & 0xFF);
+      if (i % 64 == 0)
+	printf("%s", "\n");
+      printf("%02X ", vm->mem[i] & 0xFF);
       i = i + 1;
     }
   printf("%s", "\n\n");

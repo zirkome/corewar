@@ -31,8 +31,6 @@
 
 # define REG_NUMBER      16              /* r1 <--> rx */
 
-# define REG_NUMBER      16              /* r1 <--> rx */
-
 typedef char    args_type_t;
 
 # define T_REG           1       /* registre */
