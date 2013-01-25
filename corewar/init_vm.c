@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Thu Jan 24 23:12:01 2013 remi
-** Last update Fri Jan 25 15:48:04 2013 remi robert
+** Last update Fri Jan 25 16:39:46 2013 remi robert
 */
 
 #include <sys/stat.h>
@@ -14,21 +14,30 @@
 #include "vm.h"
 #include "op.h"
 
+void	reset_mem(t_vm **vm)
+{
+  int	i;
+
+  i = 0;
+  while (i < MEM_SIZE)
+    (*vm)->mem[i++] = 0x0;
+}
+
 void	dump_memory(t_vm *vm)
 {
   int	i;
 
   i = 0;
-  printf("\n\n");
-  while (i < MEM_SIZE)
+  printf("%s", "\n\n");
+  while (vm->mem != NULL && i < MEM_SIZE)
     {
-      printf("%X ", vm->mem[i] & 0xFF);
+      printf("%0#4X ", vm->mem[i] & 0xFF);
       i = i + 1;
     }
-  printf("\n\n");
+  printf("%s", "\n\n");
 }
 
-void	fill_vm_mem(char *file, t_vm **vm, int nb_elem, int *pos_mem)
+void	fill_mem(char *file, t_vm **vm, int nb_elem, int *pos_mem)
 {
   char	*buf;
   int	size;
@@ -45,7 +54,6 @@ void	fill_vm_mem(char *file, t_vm **vm, int nb_elem, int *pos_mem)
       *pos_mem = *pos_mem + 1;
       pos_buf = pos_buf + 1;
     }
-  *pos_mem = *pos_mem - 1;
 }
 
 int	calc_interval(int nb_elem, int total_size)
@@ -73,20 +81,18 @@ int		init_vm(int nb_elem, char **argv, header_t *header)
   i = 0;
   mem_temp = 0;
   while (i < nb_elem)
-    {
-      mem_temp = mem_temp + header[i].prog_size;
-      i = i + 1;
-    }
+    mem_temp += header[i++].prog_size;
   if (mem_temp > MEM_SIZE || (vm = malloc(sizeof(t_vm))) == NULL)
     my_error("Can’t perform malloc\n", 1);
-  if ((vm->mem = malloc(sizeof(char *) * MEM_SIZE)) == NULL)
+  if ((vm->mem = malloc(sizeof(char) * MEM_SIZE)) == NULL)
     my_error("Can’t perform malloc\n", 1);
+  reset_mem(&vm);
   i = 0;
   pos_mem = 0;
   interval = calc_interval(nb_elem, mem_temp);
   while (i < nb_elem)
     {
-      fill_vm_mem(argv[i + 1], &vm, header[i].prog_size, &pos_mem);
+      fill_mem(argv[i + 1], &vm, header[i].prog_size, &pos_mem);
       pos_mem = pos_mem + interval;
       i = i + 1;
     }

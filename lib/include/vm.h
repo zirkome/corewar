@@ -5,7 +5,7 @@
 ** Login   <bridou_n@epitech.net>
 **
 ** Started on  Wed Jan 16 17:58:40 2013 nicolas bridoux
-** Last update Fri Jan 25 13:54:52 2013 remi robert
+** Last update Fri Jan 25 16:34:20 2013 remi robert
 */
 
 #ifndef VM_H_
@@ -53,6 +53,7 @@ header_t	*check_header(const int fd, header_t *header);
 */
 int		init_vm(int nb_elem, char **argv, header_t *header);
 int		calc_interval(int nb_elem, int total_size);
-void		fill_vm_mem(char *file, t_vm **vm, int nb_elem, int *pos_mem);
+void		fill_mem(char *file, t_vm **vm, int nb_elem, int *pos_mem);
+void		reseet_mem(t_vm **vm);
 
 #endif /* LIB_H_ */
