@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Thu Jan 24 23:12:01 2013 remi
-** Last update Fri Jan 25 09:45:45 2013 remi
+** Last update Fri Jan 25 13:15:36 2013 remi robert
 */
 
 #include <sys/stat.h>
@@ -16,19 +16,21 @@
 
 void	fill_vm_mem(char *file, t_vm **vm, int nb_elem, int *pos_mem)
 {
-  int	fd;
-  int	rt;
-  char	buf[2];
+  char	*buf;
+  int	size;
+  int	pos_buf;
 
-  if ((fd = open(file, O_RDONLY)) == -1)
-    my_error("Error opening file\n", 1);
-  rt = 1;
-  while (*pos_mem < MEM_SIZE && (rt = read(fd, buf, 1)) > 0)
+  buf = return_buf_mem(file, &size);
+  if (size != nb_elem)
+    my_error("Error number instruction\n", 1);
+  size = size + *pos_mem;
+  pos_buf = 0;
+  while (*pos_mem <= size)
     {
-      (*vm)->mem[*pos_mem] = buf[0];
+      (*vm)->mem[*pos_mem] = buf[pos_buf];
       *pos_mem = *pos_mem + 1;
+      pos_buf = pos_buf + 1;
     }
-  close(fd);
 }
 
 int	calc_interval(int nb_elem, int total_size)

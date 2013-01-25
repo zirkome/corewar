@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 21 18:27:28 2013 remi robert
-** Last update Thu Jan 24 23:55:21 2013 remi
+** Last update Fri Jan 25 11:47:19 2013 remi robert
 */
 
 #include "lib.h"
@@ -27,6 +27,13 @@ int		main(int argc, char **argv)
     display_usage();
   i = 1;
   header = NULL;
+
+  char *buf;
+  int	size;
+  buf = NULL;
+  buf = return_buf_mem(argv[1], &size);
+  free(buf);
+  return (0);
   while (i < argc)
     {
       if ((header = realloc(header, sizeof(header_t) * i)) == NULL)

@@ -5,7 +5,7 @@
 ** Login   <bridou_n@epitech.net>
 **
 ** Started on  Wed Jan 16 17:58:40 2013 nicolas bridoux
-** Last update Fri Jan 25 00:18:34 2013 remi
+** Last update Fri Jan 25 11:36:26 2013 remi robert
 */
 
 #ifndef VM_H_
@@ -41,6 +41,7 @@ typedef struct	s_param_mem
 */
 int	open_file_champion(char *path, header_t *header);
 char	*read_file(const int fd, int *nb_carac);
+char	*return_buf_mem(char *file, int *size);
 
 /*
 ** check_header.c
