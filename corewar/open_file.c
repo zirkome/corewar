@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 21 18:34:30 2013 remi robert
-** Last update Fri Jan 25 13:41:43 2013 remi robert
+** Last update Fri Jan 25 14:13:11 2013 remi robert
 */
 
 #include <sys/stat.h>
@@ -19,12 +19,10 @@ char	*return_buf_mem(char *file, int *size)
   char	buf[2];
   char	*tab;
   int	fd;
-  int	size_tab;
   int	ret;
 
   tab = NULL;
   buf[1] = '\0';
-  size_tab = 0;
   *size = 0;
   if ((fd = open(file, O_RDONLY)) == -1)
     my_error("File not found\n", 1);
@@ -40,7 +38,6 @@ char	*return_buf_mem(char *file, int *size)
       tab[*size] = buf[0];
       *size = *size + ret;
     }
-  *size = size_tab;
   close(fd);
   return (tab);
 }
