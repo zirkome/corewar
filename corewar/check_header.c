@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Thu Jan 24 21:46:54 2013 guillaume fillon
-** Last update Fri Jan 25 04:25:58 2013 guillaume fillon
+** Last update Fri Jan 25 05:33:39 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -79,15 +79,11 @@ header_t	*check_header(const int fd, header_t *header)
     return (NULL);
   if ((header->magic = check_magic(buf)) != COREWAR_EXEC_MAGIC)
     return (NULL);
-  printf("\nMAGIC_CODE : %X\n", header->magic);
   if ((header->prog_name = check_name(buf)) == NULL)
     return (NULL);
-  printf("NAME : %s\n", header->prog_name);
   if ((header->prog_size = check_size(buf)) <= 0)
     return (NULL);
-  printf("SIZE : %d octets\n", header->prog_size);
   if ((header->comment = check_comment(buf)) == NULL)
     return (NULL);
-  printf("COMMENT : %s\n", header->comment);
   return (header);
 }
