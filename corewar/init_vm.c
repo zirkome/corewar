@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Thu Jan 24 23:12:01 2013 remi
-** Last update Fri Jan 25 13:15:36 2013 remi robert
+** Last update Fri Jan 25 13:40:56 2013 remi robert
 */
 
 #include <sys/stat.h>
@@ -38,7 +38,7 @@ int	calc_interval(int nb_elem, int total_size)
   int	interval;
 
   if (total_size > MEM_SIZE)
-    my_error("Unsifisant memory\n", 1);
+    my_error("Can’t perform malloc\n", 1);
   if (total_size == MEM_SIZE || nb_elem == 0)
     return (0);
   interval = 0;
@@ -59,9 +59,9 @@ int		inti_vm(int nb_elem, char **argv, header_t *header)
   while (i++ != nb_elem)
     mem_temp = mem_temp + header[i].prog_size;
   if (mem_temp > MEM_SIZE || (vm = malloc(sizeof(t_vm))) == NULL)
-    my_error("Unsifisant memory\n", 1);
+    my_error("Can’t perform malloc\n", 1);
   if ((vm->mem = malloc(sizeof(char *) * MEM_SIZE)) == NULL)
-    my_error("Error malloc\n", 1);
+    my_error("Can’t perform malloc\n", 1);
   i = -1;
   pos_mem = 0;
   interval = calc_interval(nb_elem, mem_temp);

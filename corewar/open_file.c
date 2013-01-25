@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 21 18:34:30 2013 remi robert
-** Last update Fri Jan 25 13:25:10 2013 remi robert
+** Last update Fri Jan 25 13:41:43 2013 remi robert
 */
 
 #include <sys/stat.h>
@@ -36,7 +36,7 @@ char	*return_buf_mem(char *file, int *size)
       if (ret == -1)
 	my_error("Error read file\n", 1);
       if ((tab = realloc(tab, (*size + ret) * sizeof(char))) == NULL)
-	my_error("Error malloc\n", 1);
+	my_error("Can’t perform malloc\n", 1);
       tab[*size] = buf[0];
       *size = *size + ret;
     }
