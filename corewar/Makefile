@@ -5,7 +5,7 @@
 ## Login   <bridou_n@epitech.net>
 ## 
 ## Started on  Fri Nov  9 20:29:49 2012 nicolas bridoux
-## Last update Thu Jan 24 23:35:45 2013 remi
+## Last update Fri Jan 25 08:50:26 2013 remi
 ##
 
 NAME	= corewar
@@ -19,6 +19,7 @@ LPATH	= ../lib
 SRCS	= main.c			\
 	  check_header.c		\
 	  open_file.c			\
+	  init_vm.c			\
 
 LSRCS	= $(LPATH)/my_putchar.c		\
 	  $(LPATH)/my_string.c		\

@@ -5,7 +5,7 @@
 ** Login   <bridou_n@epitech.net>
 **
 ** Started on  Wed Jan 16 17:58:40 2013 nicolas bridoux
-** Last update Thu Jan 24 23:50:58 2013 remi
+** Last update Fri Jan 25 00:18:34 2013 remi
 */
 
 #ifndef VM_H_
@@ -24,6 +24,17 @@ typedef struct	s_options
   int		prog_nbr;
   int		load_address;
 }		t_options;
+
+typedef struct	s_vm
+{
+  char		*mem;
+}		t_vm;
+
+typedef struct	s_param_mem
+{
+  int		nb_octet;
+  int		indice;
+}		t_param_mem;
 
 /*
 ** open_file.c
