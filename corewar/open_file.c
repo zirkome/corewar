@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 21 18:34:30 2013 remi robert
-** Last update Fri Jan 25 04:11:04 2013 guillaume fillon
+** Last update Fri Jan 25 13:25:10 2013 remi robert
 */
 
 #include <sys/stat.h>
@@ -13,6 +13,37 @@
 #include "lib.h"
 #include "op.h"
 #include "vm.h"
+
+char	*return_buf_mem(char *file, int *size)
+{
+  char	buf[2];
+  char	*tab;
+  int	fd;
+  int	size_tab;
+  int	ret;
+
+  tab = NULL;
+  buf[1] = '\0';
+  size_tab = 0;
+  *size = 0;
+  if ((fd = open(file, O_RDONLY)) == -1)
+    my_error("File not found\n", 1);
+  if (lseek(fd, 2192, SEEK_CUR) == -1)
+    my_error("Error lseek\n", 1);
+  ret = 1;
+  while ((ret = read(fd, buf, 1)) != 0)
+    {
+      if (ret == -1)
+	my_error("Error read file\n", 1);
+      if ((tab = realloc(tab, (*size + ret) * sizeof(char))) == NULL)
+	my_error("Error malloc\n", 1);
+      tab[*size] = buf[0];
+      *size = *size + ret;
+    }
+  *size = size_tab;
+  close(fd);
+  return (tab);
+}
 
 char	*read_file(const int fd, int *nb_carac)
 {
