@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Thu Jan 24 23:12:01 2013 remi
-** Last update Fri Jan 25 14:25:15 2013 remi robert
+** Last update Fri Jan 25 15:48:04 2013 remi robert
 */
 
 #include <sys/stat.h>
@@ -39,7 +39,7 @@ void	fill_vm_mem(char *file, t_vm **vm, int nb_elem, int *pos_mem)
     my_error("Error number instruction\n", 1);
   size = size + *pos_mem;
   pos_buf = 0;
-  while (*pos_mem <= size)
+  while (*pos_mem < size)
     {
       (*vm)->mem[*pos_mem] = buf[pos_buf];
       *pos_mem = *pos_mem + 1;
