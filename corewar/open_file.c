@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 21 18:34:30 2013 remi robert
-** Last update Fri Jan 25 13:07:02 2013 remi robert
+** Last update Fri Jan 25 13:25:10 2013 remi robert
 */
 
 #include <sys/stat.h>
@@ -60,7 +60,7 @@ char	*read_file(const int fd, int *nb_carac)
       if (size_read == -1)
 	my_error("Error read file\n", 1);
       if ((file = realloc(file, *nb_carac + size_read)) == NULL)
-	my_error("Error malloc\n", 1);
+	my_error("Can't perform malloc\n", 1);
       file[*nb_carac] = buff[0];
       *nb_carac = *nb_carac + size_read;
     }
@@ -71,10 +71,17 @@ int	open_file_champion(char *path, header_t *header)
 {
   int	fd;
 
-  printf("%s\n", path);
   if ((fd = open(path, O_RDONLY)) == -1)
-    my_error("File not found\n", 1);
-  header = check_header(fd, header);
+    {
+      my_error("File ", 0);
+      my_error(path, 0);
+      my_error(" not accessible\n", 1);
+    }
+  if ((header = check_header(fd, header)) == NULL)
+    {
+      my_error(path, 0);
+      my_error(" is not a corewar executable\n", 1);
+    }
   close(fd);
   return (0);
 }

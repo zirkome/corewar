@@ -5,7 +5,7 @@
 ** Login   <bridou_n@epitech.net>
 **
 ** Started on  Tue Oct  9 09:33:48 2012 nicolas bridoux
-** Last update Tue Jan 22 18:16:54 2013 guillaume fillon
+** Last update Fri Jan 25 03:42:01 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -27,6 +27,8 @@ int	my_strlen(char *str)
   int	i;
 
   i = -1;
+  if (str == NULL)
+    return (0);
   while (str[++i]);
   return (i);
 }

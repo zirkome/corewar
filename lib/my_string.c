@@ -1,11 +1,11 @@
 /*
 ** my_string.c for my_string.c in /home/bridou_n//corewar
-** 
+**
 ** Made by nicolas bridoux
 ** Login   <bridou_n@epitech.net>
-** 
+**
 ** Started on  Wed Jan 16 17:59:57 2013 nicolas bridoux
-** Last update Mon Jan 21 16:09:43 2013 nicolas bridoux
+** Last update Fri Jan 25 03:41:05 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -69,6 +69,8 @@ char	*my_strdup(char *src)
   char	*str;
   int	len;
 
+  if (src == NULL)
+    return (NULL);
   len = my_strlen(src);
   if ((str = malloc(sizeof(char) * (len + 1))) == NULL)
     my_error("Can not malloc\n", 1);
