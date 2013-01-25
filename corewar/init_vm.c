@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Thu Jan 24 23:12:01 2013 remi
-** Last update Fri Jan 25 14:20:23 2013 remi robert
+** Last update Fri Jan 25 14:25:15 2013 remi robert
 */
 
 #include <sys/stat.h>
@@ -45,6 +45,7 @@ void	fill_vm_mem(char *file, t_vm **vm, int nb_elem, int *pos_mem)
       *pos_mem = *pos_mem + 1;
       pos_buf = pos_buf + 1;
     }
+  *pos_mem = *pos_mem - 1;
 }
 
 int	calc_interval(int nb_elem, int total_size)
