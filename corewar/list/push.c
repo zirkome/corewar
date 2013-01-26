@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Sun Dec  9 21:30:11 2012 guillaume fillon
-** Last update Tue Jan 15 17:20:15 2013 guillaume fillon
+** Last update Sat Jan 26 18:45:53 2013 guillaume fillon
 */
 
 #include <stdio.h>
@@ -13,14 +13,14 @@
 #include <string.h>
 #include "list.h"
 
-void		push_before(t_list *elem, t_data *data)
+void		push_before(t_list *elem, int pc)
 {
   t_list	*new_elem;
 
   if ((new_elem = (t_list *) malloc(sizeof(*new_elem))) != NULL)
     {
       new_elem->size = elem->prev->size++;
-      new_elem->data = data;
+      new_elem->pc = pc;
       new_elem->prev = elem->prev;
       new_elem->next = elem;
       elem->prev->next = new_elem;
@@ -28,14 +28,14 @@ void		push_before(t_list *elem, t_data *data)
     }
 }
 
-void		push_after(t_list *elem, t_data *data)
+void		push_after(t_list *elem, int pc)
 {
   t_list	*new_elem;
 
   if ((new_elem = (t_list *) malloc(sizeof(*new_elem))) != NULL)
     {
       new_elem->size = elem->next->size++;
-      new_elem->data = data;
+      new_elem->pc = pc
       new_elem->prev = elem;
       new_elem->next = elem->next;
       elem->next->prev = new_elem;

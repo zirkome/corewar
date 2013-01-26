@@ -5,7 +5,7 @@
 ** Login   <bridou_n@epitech.net>
 **
 ** Started on  Wed Jan 16 17:58:40 2013 nicolas bridoux
-** Last update Sat Jan 26 17:37:54 2013 guillaume fillon
+** Last update Sat Jan 26 18:44:05 2013 guillaume fillon
 */
 
 #ifndef VM_H_
@@ -30,6 +30,7 @@ typedef struct	s_proc
   int		pid;
   int		reg[REG_NUMBER];
   int		pc;
+  short
   struct s_proc	*next;
   struct s_proc	*prev;
 }		t_proc;
