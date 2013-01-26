@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Thu Jan 24 23:12:01 2013 remi
-** Last update Sat Jan 26 10:48:21 2013 guillaume fillon
+** Last update Sat Jan 26 13:41:15 2013 remi robert
 */
 
 #include <sys/stat.h>
@@ -88,7 +88,7 @@ int		init_vm(int nb_chp, char **argv, header_t *header)
   while (i < nb_chp)
     mem_temp += header[i++].prog_size;
   if (mem_temp > MEM_SIZE || (vm = malloc(sizeof(t_vm))) == NULL)
-    my_error("Can’t perform malloc\n", 1);
+    my_error("File is too big.\n", 1);
   if ((vm->mem = malloc(sizeof(char) * MEM_SIZE)) == NULL)
     my_error("Can’t perform malloc\n", 1);
   reset_mem(&vm);
@@ -104,5 +104,6 @@ int		init_vm(int nb_chp, char **argv, header_t *header)
   dump_memory(vm);
   printf("%s","VM initialiser avec succès !\n");
 #endif
+  parser_fct(vm);
   return (0);
 }

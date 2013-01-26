@@ -5,7 +5,7 @@
 ** Login   <bridou_n@epitech.net>
 **
 ** Started on  Wed Jan 16 17:58:40 2013 nicolas bridoux
-** Last update Sat Jan 26 10:46:36 2013 guillaume fillon
+** Last update Sat Jan 26 11:08:45 2013 remi robert
 */
 
 #ifndef VM_H_
@@ -55,5 +55,10 @@ int		init_vm(int nb_elem, char **argv, header_t *header);
 int		calc_interval(int nb_elem, int total_size);
 int		fill_mem(char *file, t_vm **vm, header_t *header, int pos_mem);
 void		reset_mem(t_vm **vm);
+
+/*
+** parser.c
+*/
+void		parser_fct(t_vm *vm);
 
 #endif /* LIB_H_ */
