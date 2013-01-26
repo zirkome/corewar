@@ -5,7 +5,7 @@
 ** Login   <bridou_n@epitech.net>
 **
 ** Started on  Wed Jan 16 17:58:40 2013 nicolas bridoux
-** Last update Sat Jan 26 11:08:45 2013 remi robert
+** Last update Sat Jan 26 17:00:27 2013 guillaume fillon
 */
 
 #ifndef VM_H_
@@ -29,12 +29,6 @@ typedef struct	s_vm
 {
   char		*mem;
 }		t_vm;
-
-typedef struct	s_param_mem
-{
-  int		nb_octet;
-  int		indice;
-}		t_param_mem;
 
 /*
 ** open_file.c

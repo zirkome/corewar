@@ -5,12 +5,12 @@
 ## Login   <bridou_n@epitech.net>
 ## 
 ## Started on  Fri Nov  9 20:29:49 2012 nicolas bridoux
-## Last update Sat Jan 26 11:08:26 2013 remi robert
+## Last update Sat Jan 26 14:01:55 2013 guillaume fillon
 ##
 
 NAME	= corewar
 
-CC	= gcc
+CC	= clang
 
 RM	= rm -f
 
