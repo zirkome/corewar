@@ -5,11 +5,13 @@
 ** Login   <bridou_n@epitech.net>
 **
 ** Started on  Wed Jan 16 17:58:40 2013 nicolas bridoux
-** Last update Tue Jan 22 13:16:17 2013 remi robert
+** Last update Sat Jan 26 10:09:07 2013 guillaume fillon
 */
 
 #ifndef LIB_H_
 # define LIB_H_
+
+# define DEBUG
 
 # include <stdio.h>
 # include <stdlib.h>

@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Thu Jan 24 23:12:01 2013 remi
-** Last update Fri Jan 25 21:18:40 2013 guillaume fillon
+** Last update Sat Jan 26 10:48:21 2013 guillaume fillon
 */
 
 #include <sys/stat.h>
@@ -28,7 +28,6 @@ void	dump_memory(t_vm *vm)
   int	i;
 
   i = 0;
-  printf("%s", "\n\n");
   while (vm->mem != NULL && i < MEM_SIZE)
     {
       if (i % 64 == 0)
@@ -39,40 +38,44 @@ void	dump_memory(t_vm *vm)
   printf("%s", "\n\n");
 }
 
-void	fill_mem(char *file, t_vm **vm, int nb_elem, int *pos_mem)
+int	fill_mem(char *file, t_vm **vm, header_t *header, int pos_mem)
 {
   char	*buf;
   int	size;
   int	pos_buf;
 
-  buf = return_buf_mem(file, &size);
-  if (size != nb_elem)
+  buf = get_champ(file, &size);
+  if (size != header->prog_size)
     my_error("Error number instruction\n", 1);
-  size = size + *pos_mem;
+  size = size + pos_mem;
   pos_buf = 0;
-  while (*pos_mem < size)
+  while (pos_mem < size)
     {
-      (*vm)->mem[*pos_mem] = buf[pos_buf];
-      *pos_mem = *pos_mem + 1;
+      (*vm)->mem[pos_mem] = buf[pos_buf];
+      pos_mem = pos_mem + 1;
       pos_buf = pos_buf + 1;
     }
+  return (pos_mem);
 }
 
-int	calc_interval(int nb_elem, int total_size)
+int	calc_interval(int nb_chp, int total_size)
 {
   int	interval;
 
   if (total_size > MEM_SIZE)
     my_error("Can’t perform malloc\n", 1);
-  if (total_size == MEM_SIZE || nb_elem == 0)
+  if (total_size == MEM_SIZE || nb_chp == 0)
     return (0);
-  interval = (MEM_SIZE - total_size) / nb_elem;
-  if (nb_elem == 2)
+  interval = (MEM_SIZE - total_size) / nb_chp;
+  if (nb_chp == 2)
     interval = (MEM_SIZE - total_size);
+#ifdef DEBUG
+  printf("Intervalle de mémoire calculer à %d octets\n", interval);
+#endif
   return (interval);
 }
 
-int		init_vm(int nb_elem, char **argv, header_t *header)
+int		init_vm(int nb_chp, char **argv, header_t *header)
 {
   t_vm		*vm;
   int		i;
@@ -82,7 +85,7 @@ int		init_vm(int nb_elem, char **argv, header_t *header)
 
   i = 0;
   mem_temp = 0;
-  while (i < nb_elem)
+  while (i < nb_chp)
     mem_temp += header[i++].prog_size;
   if (mem_temp > MEM_SIZE || (vm = malloc(sizeof(t_vm))) == NULL)
     my_error("Can’t perform malloc\n", 1);
@@ -91,13 +94,15 @@ int		init_vm(int nb_elem, char **argv, header_t *header)
   reset_mem(&vm);
   i = 0;
   pos_mem = 0;
-  interval = calc_interval(nb_elem, mem_temp);
-  while (i < nb_elem)
+  interval = calc_interval(nb_chp, mem_temp);
+  while (i < nb_chp)
     {
-      fill_mem(argv[i + 1], &vm, header[i].prog_size, &pos_mem);
-      pos_mem = pos_mem + interval;
+      pos_mem = fill_mem(argv[i + 1], &vm, &header[i], pos_mem) + interval;
       i = i + 1;
     }
+#ifdef DEBUG
   dump_memory(vm);
+  printf("%s","VM initialiser avec succès !\n");
+#endif
   return (0);
 }

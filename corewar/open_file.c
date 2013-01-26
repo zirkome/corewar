@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 21 18:34:30 2013 remi robert
-** Last update Fri Jan 25 14:13:11 2013 remi robert
+** Last update Sat Jan 26 10:46:19 2013 guillaume fillon
 */
 
 #include <sys/stat.h>
@@ -14,7 +14,7 @@
 #include "op.h"
 #include "vm.h"
 
-char	*return_buf_mem(char *file, int *size)
+char	*get_champ(char *file, int *size)
 {
   char	buf[2];
   char	*tab;

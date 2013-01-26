@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 21 18:27:28 2013 remi robert
-** Last update Fri Jan 25 14:09:10 2013 remi robert
+** Last update Sat Jan 26 10:30:35 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -32,13 +32,15 @@ int		main(int argc, char **argv)
       if ((header = realloc(header, sizeof(header_t) * i)) == NULL)
 	return (0);
       open_file_champion(argv[i], &header[i - 1]);
+#ifdef DEBUG
       printf("HEADER CHAMPION N°%d\n", i);
       printf("MAGIC_CODE : 0x%X\n", header[i - 1].magic);
       printf("NAME : %s\n", header[i - 1].prog_name);
       printf("SIZE : %d octets\n", header[i - 1].prog_size);
       printf("COMMENT : %s\n\n", header[i - 1].comment);
+#endif
       i = i + 1;
     }
-  init_vm(i - 1, argv, header);
+  init_vm(argc - 1, argv, header);
   return (0);
 }
