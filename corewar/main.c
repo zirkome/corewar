@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 21 18:27:28 2013 remi robert
-** Last update Sun Jan 27 01:16:16 2013 guillaume fillon
+** Last update Sun Jan 27 21:06:50 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -27,9 +27,10 @@ int		main(int argc, char **argv)
     display_usage();
   i = 1;
   l_proc = create_list();
+  header = NULL;
   while (i < argc)
     {
-      if ((header = realloc(header, sizeof(header_t) * i)) == NULL)
+      if ((header = realloc(header, sizeof(*header) * i)) == NULL)
 	return (0);
       open_file_champion(argv[i], &header[i - 1]);
 #ifdef DEBUG
@@ -42,5 +43,10 @@ int		main(int argc, char **argv)
       i = i + 1;
     }
   init_vm(l_proc, header, argv, argc - 1);
+  free_proc(l_proc);
+  free_champ(header, argc - 1);
+  char buf[1];
+  while(read(0, buf, 1) > 0);
+  putchar('\n');
   return (0);
 }

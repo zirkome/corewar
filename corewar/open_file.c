@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 21 18:34:30 2013 remi robert
-** Last update Sat Jan 26 10:46:19 2013 guillaume fillon
+** Last update Sun Jan 27 20:46:18 2013 guillaume fillon
 */
 
 #include <sys/stat.h>
@@ -14,17 +14,17 @@
 #include "op.h"
 #include "vm.h"
 
-char	*get_champ(char *file, int *size)
+char	*get_champ(char *path, int *size)
 {
   char	buf[2];
-  char	*tab;
+  char	*file;
   int	fd;
   int	ret;
 
-  tab = NULL;
+  file = NULL;
   buf[1] = '\0';
   *size = 0;
-  if ((fd = open(file, O_RDONLY)) == -1)
+  if ((fd = open(path, O_RDONLY)) == -1)
     my_error("File not found\n", 1);
   if (lseek(fd, 2192, SEEK_CUR) == -1)
     my_error("Error lseek\n", 1);
@@ -33,33 +33,32 @@ char	*get_champ(char *file, int *size)
     {
       if (ret == -1)
 	my_error("Error read file\n", 1);
-      if ((tab = realloc(tab, (*size + ret) * sizeof(char))) == NULL)
+      if ((file = realloc(file, (*size + ret) * sizeof(char))) == NULL)
 	my_error("Can’t perform malloc\n", 1);
-      tab[*size] = buf[0];
-      *size = *size + ret;
+      file[*size] = buf[0];
+      *size += ret;
     }
   close(fd);
-  return (tab);
+  return (file);
 }
 
 char	*read_file(const int fd, int *nb_carac)
 {
-  int	size_read;
-  char	buff[2];
+  int	ret;
+  char	buf[2];
   char	*file;
 
   *nb_carac = 0;
-  size_read = 1;
   file = NULL;
-  buff[1] = '\0';
-  while ((size_read = read(fd, buff, 1)) != 0)
+  buf[1] = '\0';
+  while ((ret = read(fd, buf, 1)) != 0)
     {
-      if (size_read == -1)
+      if (ret == -1)
 	my_error("Error read file\n", 1);
-      if ((file = realloc(file, *nb_carac + size_read)) == NULL)
+      if ((file = realloc(file, *nb_carac + ret)) == NULL)
 	my_error("Can't perform malloc\n", 1);
-      file[*nb_carac] = buff[0];
-      *nb_carac = *nb_carac + size_read;
+      file[*nb_carac] = buf[0];
+      *nb_carac += ret;
     }
   return (file);
 }

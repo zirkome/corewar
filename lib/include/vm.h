@@ -5,7 +5,7 @@
 ** Login   <bridou_n@epitech.net>
 **
 ** Started on  Wed Jan 16 17:58:40 2013 nicolas bridoux
-** Last update Sun Jan 27 01:15:58 2013 guillaume fillon
+** Last update Sun Jan 27 20:51:20 2013 guillaume fillon
 */
 
 #ifndef VM_H_
@@ -39,6 +39,12 @@ typedef struct	s_vm
   char		*mem;
 }		t_vm;
 
+
+/*
+** tmp
+*/
+void		free_champ(header_t *header, int nb);
+
 /*
 ** open_file.c
 */
@@ -68,7 +74,7 @@ void		parser(t_vm *vm);
 ** doubly linked list
 */
 t_proc		*create_list(void);
-void		stack(t_proc *root, int pc, int cid);
+void		free_proc(t_proc *lproc);
 void		queue(t_proc *root, int pc, int cid);
 void		pop(t_proc *elem);
 
