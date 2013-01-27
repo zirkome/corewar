@@ -5,14 +5,14 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Thu Jan 24 23:12:01 2013 remi
-** Last update Sun Jan 27 01:15:52 2013 guillaume fillon
+** Last update Sun Jan 27 01:44:14 2013 guillaume fillon
 */
 
 #include <sys/stat.h>
 #include <fcntl.h>
 #include "lib.h"
 #include "vm.h"
-#include "op.h"
+#include "couleur.h"
 
 void	reset_mem(t_vm **vm)
 {
@@ -31,8 +31,11 @@ void	dump_memory(t_vm *vm)
   while (vm->mem != NULL && i < MEM_SIZE)
     {
       if (i % 64 == 0)
-	printf("%s", "\n");
-      printf("%02X ", vm->mem[i] & 0xFF);
+	printf("%s%s", "\n", REZ);
+      if (vm->mem[i])
+	printf(" %s%s%s%02X", VERT, INVERSE, INTENSITE, vm->mem[i] & 0xFF);
+      else
+	printf("%s %02X", REZ, vm->mem[i] & 0xFF);
       i = i + 1;
     }
   printf("%s", "\n\n");
