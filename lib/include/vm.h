@@ -17,6 +17,25 @@
 
 # define READ 4096
 
+<<<<<<< HEAD
+=======
+typedef struct	s_champion
+{
+  int		nb_carac;
+  char		*file;
+  char		*name;
+  int		nb_cmd;
+}		t_champion;
+
+typedef char    mem_t;
+
+typedef struct	s_vm
+{
+  mem_t		*mem;
+  int		size_rempl;
+}t_vm;
+
+>>>>>>> origin
 typedef struct	s_options
 {
   int		options;
@@ -51,14 +70,25 @@ header_t	*check_header(const int fd, header_t *header);
 /*
 ** init_vm.c
 */
+<<<<<<< HEAD
 int		init_vm(int nb_elem, char **argv, header_t *header);
 int		calc_interval(int nb_elem, int total_size);
 int		fill_mem(char *file, t_vm **vm, header_t *header, int pos_mem);
 void		reset_mem(t_vm **vm);
+=======
+int	print_file(char *tab, t_champion *champion);
+void	print_memory(t_vm *vm);
+>>>>>>> origin
 
 /*
 ** parser.c
 */
+<<<<<<< HEAD
 void		parser_fct(t_vm *vm);
+=======
+int	return_number_param(int number);
+int	detect_fonction(int number, char *tab, int n);
+int	detect_param(int number, char *tab);
+>>>>>>> origin
 
 #endif /* LIB_H_ */
