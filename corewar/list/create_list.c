@@ -5,18 +5,18 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Fri Jan 11 16:33:52 2013 guillaume fillon
-** Last update Sat Jan 26 17:35:41 2013 guillaume fillon
+** Last update Sun Jan 27 01:15:06 2013 guillaume fillon
 */
 
 #include <stdlib.h>
 #include "lib.h"
 #include "vm.h"
 
-t_list		*create_list(void)
+t_proc		*create_list(void)
 {
-  t_list	*root;
+  t_proc	*root;
 
-  if ((root = (t_list *) malloc(sizeof(*root))) == NULL)
+  if ((root = (t_proc *) malloc(sizeof(*root))) == NULL)
     {
       exit(EXIT_FAILURE);
     }

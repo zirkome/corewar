@@ -5,62 +5,35 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Sun Dec  9 21:30:11 2012 guillaume fillon
-** Last update Sat Jan 26 18:45:53 2013 guillaume fillon
+** Last update Sun Jan 27 01:23:08 2013 guillaume fillon
 */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "list.h"
+#include "lib.h"
+#include "vm.h"
 
-void		push_before(t_list *elem, int pc)
+void		push_before(t_proc *elem, int pc, int cid)
 {
-  t_list	*new_elem;
+  static int	pid = 1;
+  t_proc	*new_elem;
 
-  if ((new_elem = (t_list *) malloc(sizeof(*new_elem))) != NULL)
+  if ((new_elem = (t_proc *) malloc(sizeof(*new_elem))) != NULL)
     {
-      new_elem->size = elem->prev->size++;
+      init_reg(new_elem->reg, cid);
+      new_elem->pid = pid++;
       new_elem->pc = pc;
       new_elem->prev = elem->prev;
       new_elem->next = elem;
       elem->prev->next = new_elem;
       elem->prev = new_elem;
+#ifdef DEBUG
+      printf ("r1:%d\n", new_elem->reg[0]);
+      printf ("pid:%d\n", new_elem->pid);
+      printf ("PC:%d\n\n", new_elem->pc);
+#endif
     }
 }
 
-void		push_after(t_list *elem, int pc)
+void		queue(t_proc *root, int pc, int cid)
 {
-  t_list	*new_elem;
-
-  if ((new_elem = (t_list *) malloc(sizeof(*new_elem))) != NULL)
-    {
-      new_elem->size = elem->next->size++;
-      new_elem->pc = pc
-      new_elem->prev = elem;
-      new_elem->next = elem->next;
-      elem->next->prev = new_elem;
-      elem->next = new_elem;
-    }
-}
-
-void		stack(t_list *root, char *name, char selected)
-{
-  t_data	*data;
-
-  if ((data = malloc(sizeof(*data))) == NULL)
-    exit(EXIT_FAILURE);
-  data->name = name;
-  data->selected = selected;
-  push_after(root, data);
-}
-
-void		queue(t_list *root, char *name, char selected)
-{
-  t_data	*data;
-
-  if ((data = malloc(sizeof(*data))) == NULL)
-    exit(EXIT_FAILURE);
-  data->name = name;
-  data->selected = selected;
-  push_before(root, data);
+  push_before(root, pc, cid);
 }

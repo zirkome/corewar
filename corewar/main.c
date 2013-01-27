@@ -5,12 +5,11 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 21 18:27:28 2013 remi robert
-** Last update Sat Jan 26 10:30:35 2013 guillaume fillon
+** Last update Sun Jan 27 01:16:16 2013 guillaume fillon
 */
 
 #include "lib.h"
 #include "vm.h"
-#include "op.h"
 
 void		display_usage()
 {
@@ -20,13 +19,14 @@ void		display_usage()
 
 int		main(int argc, char **argv)
 {
+  t_proc	*l_proc;
   header_t	*header;
   int		i;
 
   if (argc == 1 || argc > 5)
     display_usage();
   i = 1;
-  header = NULL;
+  l_proc = create_list();
   while (i < argc)
     {
       if ((header = realloc(header, sizeof(header_t) * i)) == NULL)
@@ -41,6 +41,6 @@ int		main(int argc, char **argv)
 #endif
       i = i + 1;
     }
-  init_vm(argc - 1, argv, header);
+  init_vm(l_proc, header, argv, argc - 1);
   return (0);
 }

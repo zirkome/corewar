@@ -5,13 +5,14 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Sat Jan 26 10:54:25 2013 remi robert
-** Last update Sat Jan 26 13:57:04 2013 guillaume fillon
+** Last update Sun Jan 27 00:35:48 2013 guillaume fillon
 */
 
 #include "lib.h"
 #include "vm.h"
 #include "op.h"
 
-void	parser_fct(t_vm *vm)
+void	parser(t_vm *vm)
 {
+
 }

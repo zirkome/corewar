@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Thu Jan 24 23:12:01 2013 remi
-** Last update Sat Jan 26 13:41:15 2013 remi robert
+** Last update Sun Jan 27 01:15:52 2013 guillaume fillon
 */
 
 #include <sys/stat.h>
@@ -75,7 +75,7 @@ int	calc_interval(int nb_chp, int total_size)
   return (interval);
 }
 
-int		init_vm(int nb_chp, char **argv, header_t *header)
+int		init_vm(t_proc *l_proc, header_t *header, char **av, int nb_ch)
 {
   t_vm		*vm;
   int		i;
@@ -85,7 +85,7 @@ int		init_vm(int nb_chp, char **argv, header_t *header)
 
   i = 0;
   mem_temp = 0;
-  while (i < nb_chp)
+  while (i < nb_ch)
     mem_temp += header[i++].prog_size;
   if (mem_temp > MEM_SIZE || (vm = malloc(sizeof(t_vm))) == NULL)
     my_error("File is too big.\n", 1);
@@ -94,16 +94,17 @@ int		init_vm(int nb_chp, char **argv, header_t *header)
   reset_mem(&vm);
   i = 0;
   pos_mem = 0;
-  interval = calc_interval(nb_chp, mem_temp);
-  while (i < nb_chp)
+  interval = calc_interval(nb_ch, mem_temp);
+  while (i < nb_ch)
     {
-      pos_mem = fill_mem(argv[i + 1], &vm, &header[i], pos_mem) + interval;
+      queue(l_proc, pos_mem, i + 1);
+      pos_mem = fill_mem(av[i + 1], &vm, &header[i], pos_mem) + interval;
       i = i + 1;
     }
 #ifdef DEBUG
   dump_memory(vm);
   printf("%s","VM initialiser avec succès !\n");
 #endif
-  parser_fct(vm);
+  parser(vm);
   return (0);
 }
