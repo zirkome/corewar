@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Thu Jan 24 23:12:01 2013 remi
-** Last update Sun Jan 27 21:01:11 2013 guillaume fillon
+** Last update Sun Jan 27 22:00:29 2013 guillaume fillon
 */
 
 #include <sys/stat.h>
@@ -111,6 +111,7 @@ int		init_vm(t_proc *l_proc, header_t *header, char **av, int nb_ch)
   printf("%s", "VM initialiser avec succès !\n");
   dump_memory(vm);
 #endif
+  putchar('\n');
   parser(vm);
   free(vm->mem);
   free(vm);

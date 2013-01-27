@@ -5,11 +5,7 @@
 ** Login   <bridou_n@epitech.net>
 **
 ** Started on  Wed Jan 16 17:58:40 2013 nicolas bridoux
-<<<<<<< HEAD
-** Last update Sun Jan 27 21:41:17 2013 guillaume fillon
-=======
-** Last update Sun Jan 27 20:51:20 2013 guillaume fillon
->>>>>>> 088b414518fce5c4187a72d1a7e955a765534a10
+** Last update Sun Jan 27 21:44:33 2013 guillaume fillon
 */
 
 #ifndef VM_H_
