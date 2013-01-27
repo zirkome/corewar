@@ -5,14 +5,12 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 21 18:27:28 2013 remi robert
-** Last update Sat Jan 26 10:30:35 2013 guillaume fillon
+** Last update Sun Jan 27 09:17:38 2013 remi robert
 */
 
 #include "lib.h"
 #include "vm.h"
 #include "op.h"
-<<<<<<< HEAD
-=======
 
 void	init_vm(t_vm **vm)
 {
@@ -40,11 +38,10 @@ void	fill_mem(t_vm **vm, t_champion *champion)
   if (MEM_SIZE - (*vm)->size_rempl < champion->nb_cmd)
     my_error("Error memory\n", 1);
   while (i++ < champion->nb_cmd)
-    (*vm)->mem[i - 1] = 
+    (*vm)->mem[i - 1] =
       champion->file[i -1 + (champion->nb_carac - champion->nb_cmd)] & 0xFF;
   (*vm)->size_rempl = i;
 }
->>>>>>> origin
 
 void		display_usage()
 {
@@ -54,19 +51,16 @@ void		display_usage()
 
 int		main(int argc, char **argv)
 {
-<<<<<<< HEAD
+  t_proc	*l_proc;
   header_t	*header;
   int		i;
-=======
   t_champion	*champion1;
   t_vm		*vm;
->>>>>>> origin
 
   if (argc == 1 || argc > 5)
     display_usage();
-<<<<<<< HEAD
   i = 1;
-  header = NULL;
+  l_proc = create_list();
   while (i < argc)
     {
       if ((header = realloc(header, sizeof(header_t) * i)) == NULL)
@@ -82,7 +76,6 @@ int		main(int argc, char **argv)
       i = i + 1;
     }
   init_vm(argc - 1, argv, header);
-=======
   if ((champion1 = malloc(sizeof(t_champion))) == NULL)
     return (0);
   open_file_champion(argv[1], champion1);
@@ -90,6 +83,6 @@ int		main(int argc, char **argv)
   rempl_mem(&vm, champion1);
   print_file(champion1->file, champion1);
   print_memory(vm);
->>>>>>> origin
+  init_vm(l_proc, header, argv, argc - 1);
   return (0);
 }

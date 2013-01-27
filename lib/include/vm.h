@@ -5,7 +5,7 @@
 ** Login   <bridou_n@epitech.net>
 **
 ** Started on  Wed Jan 16 17:58:40 2013 nicolas bridoux
-** Last update Sat Jan 26 11:08:45 2013 remi robert
+** Last update Sun Jan 27 09:19:25 2013 remi robert
 */
 
 #ifndef VM_H_
@@ -17,8 +17,6 @@
 
 # define READ 4096
 
-<<<<<<< HEAD
-=======
 typedef struct	s_champion
 {
   int		nb_carac;
@@ -35,7 +33,6 @@ typedef struct	s_vm
   int		size_rempl;
 }t_vm;
 
->>>>>>> origin
 typedef struct	s_options
 {
   int		options;
@@ -44,16 +41,19 @@ typedef struct	s_options
   int		load_address;
 }		t_options;
 
+typedef struct	s_proc
+{
+  int		pid;
+  int		reg[REG_NUMBER];
+  int		pc;
+  struct s_proc	*next;
+  struct s_proc	*prev;
+}		t_proc;
+
 typedef struct	s_vm
 {
   char		*mem;
 }		t_vm;
-
-typedef struct	s_param_mem
-{
-  int		nb_octet;
-  int		indice;
-}		t_param_mem;
 
 /*
 ** open_file.c
@@ -70,25 +70,29 @@ header_t	*check_header(const int fd, header_t *header);
 /*
 ** init_vm.c
 */
-<<<<<<< HEAD
 int		init_vm(int nb_elem, char **argv, header_t *header);
+int		init_vm(t_proc *l_proc, header_t *header, char **av, int nb_ch);
 int		calc_interval(int nb_elem, int total_size);
 int		fill_mem(char *file, t_vm **vm, header_t *header, int pos_mem);
 void		reset_mem(t_vm **vm);
-=======
 int	print_file(char *tab, t_champion *champion);
 void	print_memory(t_vm *vm);
->>>>>>> origin
 
 /*
 ** parser.c
 */
-<<<<<<< HEAD
 void		parser_fct(t_vm *vm);
-=======
 int	return_number_param(int number);
 int	detect_fonction(int number, char *tab, int n);
 int	detect_param(int number, char *tab);
->>>>>>> origin
+void		parser(t_vm *vm);
 
-#endif /* LIB_H_ */
+/*
+** doubly linked list
+*/
+t_proc		*create_list(void);
+void		stack(t_proc *root, int pc, int cid);
+void		queue(t_proc *root, int pc, int cid);
+void		pop(t_proc *elem);
+
+#endif /* VM_H_ */
