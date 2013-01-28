@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Sat Jan 26 10:54:25 2013 remi robert
-** Last update Sun Jan 27 21:59:27 2013 guillaume fillon
+** Last update Mon Jan 28 04:25:51 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -29,7 +29,7 @@ void	parser(t_vm *vm)
       if ((vm->mem[i] & 0xFF) != 0 && (vm->mem[i] & 0xFF) < 16)
 	{
 	  interval = 0;
-	  printf("{%s => 0x%02X} ", op_tab[(vm->mem[i] & 0xFF) - 1].mnemonique, (vm->mem[i] & 0xFF));
+	  printf("{%-4s => 0x%02X} ", op_tab[(vm->mem[i] & 0xFF) - 1].mnemonique, (vm->mem[i] & 0xFF));
 	  printf ("%d  =>> ", op_tab[(vm->mem[i] & 0xFF) - 1].nbr_args);
 	  printf("octet de codage : 0x%02X ", (vm->mem[i + 1] & 0xFF));
 	  printf(" [1 = %d]", ((vm->mem[i + 1]) >> 6) & 0x3);
@@ -52,7 +52,7 @@ void	parser(t_vm *vm)
 	  if ((vm->mem[i] & 0xFF) == 0x01)
 	    interval = 3;
 	  size[1] = 4;
-	  printf("interval {[%d]} ", interval);
+	  printf(" interval {[%2d]} ", interval);
 	  printf ("0x%02X \n", (vm->mem[i] & 0xFF));
 	  i = i + interval + 1;
 	}
