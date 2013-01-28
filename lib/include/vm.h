@@ -5,7 +5,7 @@
 ** Login   <bridou_n@epitech.net>
 **
 ** Started on  Wed Jan 16 17:58:40 2013 nicolas bridoux
-** Last update Mon Jan 28 13:54:56 2013 remi robert
+** Last update Mon Jan 28 14:39:27 2013 remi robert
 */
 
 #ifndef VM_H_
@@ -83,6 +83,6 @@ void		pop(t_proc *elem);
 /*
 ** loop.c
 */
-void		loop(t_vm *vm);
+void		run_cycle(t_vm *vm);
 
 #endif /* VM_H_ */
