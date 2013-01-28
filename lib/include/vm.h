@@ -5,7 +5,7 @@
 ** Login   <bridou_n@epitech.net>
 **
 ** Started on  Wed Jan 16 17:58:40 2013 nicolas bridoux
-** Last update Mon Jan 28 20:05:02 2013 remi robert
+** Last update Mon Jan 28 20:51:07 2013 guillaume fillon
 */
 
 #ifndef VM_H_
@@ -30,7 +30,7 @@ typedef struct	s_options
 typedef struct	s_proc
 {
   int		pid;
-  char		param[16];
+  char		param[17];
   int		reg[REG_NUMBER];
   int		pc;
   int		carry : 4;
@@ -70,6 +70,7 @@ int		fill_mem(char *file, t_vm **vm, header_t *header, int pos_mem);
 void		reset_mem(t_vm **vm);
 t_vm		*init_vm(int mem_tmp, t_proc *lproc);
 int		launch_vm(t_proc *l_proc, header_t *header, char **av, int nb_ch);
+void		init_reg(int *buf, int cid);
 
 /*
 ** parser.c
