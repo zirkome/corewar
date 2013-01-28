@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Sat Jan 26 10:54:25 2013 remi robert
-** Last update Mon Jan 28 12:07:02 2013 remi robert
+** Last update Mon Jan 28 14:18:33 2013 remi robert
 */
 
 #include "lib.h"
@@ -80,6 +80,10 @@ int	return_interval_param(char *mem, int i, int interval, int indice)
     interval = MEM_SIZE - i;
   return (interval);
 }
+
+/*
+** Passez le processus en paramétre la memoire et remplacer i par le Pc du processus.
+*/
 
 void	parser(t_vm *vm)
 {

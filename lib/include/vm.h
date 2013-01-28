@@ -5,7 +5,7 @@
 ** Login   <bridou_n@epitech.net>
 **
 ** Started on  Wed Jan 16 17:58:40 2013 nicolas bridoux
-** Last update Sun Jan 27 21:44:33 2013 guillaume fillon
+** Last update Mon Jan 28 13:54:56 2013 remi robert
 */
 
 #ifndef VM_H_
@@ -79,5 +79,10 @@ t_proc		*create_list(void);
 void		free_proc(t_proc *lproc);
 void		queue(t_proc *root, int pc, int cid);
 void		pop(t_proc *elem);
+
+/*
+** loop.c
+*/
+void		loop(t_vm *vm);
 
 #endif /* VM_H_ */
