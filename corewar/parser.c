@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Sat Jan 26 10:54:25 2013 remi robert
-** Last update Mon Jan 28 14:21:34 2013 remi robert
+** Last update Mon Jan 28 14:23:23 2013 remi robert
 */
 
 #include "lib.h"
@@ -110,8 +110,11 @@ void	parser(t_vm *vm)
 	    }
 	  printf("\n");
 	}
-      if (i + 1 < MEM_SIZE)
+      /* Circularité de la mémoire */
+      if (i + 1 <= MEM_SIZE)
 	i = i + 1;
+      else
+	i = 0;
     }
   printf("\n");
 }
