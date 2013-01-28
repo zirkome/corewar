@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Thu Jan 24 23:12:01 2013 remi
-** Last update Mon Jan 28 20:03:22 2013 remi robert
+** Last update Mon Jan 28 21:22:03 2013 remi robert
 */
 
 #include <sys/stat.h>
@@ -88,6 +88,10 @@ t_vm		*init_vm(int mem_tmp, t_proc *lproc)
     my_error("File is too big.\n", 1);
   if ((vm->mem = malloc(sizeof(char) * MEM_SIZE)) == NULL)
     my_error("Can’t perform malloc\n", 1);
+  vm->is_ch_alive[0] = 1;
+  vm->is_ch_alive[1] = 1;
+  vm->is_ch_alive[2] = 1;
+  vm->is_ch_alive[3] = 1;
   vm->proc = lproc;
   return (vm);
 }
@@ -107,6 +111,7 @@ int		launch_vm(t_proc *l_proc, header_t *header, char **av, int nb_ch)
   vm = init_vm(mem_tmp, l_proc);
   reset_mem(&vm);
   i = 0;
+  vm->nb_ch = nb_ch;
   pos_mem = 0;
   interval = calc_interval(nb_ch, mem_tmp);
   while (i < nb_ch)

@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Sat Jan 26 10:54:25 2013 remi robert
-** Last update Mon Jan 28 19:00:19 2013 guillaume fillon
+** Last update Mon Jan 28 20:47:25 2013 remi robert
 */
 
 #include "lib.h"
@@ -89,19 +89,16 @@ int	return_interval_param(char *mem, int i, int interval, int indice)
 
 void	parser(t_vm *vm, t_proc *lproc)
 {
-  int	pc;
-  char	*buf;
-
-  pc = 0;
-  if ((vm->mem[pc] & 0xFF) >= 0x01 && (vm->mem[pc] & 0xFF) <= 0x10)
+  if ((vm->mem[lproc->pc] & 0xFF) >= 0x01 && (vm->mem[lproc->pc] & 0xFF) <= 0x10)
     {
+      lproc->instruction = (vm->mem[lproc->pc] & 0xFF);
 #ifdef DEBUG
       printf("{%s => %X} => ",
-	     op_tab[(vm->mem[pc] & 0xFF) - 1].mnemonique, (vm->mem[pc] & 0xFF));
+	     op_tab[(vm->mem[lproc->pc] & 0xFF) - 1].mnemonique, (vm->mem[lproc->pc] & 0xFF));
 #endif
-      buf = return_param(vm->mem, &pc, return_interval_param(vm->mem, pc, 0, 0));
+      lproc->param = return_param(vm->mem, &(lproc->pc), return_interval_param(vm->mem, lproc->pc, 0, 0));
       printf("\n");
     }
-  pc = (pc + 1) % (MEM_SIZE + 1);
+  lproc->pc = (lproc->pc + 1) % (MEM_SIZE + 1);
   printf("\n");
 }
