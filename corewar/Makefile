@@ -5,7 +5,7 @@
 ## Login   <bridou_n@epitech.net>
 ## 
 ## Started on  Fri Nov  9 20:29:49 2012 nicolas bridoux
-## Last update Sun Jan 27 20:51:54 2013 guillaume fillon
+## Last update Mon Jan 28 04:14:33 2013 guillaume fillon
 ##
 
 NAME	= corewar
