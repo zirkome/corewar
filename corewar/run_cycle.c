@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 28 13:10:36 2013 remi robert
-** Last update Mon Jan 28 21:09:58 2013 remi robert
+** Last update Mon Jan 28 21:23:17 2013 remi robert
 */
 
 #include "vm.h"
@@ -52,6 +52,7 @@ void		run_cycle(t_vm *vm)
   first_value_proc(vm);
   cur_proc = vm->proc->next;
   cur_cycle = 0;
+#ifdef DEBUG
   while (cur_proc != vm->proc)
     {
       printf("\n[%d] =>>  %d\n", cur_proc->pc, cur_proc->instruction);
@@ -64,6 +65,7 @@ void		run_cycle(t_vm *vm)
       printf("\n");
       cur_proc = cur_proc->next;
     }
+#endif
   while (cur_cycle <= CYCLE_TO_DIE && check_ch_live(vm) == 1)
     {
       i = 0;

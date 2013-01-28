@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Thu Jan 24 23:12:01 2013 remi
-** Last update Mon Jan 28 20:55:32 2013 remi robert
+** Last update Mon Jan 28 21:22:03 2013 remi robert
 */
 
 #include <sys/stat.h>
@@ -111,6 +111,7 @@ int		launch_vm(t_proc *l_proc, header_t *header, char **av, int nb_ch)
   vm = init_vm(mem_tmp, l_proc);
   reset_mem(&vm);
   i = 0;
+  vm->nb_ch = nb_ch;
   pos_mem = 0;
   interval = calc_interval(nb_ch, mem_tmp);
   while (i < nb_ch)
