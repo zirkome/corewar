@@ -5,7 +5,7 @@
 ** Login   <bridou_n@epitech.net>
 **
 ** Started on  Wed Jan 16 17:58:40 2013 nicolas bridoux
-** Last update Mon Jan 28 20:05:02 2013 remi robert
+** Last update Mon Jan 28 20:55:57 2013 remi robert
 */
 
 #ifndef VM_H_
@@ -30,7 +30,8 @@ typedef struct	s_options
 typedef struct	s_proc
 {
   int		pid;
-  char		param[16];
+  char		*param;
+  char		instruction;
   int		reg[REG_NUMBER];
   int		pc;
   int		carry : 4;
@@ -40,6 +41,7 @@ typedef struct	s_proc
 
 typedef struct	s_vm
 {
+  char		is_ch_alive[4];
   char		*mem;
   t_proc	*proc;
 }		t_vm;
