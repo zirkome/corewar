@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Sat Jan 26 10:54:25 2013 remi robert
-** Last update Mon Jan 28 14:18:33 2013 remi robert
+** Last update Mon Jan 28 14:21:34 2013 remi robert
 */
 
 #include "lib.h"
@@ -83,6 +83,8 @@ int	return_interval_param(char *mem, int i, int interval, int indice)
 
 /*
 ** Passez le processus en paramétre la memoire et remplacer i par le Pc du processus.
+** enlever la boucle while.
+** Si ne rentre pas dans le if alors commande invalide et incrémentation du pc de 1
 */
 
 void	parser(t_vm *vm)
@@ -108,7 +110,8 @@ void	parser(t_vm *vm)
 	    }
 	  printf("\n");
 	}
-      i = i + 1;
+      if (i + 1 < MEM_SIZE)
+	i = i + 1;
     }
   printf("\n");
 }
