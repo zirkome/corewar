@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 28 13:10:36 2013 remi robert
-** Last update Mon Jan 28 22:54:48 2013 remi robert
+** Last update Mon Jan 28 23:07:32 2013 remi robert
 */
 
 #include "vm.h"
@@ -67,6 +67,27 @@ void		first_value_proc(t_vm *vm)
     }
 }
 
+void		decrement_cycle(t_vm *vm)
+{
+  t_proc	*cur_proc;
+
+  if (vm->proc == NULL)
+    return ;
+  cur_proc = vm->proc->next;
+  while (cur_proc != vm->proc)
+    {
+      cur_proc->cycle = cur_proc->cycle - 1;
+      if (cur_proc->cycle <= 0)
+	{
+	  exec_instruction(vm, cur_proc);
+	  parser(vm, cur_proc);
+	  if (cur_proc->instruction <= 16 && cur_proc->instruction >= 0)
+	    cur_proc->cycle = op_tab[cur_proc->instruction - 1].nbr_cycles;
+	}
+      cur_proc = cur_proc->next;
+    }
+}
+
 void		run_cycle(t_vm *vm)
 {
   t_proc	*cur_proc;
@@ -91,13 +112,15 @@ void		run_cycle(t_vm *vm)
       cur_proc = cur_proc->next;
     }
 #endif
-  vm->proc->next->reg[3] = 42;
-  exec_instruction(vm, vm->proc->next);
+  /* vm->proc->next->reg[3] = 42; */
+  /* exec_instruction(vm, vm->proc->next); */
   while (cur_cycle <= CYCLE_TO_DIE && check_ch_live(vm) == 1)
     {
       i = 0;
       while (i <= CYCLE_TO_DIE - cur_cycle && check_ch_live(vm) == 1)
 	{
+	  /* gestion des cycles et executions de l' instruction si variable cycle ets a zero */
+	  /* decrement_cycle(vm); */
 	  i = i + 1;
 	}
       cur_cycle += CYCLE_DELTA;
