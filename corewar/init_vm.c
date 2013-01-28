@@ -5,11 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Thu Jan 24 23:12:01 2013 remi
-<<<<<<< HEAD
-** Last update Mon Jan 28 04:24:42 2013 guillaume fillon
-=======
-** Last update Mon Jan 28 14:40:02 2013 remi robert
->>>>>>> 200ea9abf059b7ae81fb4ac6b374d774cb8ed639
+** Last update Mon Jan 28 14:57:31 2013 guillaume fillon
 */
 
 #include <sys/stat.h>
