@@ -12,4 +12,5 @@ $ echo ./corewar [-comment] [-dump nbr_cycle] [[-n prog_number] [-a load_address
 ## TODO
 - Parser
 - Instructions (live, ld, st, add, sub, and, or, xor, zjmp, ldi, sti, fork, lld, lldi, lfork, aff)
+- CHECK corewar valide mais sans instruction non fonctionnelle
 - CHECK #define DEBUG

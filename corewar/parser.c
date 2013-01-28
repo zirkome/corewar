@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Sat Jan 26 10:54:25 2013 remi robert
-** Last update Mon Jan 28 15:49:22 2013 guillaume fillon
+** Last update Mon Jan 28 16:20:15 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -87,35 +87,21 @@ int	return_interval_param(char *mem, int i, int interval, int indice)
 ** Si ne rentre pas dans le if alors commande invalide et incrémentation du pc de 1
 */
 
-void	parser(t_vm *vm, t_proc *lproc)
+void	parser(t_vm *vm)
 {
   int	pc;
   char	*buf;
-  int	indice;
 
   pc = 0;
-  while (pc < MEM_SIZE)
+  if ((vm->mem[pc] & 0xFF) >= 0x01 && (vm->mem[pc] & 0xFF) <= 0x10)
     {
-      if ((vm->mem[pc] & 0xFF) != 0 && (vm->mem[pc] & 0xFF) < 16)
-	{
-	  indice = 0;
 #ifdef DEBUG
-	  printf("{%s => %X} => ",
-		 op_tab[(vm->mem[pc] & 0xFF) - 1].mnemonique, (vm->mem[pc] & 0xFF));
+      printf("{%s => %X} => ",
+	     op_tab[(vm->mem[pc] & 0xFF) - 1].mnemonique, (vm->mem[pc] & 0xFF));
 #endif
-	  buf = return_param(vm->mem, &pc, return_interval_param(vm->mem, pc, 0, 0));
-	  indice = 0;
-	  while (indice != 16)
-	    {
-#ifdef DEBUG
-	      printf("[%X]", buf[indice] & 0xFF);
-#endif
-	      indice = indice + 1;
-	    }
-	  printf("\n");
-	}
-      /* Circularité de la mémoire */
-      pc = (pc + 1) % (MEM_SIZE + 1);
+      buf = return_param(vm->mem, &pc, return_interval_param(vm->mem, pc, 0, 0));
+      printf("\n");
     }
+  pc = (pc + 1) % (MEM_SIZE + 1);
   printf("\n");
 }
