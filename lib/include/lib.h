@@ -5,7 +5,7 @@
 ** Login   <bridou_n@epitech.net>
 **
 ** Started on  Wed Jan 16 17:58:40 2013 nicolas bridoux
-** Last update Sun Jan 27 00:55:19 2013 guillaume fillon
+** Last update Mon Jan 28 20:50:53 2013 guillaume fillon
 */
 
 #ifndef LIB_H_
@@ -26,6 +26,5 @@ int	my_strcmp(char *s1, char *s2);
 void	my_strcpy(char *dest, char *src);
 int	my_strncmp(char *s1, char *s2, int n);
 char	*my_strdup(char *str);
-void	init_reg(int *buf, int cid);
 
 #endif /* LIB_H_ */

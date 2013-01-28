@@ -5,7 +5,7 @@
 ** Login   <bridou_n@epitech.net>
 **
 ** Started on  Wed Jan 16 17:58:40 2013 nicolas bridoux
-** Last update Mon Jan 28 21:36:59 2013 remi robert
+** Last update Mon Jan 28 22:02:28 2013 remi robert
 */
 
 #ifndef VM_H_
@@ -74,6 +74,7 @@ int		fill_mem(char *file, t_vm **vm, header_t *header, int pos_mem);
 void		reset_mem(t_vm **vm);
 t_vm		*init_vm(int mem_tmp, t_proc *lproc);
 int		launch_vm(t_proc *l_proc, header_t *header, char **av, int nb_ch);
+void		init_reg(int *buf, int cid);
 
 /*
 ** parser.c
