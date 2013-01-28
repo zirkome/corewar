@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 28 13:10:36 2013 remi robert
-** Last update Mon Jan 28 22:31:54 2013 remi robert
+** Last update Mon Jan 28 22:54:48 2013 remi robert
 */
 
 #include "vm.h"
@@ -33,7 +33,8 @@ void	exec_instruction(t_vm *vm, t_proc *proc)
   f[14] = &op_lfork;
   f[15] = &op_aff;
 
-  f[proc->instruction - 1](vm, proc);
+  if (proc->instruction <= 16 && proc->instruction >= 0)
+    f[proc->instruction - 1](vm, proc);
 }
 
 int	check_ch_live(t_vm *vm)
@@ -90,6 +91,8 @@ void		run_cycle(t_vm *vm)
       cur_proc = cur_proc->next;
     }
 #endif
+  vm->proc->next->reg[3] = 42;
+  exec_instruction(vm, vm->proc->next);
   while (cur_cycle <= CYCLE_TO_DIE && check_ch_live(vm) == 1)
     {
       i = 0;
