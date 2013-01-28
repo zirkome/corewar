@@ -5,7 +5,7 @@
 ** Login   <bridou_n@epitech.net>
 **
 ** Started on  Wed Jan 16 17:58:40 2013 nicolas bridoux
-** Last update Mon Jan 28 15:54:11 2013 guillaume fillon
+** Last update Mon Jan 28 17:51:57 2013 guillaume fillon
 */
 
 #ifndef VM_H_
@@ -33,6 +33,7 @@ typedef struct	s_proc
   char		param[16];
   int		reg[REG_NUMBER];
   int		pc;
+  int		carry : 4;
   struct s_proc	*next;
   struct s_proc	*prev;
 }		t_proc;
@@ -64,10 +65,11 @@ header_t	*check_header(const int fd, header_t *header);
 /*
 ** init_vm.c
 */
-int		init_vm(t_proc *l_proc, header_t *header, char **av, int nb_ch);
 int		calc_interval(int nb_elem, int total_size);
 int		fill_mem(char *file, t_vm **vm, header_t *header, int pos_mem);
 void		reset_mem(t_vm **vm);
+t_vm		*init_vm(int mem_tmp);
+int		launch_vm(t_proc *l_proc, header_t *header, char **av, int nb_ch);
 
 /*
 ** parser.c
@@ -83,7 +85,7 @@ void		queue(t_proc *root, int pc, int cid);
 void		pop(t_proc *elem);
 
 /*
-** loop.c
+** run_cylce.c
 */
 void		run_cycle(t_vm *vm);
 

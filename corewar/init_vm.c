@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Thu Jan 24 23:12:01 2013 remi
-** Last update Mon Jan 28 15:08:52 2013 guillaume fillon
+** Last update Mon Jan 28 17:54:24 2013 guillaume fillon
 */
 
 #include <sys/stat.h>
@@ -51,7 +51,7 @@ int	fill_mem(char *file, t_vm **vm, header_t *header, int pos_mem)
   buf = get_champ(file, &size);
   if (size != header->prog_size)
     my_error("Error number instruction\n", 1);
-  size = size + pos_mem;
+  size += pos_mem;
   pos_buf = 0;
   while (pos_mem < size)
     {
@@ -80,7 +80,19 @@ int	calc_interval(int nb_chp, int total_size)
   return (interval);
 }
 
-int		init_vm(t_proc *l_proc, header_t *header, char **av, int nb_ch)
+t_vm		*init_vm(int mem_tmp, t_proc *lproc)
+{
+  t_vm		*vm;
+
+  if (mem_tmp > MEM_SIZE || (vm = malloc(sizeof(t_vm))) == NULL)
+    my_error("File is too big.\n", 1);
+  if ((vm->mem = malloc(sizeof(char) * MEM_SIZE)) == NULL)
+    my_error("Can’t perform malloc\n", 1);
+  vm->proc = lproc;
+  return (vm);
+}
+
+int		launch_vm(t_proc *l_proc, header_t *header, char **av, int nb_ch)
 {
   t_vm		*vm;
   int		i;
@@ -92,10 +104,7 @@ int		init_vm(t_proc *l_proc, header_t *header, char **av, int nb_ch)
   mem_tmp = 0;
   while (i < nb_ch)
     mem_tmp += header[i++].prog_size;
-  if (mem_tmp > MEM_SIZE || (vm = malloc(sizeof(t_vm))) == NULL)
-    my_error("File is too big.\n", 1);
-  if ((vm->mem = malloc(sizeof(char) * MEM_SIZE)) == NULL)
-    my_error("Can’t perform malloc\n", 1);
+  vm = init_vm(mem_tmp);
   reset_mem(&vm);
   i = 0;
   pos_mem = 0;
@@ -107,14 +116,9 @@ int		init_vm(t_proc *l_proc, header_t *header, char **av, int nb_ch)
       i = i + 1;
     }
 #ifdef DEBUG
-  system("clear");
   printf("%s", "VM initialiser avec succès !\n");
   dump_memory(vm);
 #endif
-  putchar('\n');
-  //  parser(vm);
   run_cycle(vm);
-  free(vm->mem);
-  free(vm);
   return (0);
 }

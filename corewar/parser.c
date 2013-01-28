@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Sat Jan 26 10:54:25 2013 remi robert
-** Last update Mon Jan 28 16:20:15 2013 guillaume fillon
+** Last update Mon Jan 28 19:00:19 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -87,7 +87,7 @@ int	return_interval_param(char *mem, int i, int interval, int indice)
 ** Si ne rentre pas dans le if alors commande invalide et incrémentation du pc de 1
 */
 
-void	parser(t_vm *vm)
+void	parser(t_vm *vm, t_proc *lproc)
 {
   int	pc;
   char	*buf;
