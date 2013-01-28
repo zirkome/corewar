@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Sat Jan 26 10:54:25 2013 remi robert
-** Last update Mon Jan 28 14:52:40 2013 guillaume fillon
+** Last update Mon Jan 28 15:49:22 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -82,39 +82,40 @@ int	return_interval_param(char *mem, int i, int interval, int indice)
 }
 
 /*
-** Passez le processus en paramétre la memoire et remplacer i par le Pc du processus.
+** Prend le processus en paramétre la memoire et remplace i par le Pc du processus.
 ** enlever la boucle while.
 ** Si ne rentre pas dans le if alors commande invalide et incrémentation du pc de 1
 */
 
-void	parser(t_vm *vm)
+void	parser(t_vm *vm, t_proc *lproc)
 {
-  int	i;
+  int	pc;
   char	*buf;
   int	indice;
 
-  i = 0;
-  while (i < MEM_SIZE)
+  pc = 0;
+  while (pc < MEM_SIZE)
     {
-      if ((vm->mem[i] & 0xFF) != 0 && (vm->mem[i] & 0xFF) < 16)
+      if ((vm->mem[pc] & 0xFF) != 0 && (vm->mem[pc] & 0xFF) < 16)
 	{
 	  indice = 0;
+#ifdef DEBUG
 	  printf("{%s => %X} => ",
-		 op_tab[(vm->mem[i] & 0xFF) - 1].mnemonique, (vm->mem[i] & 0xFF));
-	  buf = return_param(vm->mem, &i, return_interval_param(vm->mem, i, 0, 0));
+		 op_tab[(vm->mem[pc] & 0xFF) - 1].mnemonique, (vm->mem[pc] & 0xFF));
+#endif
+	  buf = return_param(vm->mem, &pc, return_interval_param(vm->mem, pc, 0, 0));
 	  indice = 0;
 	  while (indice != 16)
 	    {
+#ifdef DEBUG
 	      printf("[%X]", buf[indice] & 0xFF);
+#endif
 	      indice = indice + 1;
 	    }
-	  i = i + interval + 1;
+	  printf("\n");
 	}
       /* Circularité de la mémoire */
-      if (i + 1 <= MEM_SIZE)
-	i = i + 1;
-      else
-	i = 0;
+      pc = (pc + 1) % (MEM_SIZE + 1);
     }
   printf("\n");
 }

@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Thu Jan 24 23:12:01 2013 remi
-** Last update Mon Jan 28 14:57:31 2013 guillaume fillon
+** Last update Mon Jan 28 15:08:52 2013 guillaume fillon
 */
 
 #include <sys/stat.h>
@@ -112,7 +112,7 @@ int		init_vm(t_proc *l_proc, header_t *header, char **av, int nb_ch)
   dump_memory(vm);
 #endif
   putchar('\n');
-  parser(vm);
+  //  parser(vm);
   run_cycle(vm);
   free(vm->mem);
   free(vm);
