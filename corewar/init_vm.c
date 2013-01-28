@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Thu Jan 24 23:12:01 2013 remi
-** Last update Mon Jan 28 17:54:24 2013 guillaume fillon
+** Last update Mon Jan 28 20:03:22 2013 remi robert
 */
 
 #include <sys/stat.h>
@@ -104,7 +104,7 @@ int		launch_vm(t_proc *l_proc, header_t *header, char **av, int nb_ch)
   mem_tmp = 0;
   while (i < nb_ch)
     mem_tmp += header[i++].prog_size;
-  vm = init_vm(mem_tmp);
+  vm = init_vm(mem_tmp, l_proc);
   reset_mem(&vm);
   i = 0;
   pos_mem = 0;
