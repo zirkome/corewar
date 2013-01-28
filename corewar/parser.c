@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Sat Jan 26 10:54:25 2013 remi robert
-** Last update Mon Jan 28 20:47:25 2013 remi robert
+** Last update Mon Jan 28 21:33:38 2013 remi robert
 */
 
 #include "lib.h"
@@ -81,6 +81,18 @@ int	return_interval_param(char *mem, int i, int interval, int indice)
   return (interval);
 }
 
+void	rempl_param(t_proc *lproc, char *buf)
+{
+  int	i;
+
+  i = 0;
+  while (i < 17)
+    {
+      lproc->param[i] = buf[i];
+      i = i + 1;
+    }
+}
+
 /*
 ** Prend le processus en paramétre la memoire et remplace i par le Pc du processus.
 ** enlever la boucle while.
@@ -89,6 +101,8 @@ int	return_interval_param(char *mem, int i, int interval, int indice)
 
 void	parser(t_vm *vm, t_proc *lproc)
 {
+  char	*buf;
+
   if ((vm->mem[lproc->pc] & 0xFF) >= 0x01 && (vm->mem[lproc->pc] & 0xFF) <= 0x10)
     {
       lproc->instruction = (vm->mem[lproc->pc] & 0xFF);
@@ -96,7 +110,8 @@ void	parser(t_vm *vm, t_proc *lproc)
       printf("{%s => %X} => ",
 	     op_tab[(vm->mem[lproc->pc] & 0xFF) - 1].mnemonique, (vm->mem[lproc->pc] & 0xFF));
 #endif
-      lproc->param = return_param(vm->mem, &(lproc->pc), return_interval_param(vm->mem, lproc->pc, 0, 0));
+      buf = return_param(vm->mem, &(lproc->pc), return_interval_param(vm->mem, lproc->pc, 0, 0));
+      rempl_param(lproc, buf);
       printf("\n");
     }
   lproc->pc = (lproc->pc + 1) % (MEM_SIZE + 1);

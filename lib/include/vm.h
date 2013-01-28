@@ -5,7 +5,7 @@
 ** Login   <bridou_n@epitech.net>
 **
 ** Started on  Wed Jan 16 17:58:40 2013 nicolas bridoux
-** Last update Mon Jan 28 21:21:29 2013 remi robert
+** Last update Mon Jan 28 21:36:59 2013 remi robert
 */
 
 #ifndef VM_H_
@@ -29,8 +29,9 @@ typedef struct	s_options
 
 typedef struct	s_proc
 {
+  int		cycle;
   int		pid;
-  char		*param;
+  char		param[17];
   char		instruction;
   int		reg[REG_NUMBER];
   int		pc;
@@ -78,6 +79,7 @@ int		launch_vm(t_proc *l_proc, header_t *header, char **av, int nb_ch);
 ** parser.c
 */
 void		parser(t_vm *vm, t_proc *l_proc);
+void		rempl_param(t_proc *lproc, char *buf);
 
 /*
 ** doubly linked list
