@@ -5,7 +5,7 @@
 ** Login   <bridou_n@epitech.net>
 **
 ** Started on  Wed Jan 16 17:58:40 2013 nicolas bridoux
-** Last update Mon Jan 28 22:45:04 2013 remi robert
+** Last update Mon Jan 28 23:13:00 2013 remi robert
 */
 
 #ifndef VM_H_
@@ -35,7 +35,7 @@ typedef struct	s_proc
   char		instruction;
   int		reg[REG_NUMBER];
   int		pc;
-  int		carry : 4;
+  char		carry;
   struct s_proc	*next;
   struct s_proc	*prev;
 }		t_proc;
