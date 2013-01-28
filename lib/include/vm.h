@@ -5,7 +5,7 @@
 ** Login   <bridou_n@epitech.net>
 **
 ** Started on  Wed Jan 16 17:58:40 2013 nicolas bridoux
-** Last update Mon Jan 28 22:02:28 2013 remi robert
+** Last update Mon Jan 28 22:32:31 2013 remi robert
 */
 
 #ifndef VM_H_
@@ -94,5 +94,25 @@ void		pop(t_proc *elem);
 ** run_cylce.c
 */
 void		run_cycle(t_vm *vm);
+
+/*
+** instruction
+*/
+void		op_live(t_vm *vm, t_proc *lproc);
+void		op_ld(t_vm *vm, t_proc *lproc);
+void		op_st(t_vm *vm, t_proc *lproc);
+void		op_add(t_vm *vm, t_proc *lproc);
+void		op_sub(t_vm *vm, t_proc *lproc);
+void		op_and(t_vm *vm, t_proc *lproc);
+void		op_or(t_vm *vm, t_proc *lproc);
+void		op_xor(t_vm *vm, t_proc *lproc);
+void		op_zjmp(t_vm *vm, t_proc *lproc);
+void		op_ldi(t_vm *vm, t_proc *lproc);
+void		op_sti(t_vm *vm, t_proc *lproc);
+void		op_fork(t_vm *vm, t_proc *lproc);
+void		op_lld(t_vm *vm, t_proc *lproc);
+void		op_lldi(t_vm *vm, t_proc *lproc);
+void		op_lfork(t_vm *vm, t_proc *lproc);
+void		op_aff(t_vm *vm, t_proc *lproc);
 
 #endif /* VM_H_ */

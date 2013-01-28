@@ -5,8 +5,11 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:27:09 2013 guillaume fillon
-** Last update Mon Jan 28 20:30:30 2013 guillaume fillon
+** Last update Mon Jan 28 22:20:41 2013 remi robert
 */
 
-void		sub(t_vm *vm, t_proc *lproc)
+#include "lib.h"
+#include "vm.h"
+
+void		op_sub(t_vm *vm, t_proc *lproc)
 {}

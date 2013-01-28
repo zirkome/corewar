@@ -5,7 +5,7 @@
 ## Login   <bridou_n@epitech.net>
 ## 
 ## Started on  Fri Nov  9 20:29:49 2012 nicolas bridoux
-## Last update Mon Jan 28 14:39:04 2013 remi robert
+## Last update Mon Jan 28 22:25:29 2013 remi robert
 ##
 
 NAME	= corewar
@@ -27,6 +27,22 @@ SRCS	= main.c			\
 	  list/free_list.c		\
 	  list/pop.c			\
 	  list/create_list.c		\
+	  instructions/live.c		\
+	  instructions/ld.c		\
+	  instructions/st.c		\
+	  instructions/add.c		\
+	  instructions/sub.c		\
+	  instructions/and.c		\
+	  instructions/or.c		\
+	  instructions/xor.c		\
+	  instructions/zjmp.c		\
+	  instructions/ldi.c		\
+	  instructions/sti.c		\
+	  instructions/fork.c		\
+	  instructions/lld.c		\
+	  instructions/lldi.c		\
+	  instructions/lfork.c		\
+	  instructions/aff.c		\
 
 LSRCS	= $(LPATH)/my_putchar.c		\
 	  $(LPATH)/my_string.c		\
