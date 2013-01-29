@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 28 13:10:36 2013 remi robert
-** Last update Tue Jan 29 10:36:21 2013 guillaume fillon
+** Last update Tue Jan 29 11:32:33 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -32,8 +32,11 @@ int	exec_instruction(t_vm *vm, t_proc *proc)
 
   if ((cmd_idx = get_cmd(proc->code)) >= 0)
     {
-      proc
+      (cmd_tab[cmd_idx])(vm, proc);
+      return (0);
     }
+  else
+    return (0);
   return (-1);
 }
 
@@ -55,25 +58,5 @@ int	check_prg_live(t_vm *vm)
 
 void		run_cycle(t_vm *vm)
 {
-  int		flag;
-  int		decrement;
-  int		cur_cycle;
 
-  flag = 1;
-  cur_cycle = 0;
-  decrement = 0;
-  while (flag)
-    {
-      while (cur_cycle < CYCLE_TO_DIE + decrement)
-	{
-	  if (vm->nbr_live >= 40)
-	    decrement -= CYCLE_DELTA;
-	  cur_cycle += 1;
-	}
-      if (vm->pgr_nb == 1)
-	{
-	  flag = 0;
-	  return;
-	}
-    }
 }
