@@ -5,7 +5,7 @@
 ** Login   <bridou_n@epitech.net>
 **
 ** Started on  Wed Jan 16 17:58:40 2013 nicolas bridoux
-** Last update Tue Jan 29 11:31:16 2013 guillaume fillon
+** Last update Tue Jan 29 11:56:53 2013 remi robert
 */
 
 #ifndef VM_H_
@@ -32,7 +32,7 @@ typedef struct	s_proc
   int		pid;
   char		carry;
   int		code;
-  char		cmd[18];
+  int		cmd[5];
   int		reg[REG_NUMBER];
   int		pc;
   int		cycle;
