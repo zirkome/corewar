@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Thu Jan 24 23:12:01 2013 remi
-** Last update Tue Jan 29 15:18:19 2013 guillaume fillon
+** Last update Tue Jan 29 19:21:08 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -36,15 +36,12 @@ int	load_champ(char *file, t_vm **vm, header_t *header, int pos_mem)
   int	pos_buf;
 
   buf = get_champ(file, &size);
-  if (size != header->prog_size)
-    my_error("Error number instruction\n", 1);
-  size += pos_mem;
   pos_buf = 0;
-  while (pos_mem < size)
+  while (pos_mem < header->prog_size + pos_mem)
     {
       (*vm)->mem[pos_mem] = buf[pos_buf];
-      pos_mem = pos_mem + 1;
-      pos_buf = pos_buf + 1;
+      pos_mem += 1;
+      pos_buf += 1;
     }
   free(buf);
   return (pos_mem);
