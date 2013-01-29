@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:28:39 2013 guillaume fillon
-** Last update Mon Jan 28 22:49:42 2013 remi robert
+** Last update Tue Jan 29 15:22:15 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -13,5 +13,5 @@
 
 void		op_aff(t_vm *vm, t_proc *lproc)
 {
-  printf(" \nok => [%c]\n", (lproc->reg[(int) lproc->param[1]]));
+  /* printf(" \nok => [%c]\n", (lproc->reg[(int) lproc->param[1]])); */
 }

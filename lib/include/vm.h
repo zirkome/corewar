@@ -5,7 +5,7 @@
 ** Login   <bridou_n@epitech.net>
 **
 ** Started on  Wed Jan 16 17:58:40 2013 nicolas bridoux
-** Last update Tue Jan 29 14:23:44 2013 guillaume fillon
+** Last update Tue Jan 29 15:20:09 2013 guillaume fillon
 */
 
 #ifndef VM_H_
@@ -29,13 +29,12 @@ typedef struct	s_options
 
 typedef struct	s_proc
 {
-  int		pid;
   char		carry;
   int		code;
-  int		cmd[5];
+  char		cmd[17];
   int		reg[REG_NUMBER];
   int		pc;
-  int		cycle;
+  int		wait;
   struct s_proc	*next;
   struct s_proc	*prev;
 }		t_proc;
@@ -43,9 +42,9 @@ typedef struct	s_proc
 typedef struct	s_vm
 {
   char		prg_nb;
-  int		cycle;
   char		prg_alive[4];
   char		nbr_live;
+  int		cycle;
   char		*mem;
   t_proc	*proc;
 }		t_vm;
@@ -99,6 +98,9 @@ void		pop(t_proc *elem);
 /*
 ** run_cycle.c
 */
-void		run_cycle(t_vm *vm);
+void		sync_cycle(t_vm *vm);
+int		handle_schedule(t_vm *vm);
+int		exec_instruction(t_vm *vm, t_proc *proc);
+int		get_cmd(char code);
 
 #endif /* VM_H_ */

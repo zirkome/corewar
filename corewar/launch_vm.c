@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Thu Jan 24 23:12:01 2013 remi
-** Last update Tue Jan 29 09:06:48 2013 guillaume fillon
+** Last update Tue Jan 29 15:18:19 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -88,7 +88,7 @@ int		launch_vm(t_proc *lproc, header_t *header,
   printf("%s", "VM initialiser avec succès !\n");
   dump_memory(vm);
 #endif
-  run_cycle(vm);
+  sync_cycle(vm);
   free_proc(vm->proc);
   free(vm->mem);
   free(vm);

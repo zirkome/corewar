@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 28 13:10:36 2013 remi robert
-** Last update Tue Jan 29 13:20:05 2013 guillaume fillon
+** Last update Tue Jan 29 15:25:01 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -19,7 +19,7 @@ int	get_cmd(char code)
   i = 0;
   while (cmd_tab[i].code != 0x0)
     {
-      if (cmd_tab[i].code == proc->instruction)
+      if (cmd_tab[i].code == code)
 	return (i);
       i += 1;
     }
@@ -30,11 +30,11 @@ int	exec_instruction(t_vm *vm, t_proc *proc)
 {
   int	cmd_idx;
 
-  if (vm->prg_alive[proc->reg[0] - 1] == 0 || proc->cycle-- > 0)
+  if (vm->prg_alive[proc->reg[0] - 1] == 0 || proc->wait-- > 0)
     return (0);
   if ((cmd_idx = get_cmd(proc->code)) >= 0)
     {
-      (cmd_tab[cmd_idx])(vm, proc);
+      (cmd_tab[cmd_idx].f)(vm, proc);
       return (0);
     }
   else
@@ -58,7 +58,33 @@ int	check_prg_live(t_vm *vm)
   return (live);
 }
 
-void		run_cycle(t_vm *vm)
+int		handle_schedule(t_vm *vm)
+{
+  t_proc	*cur_proc;
+
+  cur_proc = vm->proc->next;
+  if (check_prg_live(vm) == 1)
+    return (0);
+  while (cur_proc != vm->proc)
+    {
+      if (cur_proc->wait == -1)
+	{
+	  parser(vm, cur_proc);
+	  cur_proc->wait = cmd_tab[cur_proc->code - 1].cycle + 1;
+	}
+      cur_proc->wait -= 1;
+      if (cur_proc->wait == 0)
+	{
+	  exec_instruction(vm, cur_proc);
+	  parser(vm, cur_proc);
+	  cur_proc->wait = cmd_tab[cur_proc->code - 1].cycle;
+	}
+      cur_proc = cur_proc->next;
+    }
+  return (1);
+}
+
+void		sync_cycle(t_vm *vm)
 {
   int		turn;
   int		n;
@@ -67,11 +93,8 @@ void		run_cycle(t_vm *vm)
   turn = 1;
   while (turn)
     {
-      if (check_prg_live(vm) == 1)
-	{
-	  printf("le joueur %d(%s) a gagne", );
-	}
-      if (vm->cycle + 1 % CYCLE_TO_DIE - (n * CYCLE_DELTA)
+      turn = handle_schedule(vm);
+      if (turn == 1 && vm->cycle % CYCLE_TO_DIE - (n * CYCLE_DELTA)
 	  == CYCLE_TO_DIE - (n * CYCLE_DELTA))
 	  n++;
       vm->cycle += 1;
