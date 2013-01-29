@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 21 18:27:28 2013 remi robert
-** Last update Mon Jan 28 20:02:35 2013 remi robert
+** Last update Tue Jan 29 04:36:53 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -19,14 +19,14 @@ void		display_usage()
 
 int		main(int argc, char **argv)
 {
-  t_proc	*l_proc;
+  t_proc	*lproc;
   header_t	*header;
   int		i;
 
   if (argc == 1 || argc > 5)
     display_usage();
   i = 1;
-  l_proc = create_list();
+  lproc = create_list();
   header = NULL;
   while (i < argc)
     {
@@ -42,8 +42,7 @@ int		main(int argc, char **argv)
 #endif
       i = i + 1;
     }
-  launch_vm(l_proc, header, argv, argc - 1);
-  free_proc(l_proc);
+  launch_vm(lproc, header, argv, argc - 1);
   free_champ(header, argc - 1);
   return (0);
 }

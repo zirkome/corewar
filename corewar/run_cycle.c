@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 28 13:10:36 2013 remi robert
-** Last update Mon Jan 28 23:07:32 2013 remi robert
+** Last update Tue Jan 29 04:26:17 2013 guillaume fillon
 */
 
 #include "vm.h"
@@ -32,12 +32,11 @@ void	exec_instruction(t_vm *vm, t_proc *proc)
   f[13] = &op_lldi;
   f[14] = &op_lfork;
   f[15] = &op_aff;
-
   if (proc->instruction <= 16 && proc->instruction >= 0)
     f[proc->instruction - 1](vm, proc);
 }
 
-int	check_ch_live(t_vm *vm)
+int	check_prg_live(t_vm *vm)
 {
   int	live;
   int	i;
@@ -46,7 +45,7 @@ int	check_ch_live(t_vm *vm)
   i = 0;
   while (i < 4)
     {
-      if (vm->is_ch_alive[i] == 1)
+      if (vm->prg_alive[i] == 1)
 	live = 1;
       i = i + 1;
     }
@@ -114,10 +113,10 @@ void		run_cycle(t_vm *vm)
 #endif
   /* vm->proc->next->reg[3] = 42; */
   /* exec_instruction(vm, vm->proc->next); */
-  while (cur_cycle <= CYCLE_TO_DIE && check_ch_live(vm) == 1)
+  while (cur_cycle <= CYCLE_TO_DIE && check_prg_live(vm) == 1)
     {
       i = 0;
-      while (i <= CYCLE_TO_DIE - cur_cycle && check_ch_live(vm) == 1)
+      while (i <= CYCLE_TO_DIE - cur_cycle && check_prg_live(vm) == 1)
 	{
 	  /* gestion des cycles et executions de l' instruction si variable cycle ets a zero */
 	  /* decrement_cycle(vm); */

@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:27:09 2013 guillaume fillon
-** Last update Mon Jan 28 23:20:52 2013 remi robert
+** Last update Tue Jan 29 02:43:17 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -13,10 +13,5 @@
 
 void		op_sub(t_vm *vm, t_proc *lproc)
 {
-  lproc->reg[(int)lproc->param[3]] = lproc->reg[(int)lproc->param[1]]
-    - lproc->reg[(int)lproc->param[2]];
-  if (lproc->carry == 0)
-    lproc->carry = 1;
-  else
-    lproc->carry = 0;
+
 }
