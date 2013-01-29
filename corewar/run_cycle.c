@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 28 13:10:36 2013 remi robert
-** Last update Tue Jan 29 11:32:33 2013 guillaume fillon
+** Last update Tue Jan 29 13:20:05 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -30,6 +30,8 @@ int	exec_instruction(t_vm *vm, t_proc *proc)
 {
   int	cmd_idx;
 
+  if (vm->prg_alive[proc->reg[0] - 1] == 0 || proc->cycle-- > 0)
+    return (0);
   if ((cmd_idx = get_cmd(proc->code)) >= 0)
     {
       (cmd_tab[cmd_idx])(vm, proc);
@@ -58,5 +60,20 @@ int	check_prg_live(t_vm *vm)
 
 void		run_cycle(t_vm *vm)
 {
+  int		turn;
+  int		n;
 
+  n = 0;
+  turn = 1;
+  while (turn)
+    {
+      if (check_prg_live(vm) == 1)
+	{
+	  printf("le joueur %d(%s) a gagne", );
+	}
+      if (vm->cycle + 1 % CYCLE_TO_DIE - (n * CYCLE_DELTA)
+	  == CYCLE_TO_DIE - (n * CYCLE_DELTA))
+	  n++;
+      vm->cycle += 1;
+    }
 }
