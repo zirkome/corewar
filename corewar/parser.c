@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Sat Jan 26 10:54:25 2013 remi robert
-** Last update Tue Jan 29 04:37:23 2013 guillaume fillon
+** Last update Tue Jan 29 04:42:37 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -99,21 +99,17 @@ void	rempl_param(t_proc *lproc, char *buf)
 ** Si ne rentre pas dans le if alors commande invalide et incrémentation du pc de 1
 */
 
-void	parser(t_vm *vm, t_proc *lproc)
+void	parser(t_vm *vm, t_proc *c_proc)
 {
   char	*buf;
 
-  if ((vm->mem[lproc->pc] & 0xFF) >= 0x01 && (vm->mem[lproc->pc] & 0xFF) <= 0x10)
+  if ((vm->mem[c_proc->pc] & 0xFF) >= 0x01 && (vm->mem[c_proc->pc] & 0xFF) <= 0x10)
     {
-      lproc->instruction = (vm->mem[lproc->pc] & 0xFF);
-#ifdef DEBUG
-      printf("{%s => %X} => ",
-	     op_tab[(vm->mem[lproc->pc] & 0xFF) - 1].mnemonique, (vm->mem[lproc->pc] & 0xFF));
-#endif
-      buf = return_param(vm->mem, &(lproc->pc), return_interval_param(vm->mem, lproc->pc, 0, 0));
-      rempl_param(lproc, buf);
+      c_proc->instruction = (vm->mem[c_proc->pc] & 0xFF);
+      buf = return_param(vm->mem, &(c_proc->pc), return_interval_param(vm->mem, c_proc->pc, 0, 0));
+      rempl_param(c_proc, buf);
       printf("\n");
     }
-  lproc->pc = (lproc->pc + 1) % (MEM_SIZE + 1);
+  c_proc->pc = (c_proc->pc + 1) % (MEM_SIZE + 1);
   printf("\n");
 }
