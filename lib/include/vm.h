@@ -5,7 +5,7 @@
 ** Login   <bridou_n@epitech.net>
 **
 ** Started on  Wed Jan 16 17:58:40 2013 nicolas bridoux
-** Last update Tue Jan 29 04:41:24 2013 guillaume fillon
+** Last update Tue Jan 29 10:05:14 2013 guillaume fillon
 */
 
 #ifndef VM_H_
@@ -29,13 +29,12 @@ typedef struct	s_options
 
 typedef struct	s_proc
 {
-  int		cycle;
   int		pid;
-  char		param[17];
-  char		instruction;
+  char		carry;
+  char		cmd[18];
   int		reg[REG_NUMBER];
   int		pc;
-  char		carry;
+  int		cycle;
   struct s_proc	*next;
   struct s_proc	*prev;
 }		t_proc;
@@ -44,6 +43,7 @@ typedef struct	s_vm
 {
   char		prg_nb;
   char		prg_alive[4];
+  char		nbr_live;
   char		*mem;
   t_proc	*proc;
 }		t_vm;
@@ -98,25 +98,5 @@ void		pop(t_proc *elem);
 ** run_cylce.c
 */
 void		run_cycle(t_vm *vm);
-
-/*
-** instruction
-*/
-void		op_live(t_vm *vm, t_proc *lproc);
-void		op_ld(t_vm *vm, t_proc *lproc);
-void		op_st(t_vm *vm, t_proc *lproc);
-void		op_add(t_vm *vm, t_proc *lproc);
-void		op_sub(t_vm *vm, t_proc *lproc);
-void		op_and(t_vm *vm, t_proc *lproc);
-void		op_or(t_vm *vm, t_proc *lproc);
-void		op_xor(t_vm *vm, t_proc *lproc);
-void		op_zjmp(t_vm *vm, t_proc *lproc);
-void		op_ldi(t_vm *vm, t_proc *lproc);
-void		op_sti(t_vm *vm, t_proc *lproc);
-void		op_fork(t_vm *vm, t_proc *lproc);
-void		op_lld(t_vm *vm, t_proc *lproc);
-void		op_lldi(t_vm *vm, t_proc *lproc);
-void		op_lfork(t_vm *vm, t_proc *lproc);
-void		op_aff(t_vm *vm, t_proc *lproc);
 
 #endif /* VM_H_ */

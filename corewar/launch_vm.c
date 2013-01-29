@@ -5,11 +5,9 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Thu Jan 24 23:12:01 2013 remi
-** Last update Tue Jan 29 04:37:46 2013 guillaume fillon
+** Last update Tue Jan 29 09:06:48 2013 guillaume fillon
 */
 
-#include <sys/stat.h>
-#include <fcntl.h>
 #include "lib.h"
 #include "vm.h"
 #include "couleur.h"
