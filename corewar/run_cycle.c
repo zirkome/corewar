@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 28 13:10:36 2013 remi robert
-** Last update Tue Jan 29 15:25:01 2013 guillaume fillon
+** Last update Tue Jan 29 17:29:09 2013 remi robert
 */
 
 #include "lib.h"
@@ -68,17 +68,17 @@ int		handle_schedule(t_vm *vm)
   while (cur_proc != vm->proc)
     {
       if (cur_proc->wait == -1)
-	{
-	  parser(vm, cur_proc);
-	  cur_proc->wait = cmd_tab[cur_proc->code - 1].cycle + 1;
-	}
+      	{
+      	  parser(vm, cur_proc);
+      	  cur_proc->wait = cmd_tab[cur_proc->code - 1].cycle + 1;
+      	}
       cur_proc->wait -= 1;
       if (cur_proc->wait == 0)
-	{
-	  exec_instruction(vm, cur_proc);
-	  parser(vm, cur_proc);
-	  cur_proc->wait = cmd_tab[cur_proc->code - 1].cycle;
-	}
+      	{
+      	  exec_instruction(vm, cur_proc);
+      	  parser(vm, cur_proc);
+      	  cur_proc->wait = cmd_tab[cur_proc->code - 1].cycle;
+      	}
       cur_proc = cur_proc->next;
     }
   return (1);
@@ -88,15 +88,25 @@ void		sync_cycle(t_vm *vm)
 {
   int		turn;
   int		n;
+  int		cycle;
 
   n = 0;
   turn = 1;
+  cycle = CYCLE_TO_DIE;
+  vm->proc->next->reg[3] = 42;
   while (turn)
     {
       turn = handle_schedule(vm);
-      if (turn == 1 && vm->cycle % CYCLE_TO_DIE - (n * CYCLE_DELTA)
-	  == CYCLE_TO_DIE - (n * CYCLE_DELTA))
-	  n++;
+      if (n == cycle /*|| test NBR_LIVE */)
+	{
+	  n = 0;
+	  cycle -= CYCLE_DELTA;
+	}
       vm->cycle += 1;
+      n += 1;
+      /* if (turn == 1 && vm->cycle % CYCLE_TO_DIE - (n * CYCLE_DELTA) */
+      /* 	  == CYCLE_TO_DIE - (n * CYCLE_DELTA)) */
+      /* 	  n++; */
+      /* vm->cycle += 1; */
     }
 }

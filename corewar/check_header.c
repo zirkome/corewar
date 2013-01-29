@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Thu Jan 24 21:46:54 2013 guillaume fillon
-** Last update Fri Jan 25 05:33:39 2013 guillaume fillon
+** Last update Tue Jan 29 18:01:13 2013 remi robert
 */
 
 #include "lib.h"
@@ -63,27 +63,30 @@ char		*check_comment(char *buf)
 
 header_t	*check_header(const int fd, header_t *header)
 {
-  int		rt;
   int		i;
-  char		word;
-  char		buf[HEADER_LENGTH];
+  header_t	*buf;
 
-  i = 0;
-  while ((rt = read(fd, &word, 1)) != 0 && i < HEADER_LENGTH)
-    {
-      if (rt == -1)
-	my_error("Error: Can't read the file.", 1);
-      buf[i++] = word;
-    }
-  if (i < HEADER_LENGTH)
+  buf = malloc(sizeof(header_t));
+  printf ("%lu\n", sizeof(header_t));
+  i = read(fd, buf, sizeof(header_t));
+  if (i < sizeof(header_t))
     return (NULL);
-  if ((header->magic = check_magic(buf)) != COREWAR_EXEC_MAGIC)
-    return (NULL);
-  if ((header->prog_name = check_name(buf)) == NULL)
-    return (NULL);
-  if ((header->prog_size = check_size(buf)) <= 0)
-    return (NULL);
-  if ((header->comment = check_comment(buf)) == NULL)
-    return (NULL);
-  return (header);
+  printf ("%X\n", buf->magic);
+  /* while ((rt = read(fd, &word, 1)) != 0 && i < HEADER_LENGTH) */
+  /*   { */
+  /*     if (rt == -1) */
+  /* 	my_error("Error: Can't read the file.", 1); */
+  /*     buf[i++] = word; */
+  /*   } */
+  /* if (i < HEADER_LENGTH) */
+  /*   return (NULL); */
+  /* if ((header->magic = check_magic(buf)) != COREWAR_EXEC_MAGIC) */
+  /*   return (NULL); */
+  /* if ((header->prog_name = check_name(buf)) == NULL) */
+  /*   return (NULL); */
+  /* if ((header->prog_size = check_size(buf)) <= 0) */
+  /*   return (NULL); */
+  /* if ((header->comment = check_comment(buf)) == NULL) */
+  /*   return (NULL); */
+  return (buf);
 }

@@ -69,7 +69,7 @@ extern  op_t    op_tab[];
 /*
 ** header
 */
-# define HEADER_LENGTH       PROG_NAME_LENGTH + COMMENT_LENGTH + 2 * sizeof(int)
+# define HEADER_LENGTH       sizeof(header_t)
 # define PROG_NAME_LENGTH    128
 # define COMMENT_LENGTH	     2048
 
@@ -77,9 +77,9 @@ struct header_s
 {
   int  magic;
 # define COREWAR_EXEC_MAGIC      0xEA83F3
-  char *prog_name;
+  char prog_name[PROG_NAME_LENGTH + 1];
   int  prog_size;
-  char *comment;
+  char comment[COMMENT_LENGTH + 1];
 };
 
 typedef struct header_s header_t;

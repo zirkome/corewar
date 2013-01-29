@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Tue Jan 29 13:13:40 2013 remi robert
-** Last update Tue Jan 29 13:31:27 2013 remi robert
+** Last update Tue Jan 29 16:57:55 2013 remi robert
 */
 
 #include "lib.h"
@@ -15,9 +15,11 @@ void	parser(t_vm *vm, t_proc *lproc)
 {
   int	i;
 
+  i = 0;
   if ((vm->mem[lproc->pc] & 0xFF) >= 0x01 &&
       (vm->mem[lproc->pc] & 0xFF) <= 0x10)
     {
+      lproc->code = vm->mem[lproc->pc] & 0xFF;
       while (i < 17)
 	{
 	  if (lproc->pc + i < MEM_SIZE)
