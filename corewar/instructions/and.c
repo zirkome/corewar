@@ -5,18 +5,22 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:28:57 2013 guillaume fillon
-** Last update Tue Jan 29 15:21:30 2013 guillaume fillon
+** Last update Wed Jan 30 09:48:19 2013 remi robert
 */
 
 #include "lib.h"
 #include "vm.h"
 
-void		op_and(t_vm *vm, t_proc *lproc)
+void	op_and(t_vm *vm, t_proc *lproc)
 {
-  /* lproc->reg[(int)lproc->param[3]] = lproc->reg[(int)lproc->param[1]] */
-  /*   & lproc->reg[(int)lproc->param[2]]; */
-  /* if (lproc->carry == 0) */
-  /*   lproc->carry = 1; */
-  /* else */
-  /*   lproc->carry = 0; */
+  /* int	param1; */
+  /* int	param2; */
+
+  /* if (lproc->cmd[3] > 16) */
+  /*   { */
+  /*     printf("Bad argurment\n"); */
+  /*     lproc->pc += 1; */
+  /*     return ; */
+  /*   } */
+  // lproc->reg[(int)lproc->cmd[3]]
 }

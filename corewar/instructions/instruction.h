@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Tue Jan 29 07:51:02 2013 guillaume fillon
-** Last update Tue Jan 29 09:08:46 2013 guillaume fillon
+** Last update Wed Jan 30 08:53:49 2013 remi robert
 */
 
 #ifndef INSTRUCTION_H_
@@ -40,5 +40,6 @@ void		op_lld(t_vm *vm, t_proc *lproc);
 void		op_lldi(t_vm *vm, t_proc *lproc);
 void		op_lfork(t_vm *vm, t_proc *lproc);
 void		op_aff(t_vm *vm, t_proc *lproc);
+int		interval_memory(char *cmdn, int i, int interval, int indice);
 
 #endif /* INSTRUCTION_H_ */

@@ -5,13 +5,12 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 21 18:34:30 2013 remi robert
-** Last update Sun Jan 27 20:46:18 2013 guillaume fillon
+** Last update Tue Jan 29 18:05:59 2013 remi robert
 */
 
 #include <sys/stat.h>
 #include <fcntl.h>
 #include "lib.h"
-#include "op.h"
 #include "vm.h"
 
 char	*get_champ(char *path, int *size)
@@ -26,7 +25,7 @@ char	*get_champ(char *path, int *size)
   *size = 0;
   if ((fd = open(path, O_RDONLY)) == -1)
     my_error("File not found\n", 1);
-  if (lseek(fd, 2192, SEEK_CUR) == -1)
+  if (lseek(fd, HEADER_LENGTH, SEEK_CUR) == -1)
     my_error("Error lseek\n", 1);
   ret = 1;
   while ((ret = read(fd, buf, 1)) != 0)

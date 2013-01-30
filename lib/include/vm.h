@@ -5,7 +5,7 @@
 ** Login   <bridou_n@epitech.net>
 **
 ** Started on  Wed Jan 16 17:58:40 2013 nicolas bridoux
-** Last update Tue Jan 29 15:20:09 2013 guillaume fillon
+** Last update Wed Jan 30 08:57:55 2013 remi robert
 */
 
 #ifndef VM_H_
@@ -102,5 +102,10 @@ void		sync_cycle(t_vm *vm);
 int		handle_schedule(t_vm *vm);
 int		exec_instruction(t_vm *vm, t_proc *proc);
 int		get_cmd(char code);
+
+/*
+** instruction / interval_mem.c
+*/
+int		interval_memory(char *cmd, int i, int interval, int indice);
 
 #endif /* VM_H_ */

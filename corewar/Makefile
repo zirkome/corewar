@@ -5,7 +5,7 @@
 ## Login   <bridou_n@epitech.net>
 ## 
 ## Started on  Fri Nov  9 20:29:49 2012 nicolas bridoux
-## Last update Tue Jan 29 09:09:43 2013 guillaume fillon
+## Last update Wed Jan 30 08:54:54 2013 remi robert
 ##
 
 NAME	= corewar
@@ -45,6 +45,7 @@ SRCS	= main.c			\
 	  instructions/lldi.c		\
 	  instructions/lfork.c		\
 	  instructions/aff.c		\
+	  instructions/interval_mem.c	\
 
 LSRCS	= $(LPATH)/my_putchar.c		\
 	  $(LPATH)/my_string.c		\
