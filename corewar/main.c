@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 21 18:27:28 2013 remi robert
-** Last update Tue Jan 29 04:36:53 2013 guillaume fillon
+** Last update Wed Jan 30 17:18:13 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -43,6 +43,6 @@ int		main(int argc, char **argv)
       i = i + 1;
     }
   launch_vm(lproc, header, argv, argc - 1);
-  free_champ(header, argc - 1);
+  //free_champ(header, argc - 1);
   return (0);
 }

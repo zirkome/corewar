@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Tue Jan 29 04:05:43 2013 guillaume fillon
-** Last update Tue Jan 29 14:19:37 2013 remi robert
+** Last update Wed Jan 30 17:35:30 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -29,11 +29,11 @@ void	dump_memory(t_vm *vm)
   while (vm->mem != NULL && i < MEM_SIZE)
     {
       if (i % 64 == 0)
-	printf("\n%s", REZ);
+      	printf("\n%s", REZ);
       if (vm->mem[i])
-	printf(" %s%s%s%02X", VERT, INVERSE, INTENSITE, vm->mem[i] & 0xFF);
+      	printf(" %s%s%s%02X", VERT, INVERSE, INTENSITE, vm->mem[i] & 0xFF);
       else
-	printf("%s %02X", REZ, vm->mem[i] & 0xFF);
+      	printf("%s %02X", REZ, vm->mem[i] & 0xFF);
       i = i + 1;
     }
   printf("%s", REZ);

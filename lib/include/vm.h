@@ -5,7 +5,7 @@
 ** Login   <bridou_n@epitech.net>
 **
 ** Started on  Wed Jan 16 17:58:40 2013 nicolas bridoux
-** Last update Wed Jan 30 08:57:55 2013 remi robert
+** Last update Wed Jan 30 17:42:29 2013 guillaume fillon
 */
 
 #ifndef VM_H_
@@ -16,8 +16,6 @@
 # include "op.h"
 
 # define READ 4096
-
-typedef char    mem_t;
 
 typedef struct	s_options
 {

@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Thu Jan 24 23:12:01 2013 remi
-** Last update Tue Jan 29 19:21:08 2013 guillaume fillon
+** Last update Wed Jan 30 18:45:55 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -37,14 +37,15 @@ int	load_champ(char *file, t_vm **vm, header_t *header, int pos_mem)
 
   buf = get_champ(file, &size);
   pos_buf = 0;
-  while (pos_mem < header->prog_size + pos_mem)
+  size = pos_mem;
+  printf("POS_MEM : %d\n", pos_mem);
+  while (pos_mem + pos_buf < header->prog_size + size)
     {
-      (*vm)->mem[pos_mem] = buf[pos_buf];
-      pos_mem += 1;
+      (*vm)->mem[pos_mem + pos_buf] = buf[pos_buf];
       pos_buf += 1;
     }
   free(buf);
-  return (pos_mem);
+  return (pos_mem + pos_buf);
 }
 
 t_proc		*load_champions(t_vm *vm,char **argv,
@@ -85,7 +86,9 @@ int		launch_vm(t_proc *lproc, header_t *header,
   printf("%s", "VM initialiser avec succès !\n");
   dump_memory(vm);
 #endif
-  sync_cycle(vm);
+  printf("\nPRG1 : %02X ; PRG2 : %02X ; PRG3 : %02X\n",
+	 (int) vm->mem[0] & 0xFF, (int) vm->mem[2048 - 4], (int) vm->mem[4096] & 0xFF);
+  //sync_cycle(vm);
   free_proc(vm->proc);
   free(vm->mem);
   free(vm);
