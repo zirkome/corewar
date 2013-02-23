@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:28:50 2013 guillaume fillon
-** Last update Wed Jan 30 09:47:32 2013 remi robert
+** Last update Sat Feb 23 12:28:20 2013 remi robert
 */
 
 #include "lib.h"
@@ -13,6 +13,7 @@
 
 void		op_add(t_vm *vm, t_proc *lproc)
 {
+  printf("%sADD%s\n", F_CYAN, REZ);
   if (lproc->cmd[1] > 16 || lproc->cmd[2] > 16 || lproc->cmd[3] > 16)
     {
       printf("Bad argurment\n");

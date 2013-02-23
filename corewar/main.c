@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 21 18:27:28 2013 remi robert
-** Last update Wed Jan 30 17:18:13 2013 guillaume fillon
+** Last update Sat Feb 23 12:35:17 2013 remi robert
 */
 
 #include "lib.h"
@@ -26,6 +26,7 @@ int		main(int argc, char **argv)
   if (argc == 1 || argc > 5)
     display_usage();
   i = 1;
+  lproc = NULL;
   lproc = create_list();
   header = NULL;
   while (i < argc)

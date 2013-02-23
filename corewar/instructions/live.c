@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:28:00 2013 guillaume fillon
-** Last update Tue Jan 29 03:53:30 2013 guillaume fillon
+** Last update Sat Feb 23 12:28:54 2013 remi robert
 */
 
 #include "lib.h"
@@ -13,6 +13,8 @@
 
 void		op_live(t_vm *vm, t_proc *lproc)
 {
+  printf("%sLIVE%s\n", F_CYAN, REZ);
   /* if (lproc->param[0] > 0 && lproc->param[0] <= 4) */
   /*   vm->prg_alive[] */
+  lproc->pc += 5;
 }

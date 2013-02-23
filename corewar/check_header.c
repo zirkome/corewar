@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Thu Jan 24 21:46:54 2013 guillaume fillon
-** Last update Tue Jan 29 19:16:28 2013 guillaume fillon
+** Last update Tue Feb 19 17:19:19 2013 remi robert
 */
 
 #include "lib.h"
@@ -24,7 +24,8 @@ header_t	*check_header(const int fd, header_t *header)
   i = read(fd, header, sizeof(header_t));
   if (i < sizeof(header_t))
     return (NULL);
-  if ((header->magic = little_to_big_endian(header->magic)) != COREWAR_EXEC_MAGIC)
+  if ((header->magic = little_to_big_endian(header->magic))
+      != COREWAR_EXEC_MAGIC)
     return (NULL);
   if (header->prog_name == NULL)
     return (NULL);

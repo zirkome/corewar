@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Thu Jan 24 23:12:01 2013 remi
-** Last update Wed Jan 30 18:45:55 2013 guillaume fillon
+** Last update Sat Feb 23 12:39:52 2013 remi robert
 */
 
 #include "lib.h"
@@ -88,7 +88,7 @@ int		launch_vm(t_proc *lproc, header_t *header,
 #endif
   printf("\nPRG1 : %02X ; PRG2 : %02X ; PRG3 : %02X\n",
 	 (int) vm->mem[0] & 0xFF, (int) vm->mem[2048 - 4], (int) vm->mem[4096] & 0xFF);
-  //sync_cycle(vm);
+  sync_cycle(vm);
   free_proc(vm->proc);
   free(vm->mem);
   free(vm);
