@@ -5,7 +5,7 @@
 ** Login   <bridou_n@epitech.net>
 **
 ** Started on  Wed Jan 16 17:58:40 2013 nicolas bridoux
-** Last update Sat Feb 23 12:45:19 2013 remi robert
+** Last update Mon Feb 25 10:17:06 2013 remi robert
 */
 
 #ifndef VM_H_
@@ -84,21 +84,21 @@ int		launch_vm(t_proc *l_proc, header_t *header, char **av, int nb_ch);
 /*
 ** parser.c
 */
-void		parser(t_vm *vm, t_proc *l_proc);
+void		parser(t_vm *vm, t_proc **l_proc);
 
 /*
 ** doubly linked list
 */
 t_proc		*create_list(void);
 void		free_proc(t_proc *lproc);
-void		queue(t_proc *root, int pc, int cid);
+void		queue(t_proc **root, int pc, int cid);
 void		pop(t_proc *elem);
 
 /*
 ** run_cycle.c
 */
 void		sync_cycle(t_vm *vm);
-int		handle_schedule(t_vm *vm);
+int		handle_schedule(t_vm **vm);
 int		exec_instruction(t_vm *vm, t_proc **proc);
 int		get_cmd(char code);
 

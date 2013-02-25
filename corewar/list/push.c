@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Sun Dec  9 21:30:11 2012 guillaume fillon
-** Last update Tue Jan 29 15:21:03 2013 guillaume fillon
+** Last update Mon Feb 25 10:15:51 2013 remi robert
 */
 
 #include "lib.h"
@@ -15,7 +15,7 @@ void		push_before(t_proc *elem, int pc, int cid)
 {
   t_proc	*new_elem;
 
-  if ((new_elem = (t_proc *) malloc(sizeof(*new_elem))) != NULL)
+ if ((new_elem = (t_proc *) malloc(sizeof(*new_elem))) != NULL)
     {
       init_reg(new_elem->reg, cid);
       new_elem->wait = -1;
@@ -32,7 +32,7 @@ void		push_before(t_proc *elem, int pc, int cid)
     }
 }
 
-void		queue(t_proc *root, int pc, int cid)
+void		queue(t_proc **root, int pc, int cid)
 {
-  push_before(root, pc, cid);
+  push_before(*root, pc, cid);
 }

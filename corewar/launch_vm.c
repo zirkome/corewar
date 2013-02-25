@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Thu Jan 24 23:12:01 2013 remi
-** Last update Sat Feb 23 12:39:52 2013 remi robert
+** Last update Mon Feb 25 10:17:31 2013 remi robert
 */
 
 #include "lib.h"
@@ -60,7 +60,7 @@ t_proc		*load_champions(t_vm *vm,char **argv,
   interval = calc_interval(vm->prg_nb, mem_tmp);
   while (i < vm->prg_nb)
     {
-      queue(vm->proc, pos_mem, i + 1);
+      queue(&(vm->proc), pos_mem, i + 1);
       pos_mem = load_champ(argv[i + 1], &vm, &header[i], pos_mem) + interval;
       i = i + 1;
     }

@@ -5,14 +5,14 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:27:49 2013 guillaume fillon
-** Last update Sat Feb 23 12:29:04 2013 remi robert
+** Last update Mon Feb 25 08:46:40 2013 remi robert
 */
 
 #include "lib.h"
 #include "vm.h"
 
-void		op_lldi(t_vm *vm, t_proc *lproc)
+void		op_lldi(t_vm *vm, t_proc **lproc)
 {
   printf("%sLLDI%s\n", F_CYAN, REZ);
-  lproc->pc += interval_memory(lproc->cmd, 0, 0, 0);
+  (*lproc)->pc += interval_memory((*lproc)->cmd, 0, 0, 0);
 }

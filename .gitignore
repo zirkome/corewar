@@ -2,4 +2,4 @@
 *.s
 *.log
 *.o
-^corewar$
+*corewar*

@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:30:00 2013 guillaume fillon
-** Last update Sat Feb 23 12:29:19 2013 remi robert
+** Last update Mon Feb 25 09:14:25 2013 remi robert
 */
 
 #include "lib.h"
@@ -14,11 +14,11 @@
 /* Est censé marcher ... */
 /* 3 min plus tard ... Oui ça marche !!*/
 
-void		op_sti(t_vm *vm, t_proc *lproc)
+void		op_sti(t_vm *vm, t_proc **lproc)
 {
   printf("%sSTI%s\n", F_CYAN, REZ);
-  lproc->pc += interval_memory(lproc->cmd, 0, 0, 0);
-
+  (*lproc)->pc += interval_memory((*lproc)->cmd, 0, 0, 0);
+  exit(0);
   /* if (lproc->cmd[1] > 16) */
   /*   { */
   /*     lproc->pc += 1; */
