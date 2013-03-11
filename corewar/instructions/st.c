@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:27:36 2013 guillaume fillon
-** Last update Mon Mar 11 15:21:11 2013 remi
+** Last update Mon Mar 11 20:39:18 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -15,16 +15,16 @@ void		op_st(t_vm *vm, t_proc **lproc)
 {
   int		adress;
 
-  printf("%sST%s\n", F_CYAN, REZ);
+  printf("%sST%s : ", F_CYAN, REZ);
   if ((((*lproc)->cmd[0] >> 4) & 0x03) == 1)
     {
-      printf("REGISTRE\n");
+      printf("REGISTRE");
       (*lproc)->reg[(int)(*lproc)->cmd[2]] =
 	(*lproc)->reg[(int)(*lproc)->cmd[1]];
     }
   else
     {
-      printf("ADRESSE\n");
+      printf("ADRESSE");
       adress = ((*lproc)->cmd[2] << 24) + ((*lproc)->cmd[3] << 16)
 	+ ((*lproc)->cmd[4] << 8) + ((*lproc)->cmd[5]);
       vm->mem[((*lproc)->pc + adress) % IDX_MOD] =

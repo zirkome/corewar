@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:28:50 2013 guillaume fillon
-** Last update Mon Mar 11 15:24:15 2013 remi
+** Last update Mon Mar 11 20:38:19 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -22,7 +22,7 @@ void		op_add(t_vm *vm, t_proc **lproc)
     }
   (*lproc)->reg[(int)(*lproc)->cmd[3]] =
     (*lproc)->reg[(int)(*lproc)->cmd[1]] + (*lproc)->reg[(int)(*lproc)->cmd[2]];
-  printf("%d + %d = [%d]", (*lproc)->reg[(int)(*lproc)->cmd[1]],
+  printf("%d + %d = [%d]\n", (*lproc)->reg[(int)(*lproc)->cmd[1]],
 	 (*lproc)->reg[(int)(*lproc)->cmd[2]],
 	 (*lproc)->reg[(int)(*lproc)->cmd[3]]);
   (*lproc)->pc += interval_memory((*lproc)->cmd, (*lproc)->code, 0, 0);

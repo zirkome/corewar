@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:28:57 2013 guillaume fillon
-** Last update Mon Mar 11 19:36:01 2013 guillaume fillon
+** Last update Mon Mar 11 20:40:19 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -13,10 +13,10 @@
 
 void	op_and(t_vm *vm, t_proc **lproc)
 {
-  printf("%sAND%s\n", F_CYAN, REZ);
+  printf("%sAND%s : ", F_CYAN, REZ);
   (*lproc)->reg[(int)(*lproc)->cmd[3]] =
     (*lproc)->reg[(int)(*lproc)->cmd[1]] & (*lproc)->reg[(int)(*lproc)->cmd[2]];
-  printf("%d & %d = [%d]", (*lproc)->reg[(int)(*lproc)->cmd[1]],
+  printf("%d & %d = [%d]\n", (*lproc)->reg[(int)(*lproc)->cmd[1]],
 	 (*lproc)->reg[(int)(*lproc)->cmd[2]],
 	 (*lproc)->reg[(int)(*lproc)->cmd[3]]);
  (*lproc)->pc += interval_memory((*lproc)->cmd, (*lproc)->code, 0, 0);
