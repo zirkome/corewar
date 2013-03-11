@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 21 18:27:28 2013 remi robert
-** Last update Sat Feb 23 12:35:17 2013 remi robert
+** Last update Mon Mar 11 09:25:38 2013 remi
 */
 
 #include "lib.h"
@@ -27,7 +27,7 @@ int		main(int argc, char **argv)
     display_usage();
   i = 1;
   lproc = NULL;
-  lproc = create_list();
+  //lproc = create_list();
   header = NULL;
   while (i < argc)
     {

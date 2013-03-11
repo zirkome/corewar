@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 28 13:10:36 2013 remi robert
-** Last update Mon Feb 25 09:42:06 2013 remi robert
+** Last update Mon Mar 11 15:45:14 2013 remi
 */
 
 #include "lib.h"
@@ -33,7 +33,8 @@ int	exec_instruction(t_vm *vm, t_proc **proc)
 
   if (vm->prg_alive[(*proc)->reg[0] - 1] == 0 || (*proc)->wait-- > 0)
     return (0);
-  if ((cmd_idx = get_cmd((*proc)->code)) >= 0)
+  cmd_idx = get_cmd((*proc)->code);
+  if (cmd_idx >= 0 && cmd_idx <= 16)
     {
       (cmd_tab[cmd_idx].f)(vm, proc);
       return (0);
@@ -43,43 +44,41 @@ int	exec_instruction(t_vm *vm, t_proc **proc)
   return (-1);
 }
 
-int	check_prg_live(t_vm *vm)
+void		reset_live_prg(t_vm **vm)
 {
-  int	live;
-  int	i;
+  t_proc	*cur_proc;
 
-  live = 0;
-  i = 0;
-  while (i < 4)
+  if ((*vm)->proc == NULL)
+    return ;
+  cur_proc = (*vm)->proc;
+  while (cur_proc != NULL)
     {
-      if (vm->prg_alive[i] == 1)
-	live += 1;
-      i = i + 1;
+      cur_proc->live = 0;
+      cur_proc = cur_proc->next;
     }
-  return (live);
 }
 
 int		handle_schedule(t_vm **vm)
 {
   t_proc	*cur_proc;
 
-  if ((*vm)->proc->next == NULL)
+  if ((*vm)->proc == NULL)
     return (0);
-  cur_proc = (*vm)->proc->next;
-  if (check_prg_live(*vm) == 1)
-    return (0);
-  while (cur_proc != (*vm)->proc)
+  cur_proc = (*vm)->proc;
+  /* if (check_prg_live(*vm) == 1) */
+  /*   return (0); */
+  while (cur_proc != NULL)
     {
       if (cur_proc->wait == -1)
       	{
-      	  parser(*vm, &cur_proc);
+      	  parser(*vm, cur_proc, 0);
       	  cur_proc->wait = cmd_tab[cur_proc->code - 1].cycle + 1;
       	}
       cur_proc->wait -= 1;
       if (cur_proc->wait == 0)
       	{
 	  exec_instruction(*vm, &cur_proc);
-      	  parser(*vm, &cur_proc);
+      	  parser(*vm, cur_proc, 1);
       	  cur_proc->wait = cmd_tab[cur_proc->code - 1].cycle;
       	}
       cur_proc = cur_proc->next;
@@ -96,20 +95,23 @@ void		sync_cycle(t_vm *vm)
   n = 0;
   turn = 1;
   cycle = CYCLE_TO_DIE;
-  vm->proc->next->reg[3] = 42;
   while (turn)
     {
       turn = handle_schedule(&vm);
-      if (n == cycle /*|| test NBR_LIVE */)
+      if (n == cycle)
 	{
+	  if ((check_prg_live(&vm)) == 0)
+	    {
+	      printf("fin programme\n");
+	      return ;
+	    }
 	  n = 0;
 	  cycle -= CYCLE_DELTA;
+	  reset_live_prg(&vm);
 	}
       vm->cycle += 1;
       n += 1;
       /* test instruction */
-      if (n == 70)
-	exit (0);
       /* A enlever bien evidemment*/
     }
 }

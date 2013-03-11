@@ -5,7 +5,7 @@
 ## Login   <bridou_n@epitech.net>
 ## 
 ## Started on  Fri Nov  9 20:29:49 2012 nicolas bridoux
-## Last update Wed Jan 30 08:54:54 2013 remi robert
+## Last update Mon Mar 11 09:35:44 2013 remi
 ##
 
 NAME	= corewar
@@ -24,10 +24,8 @@ SRCS	= main.c			\
 	  parser.c			\
 	  free_champ.c			\
 	  run_cycle.c			\
-	  list/push.c			\
-	  list/free_list.c		\
-	  list/pop.c			\
-	  list/create_list.c		\
+	  check_prog_live.c		\
+	  list/list.c			\
 	  instructions/instruction.c	\
 	  instructions/live.c		\
 	  instructions/ld.c		\

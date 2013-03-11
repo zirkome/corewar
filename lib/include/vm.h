@@ -5,7 +5,7 @@
 ** Login   <bridou_n@epitech.net>
 **
 ** Started on  Wed Jan 16 17:58:40 2013 nicolas bridoux
-** Last update Mon Feb 25 10:17:06 2013 remi robert
+** Last update Mon Mar 11 11:19:56 2013 remi
 */
 
 #ifndef VM_H_
@@ -33,9 +33,10 @@ typedef struct	s_proc
   char		cmd[17];
   int		reg[REG_NUMBER];
   int		pc;
+  int		live;
   int		wait;
   struct s_proc	*next;
-  struct s_proc	*prev;
+  struct s_proc	*back;
 }		t_proc;
 
 typedef struct	s_vm
@@ -62,6 +63,14 @@ char		*read_file(const int fd, int *nb_carac);
 char		*get_champ(char *file, int *size);
 
 /*
+** list.c
+*/
+t_proc		*suppr_elem_list(t_proc **, t_proc **);
+int		free_elem_prog(t_proc **, int);
+void		init_elem(t_proc **, int, int);
+void		add_to_list(t_proc **, int, int);
+
+/*
 ** check_header.c
 */
 header_t	*check_header(const int fd, header_t *header);
@@ -82,9 +91,16 @@ t_vm		*init_vm(int mem_tmp, t_proc *lproc);
 int		launch_vm(t_proc *l_proc, header_t *header, char **av, int nb_ch);
 
 /*
+** check_prog_live.c
+*/
+void		init_tab_live(char *);
+void		gere_prog_live(char *, t_vm **);
+int		check_prg_live(t_vm **);
+
+/*
 ** parser.c
 */
-void		parser(t_vm *vm, t_proc **l_proc);
+void		parser(t_vm *vm, t_proc *l_proc, int add);
 
 /*
 ** doubly linked list

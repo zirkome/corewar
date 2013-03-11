@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Wed Jan 30 08:50:03 2013 remi robert
-** Last update Sat Feb 23 12:23:08 2013 remi robert
+** Last update Mon Mar 11 15:29:11 2013 remi
 */
 
 #include "lib.h"
@@ -27,67 +27,59 @@
 ** Test de retour valeur Pc + 1 car decallage de 1 avec les instructions.
 */
 
-/* int	interval_memory(char *cmd, int a, int f, int g) */
-/* { */
-/*   char	param_sz[3]; */
-/*   int	offset; */
-/*   int	pc; */
-
-/*   param_sz[0] = 1; */
-/*   param_sz[1] = DIR_SIZE; */
-/*   param_sz[2] = IND_SIZE; */
-/*   offset = 6; */
-/*   pc = 0; */
-/*   while (offset >= 0) */
-/*     { */
-/*       pc = pc + param_sz[((cmd[1] >> offset) & 0x03) - 1]; */
-/*       offset = offset - 2; */
-/*     } */
-/*   return (pc + 1); */
-/* } */
-
-int	decoupage_pc(int pc)
+void	rempl_param_sz(char *interval, int cmd)
 {
-  int	interval;
-  char	param_sz[3];
-
-  param_sz[0] = 1;
-  param_sz[1] = 2;
-  param_sz[2] = 4;
-  interval = 0;
-  interval = interval + param_sz[((pc >> 6) & 0x03) - 1];
-  interval = interval + param_sz[((pc >> 4) & 0x03) - 1];
-  interval = interval + param_sz[((pc >> 2) & 0x03) - 1];
-  interval = interval + param_sz[((pc) & 0x03) - 1];
-  printf("%s             %s\n", F_VERT, REZ);
-  return (interval + 2);
+  if (cmd == 0x0B)
+    {
+      interval[1] = 2;
+      interval[2] = 2;
+    }
+  if (cmd == 0x0A)
+    {
+      interval[0] = 2;
+      interval[1] = 2;
+    }
+  if (cmd == 0x06 || cmd == 0x07)
+    interval[2] = 1;
+  if (cmd == 0x02)
+    interval[1] = 1;
+  if (cmd == 0x03)
+    interval[0] = 1;
+  if (cmd == 0x04 || cmd == 0x05)
+    {
+      interval[0] = 1;
+      interval[1] = 1;
+      interval[2] = 1;
+    }
 }
 
-int	interval_memory(char *cmd, int i, int interval, int indice)
+int	decoupage_pc(int pc, int cmd)
 {
-  int	offset;
+  char	interval[4];
   char	param_sz[3];
 
   param_sz[0] = 1;
-  param_sz[1] = DIR_SIZE;
-  param_sz[2] = IND_SIZE;
-  printf("cmd = %X\n", cmd[i]);
-  return (decoupage_pc(cmd[i] & 0xFF));
-  if (((cmd[i] & 0xFF) - 1) == 10)
-    param_sz[1] = 2;
-  offset = 6;
-  while (indice < 4)
-    {
-      if (((cmd[i + 1] >> offset) & 0x3) != 0)
-	interval = interval + param_sz[((cmd[i + 1] >> offset) & 0x3) - 1];
-      offset = offset - 2;
-      indice = indice + 1;
-    }
-  /* if ((cmd[i] & 0xFF) == 0x01) */
-  /*   interval = 3; */
-  /* if (((cmd[i] & 0xFF) - 1) == 8) */
-  /*   interval = 1; */
-  if (interval + i > MEM_SIZE)
-    interval = MEM_SIZE - i;
-  return (interval + 1);
+  param_sz[1] = 4;
+  param_sz[2] = 2;
+  interval[0] = ((pc >> 6) & 0x03);
+  interval[1] = ((pc >> 4) & 0x03);
+  interval[2] = ((pc >> 2) & 0x03);
+  interval[3] = ((pc) & 0x03);
+  if (interval[0] > 0)
+    interval[0] = param_sz[interval[0] - 1];
+  if (interval[1] > 0)
+    interval[1] = param_sz[interval[1] - 1];
+  if (interval[2] > 0)
+    interval[2] = param_sz[interval[2] - 1];
+  if (interval[3] > 0)
+    interval[3] = param_sz[interval[3] - 1];
+  rempl_param_sz(interval, cmd);
+  return (interval[0] + interval[1] + interval[2] + interval[3] + 2);
+}
+
+int	interval_memory(char *cmd, int pc, int interval, int indice)
+{
+  if (cmd == NULL || (cmd[0] & 0x3) < 0 || (cmd[0] & 0x3) > 16)
+    return (1);
+  return (decoupage_pc((cmd[0] & 0xFF), pc));
 }

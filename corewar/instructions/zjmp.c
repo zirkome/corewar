@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:21:16 2013 guillaume fillon
-** Last update Mon Feb 25 08:39:40 2013 remi robert
+** Last update Mon Mar  4 18:26:26 2013 remi
 */
 
 #include "lib.h"
@@ -17,5 +17,6 @@ void		op_zjmp(t_vm *vm, t_proc **lproc)
   /* if (lproc->carry == 0) */
   /*   return ; */
   /* lproc->pc = (lproc->pc + (lproc->param[0] % IDX_MOD)) % MEM_SIZE; */
-  (*lproc)->pc += interval_memory((*lproc)->cmd, 0, 0, 0);
+  // (*lproc)->pc += interval_memory((*lproc)->cmd, (*lproc)->code, 0, 0);
+  (*lproc)->pc += 3;
 }

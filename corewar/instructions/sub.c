@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:27:09 2013 guillaume fillon
-** Last update Mon Feb 25 08:51:14 2013 remi robert
+** Last update Mon Mar  4 15:53:30 2013 remi
 */
 
 #include "lib.h"
@@ -23,4 +23,4 @@ void		op_sub(t_vm *vm, t_proc **lproc)
   (*lproc)->reg[(int)(*lproc)->cmd[3]] =
     (*lproc)->reg[(int)(*lproc)->cmd[1]] + (*lproc)->reg[(int)(*lproc)->cmd[2]];
   (*lproc)->pc += interval_memory((*lproc)->cmd, 0, 0, 0);
-}
+ }
