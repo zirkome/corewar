@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Mon Mar 11 08:18:24 2013 remi
-** Last update Mon Mar 11 14:56:15 2013 remi
+** Last update Tue Mar 12 20:07:36 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -33,7 +33,7 @@ void		gere_prog_live(char *live, t_vm **vm)
 	  printf("%schampion : [%d] mort !!%s\n", ROUGE, indice + 1, REZ);
 	  while (free_elem_prog(&((*vm)->proc), indice + 1) == 1);
 	}
-      indice = indice + 1;
+      ++indice;
     }
 }
 

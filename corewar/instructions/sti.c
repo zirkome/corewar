@@ -5,59 +5,63 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:30:00 2013 guillaume fillon
-** Last update Mon Mar 11 20:42:10 2013 guillaume fillon
+** Last update Tue Mar 12 22:56:56 2013 guillaume fillon
 */
 
 #include "lib.h"
 #include "vm.h"
 #include "couleur.h"
-/* Est censé marcher ... */
-/* 3 min plus tard ... Oui ça marche !!*/
+
+void		load_reg(t_proc **lproc, char *reg)
+{
+  reg[0] = ((*lproc)->reg[(int)(*lproc)->cmd[1]] >> 24) & 0xFF;
+  reg[1] = ((*lproc)->reg[(int)(*lproc)->cmd[1]] >> 16) & 0xFF;
+  reg[2] = ((*lproc)->reg[(int)(*lproc)->cmd[1]] >> 8) & 0xFF;
+  reg[3] = (*lproc)->reg[(int)(*lproc)->cmd[1]] & 0xFF;
+}
+
+int		calc_offset(t_proc **lproc, int *i, int param)
+{
+  int		offset;
+
+  if ((((*lproc)->cmd[0] >> param) & 0x03) == 1)
+    {
+      printf("REGISTRE = ");
+      offset = (*lproc)->reg[(int)(*lproc)->cmd[*i]];
+      ++(*i);
+    }
+  else if ((((*lproc)->cmd[0] >> param) & 0x03) == 2 || (((*lproc)->cmd[0] >> param) & 0x03) == 3)
+    {
+      if ((((*lproc)->cmd[0] >> param) & 0x03) == 2)
+	printf("DIRECTE = ");
+      else if ((((*lproc)->cmd[0] >> param) & 0x03) == 3)
+	printf("INDIRECTE = ");
+      offset = ((*lproc)->cmd[*i] << 8) + ((*lproc)->cmd[*i + 1]);
+      printf("%d", offset);
+      *i += 2;
+    }
+  return (offset);
+}
 
 void		op_sti(t_vm *vm, t_proc **lproc)
 {
-  int		interval[2];
+  int		i;
+  char		reg[4];
+  int		offset;
 
+  offset = 0;
+  i = 2;
+  load_reg(lproc, reg);
   printf("%sSTI%s : ", F_CYAN, REZ);
+  offset += calc_offset(lproc, &i, 4);
+  fflush(stdout);
+  my_putstr(", ");
+  offset += calc_offset(lproc, &i, 2);
+  fflush(stdout);
+  printf(" OFFSET : %d\n", offset);
+  vm->mem[offset % MEM_SIZE] = reg[0];
+  vm->mem[(offset + 1) % MEM_SIZE] = reg[1];
+  vm->mem[(offset + 2) % MEM_SIZE] = reg[2];
+  vm->mem[(offset + 3) % MEM_SIZE] = reg[3];
   (*lproc)->pc += interval_memory((*lproc)->cmd, (*lproc)->code, 0, 0);
-  if ((((*lproc)->cmd[0] >> 4) & 0x03) == 1)
-    {
-      interval[0] = ((*lproc)->cmd[2] << 8) + (*lproc)->cmd[3];
-      printf("REGISTRE = %d, ", interval[0]);
-    }
-  else
-    printf("DIRECTE, ");
-  if ((((*lproc)->cmd[0] >> 2) & 0x03) == 1)
-    {
-      printf("REGISTRE\n");
-    }
-  else
-    printf("DIRECTE\n");
-  /* if (lproc->cmd[1] > 16) */
-  /*   { */
-  /*     lproc->pc += 1; */
-  /*     return ; */
-  /*   } */
-  /* if ((lproc->cmd[0] >> 4) & 0x03 == 1 && (lproc->cmd[0] >> 2) & 0x03 == 1) */
-  /*   { */
-  /*     if (lproc->cmd[2] > 16 && lproc->cmd[2] > 16) */
-  /* 	{ */
-  /* 	  lproc->pc += 1; */
-  /* 	  return ; */
-  /* 	} */
-  /*     lproc->reg[(int)lproc->cmd[1]] = */
-  /* 	vm->mem[(int)((lproc->reg[(int)lproc->cmd[2]]) + */
-  /* 		      (lproc->reg[(int)lproc->cmd[3]]))]; */
-  /*   } */
-  /* if ((lproc->cmd[0] >> 4) & 0x03 == 1 && (lproc->cmd[0] >> 2) & 0x03 == 1) */
-  /*   { */
-  /*     if (lproc->cmd[2] > 16 && lproc->cmd[2] > 16) */
-  /* 	{ */
-  /* 	  lproc->pc += 1; */
-  /* 	  return ; */
-  /* 	} */
-  /*     lproc->reg[(int)lproc->cmd[1]] = */
-  /* 	vm->mem[(int)((lproc->reg[(int)lproc->cmd[2]]) + */
-  /* 		      (lproc->reg[(int)lproc->cmd[3]]))]; */
-  /*   } */
 }
