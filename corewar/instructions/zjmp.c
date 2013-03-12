@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:21:16 2013 guillaume fillon
-** Last update Mon Mar  4 18:26:26 2013 remi
+** Last update Tue Mar 12 13:20:45 2013 remi
 */
 
 #include "lib.h"
@@ -13,10 +13,16 @@
 
 void		op_zjmp(t_vm *vm, t_proc **lproc)
 {
+  short		jump;
+
   printf("%sZJUMP%s\n", F_CYAN, REZ);
-  /* if (lproc->carry == 0) */
-  /*   return ; */
-  /* lproc->pc = (lproc->pc + (lproc->param[0] % IDX_MOD)) % MEM_SIZE; */
-  // (*lproc)->pc += interval_memory((*lproc)->cmd, (*lproc)->code, 0, 0);
-  (*lproc)->pc += 3;
+  if ((*lproc)->carry == 0)
+    {
+      (*lproc)->pc += 3;
+      return ;
+    }
+  jump = ((*lproc)->cmd[0] << 8) | ((*lproc)->cmd[1]);
+  printf("Saut :[%d]<< [%d] = [%d]\n", (*lproc)->cmd[0], (*lproc)->cmd[1], jump);
+  (*lproc)->pc = MEM_SIZE % (((*lproc)->pc + jump) + 1);
+  printf("PC final : %d\n", (*lproc)->pc);
 }
