@@ -5,12 +5,12 @@
 ## Login   <bridou_n@epitech.net>
 ## 
 ## Started on  Fri Nov  9 20:29:49 2012 nicolas bridoux
-## Last update Mon Mar 11 09:35:44 2013 remi
+## Last update Tue Mar 12 13:59:10 2013 remi
 ##
 
 NAME	= corewar
 
-CC	= clang
+CC	= gcc
 
 RM	= rm -f
 
@@ -25,6 +25,7 @@ SRCS	= main.c			\
 	  free_champ.c			\
 	  run_cycle.c			\
 	  check_prog_live.c		\
+	  wait_proc.c			\
 	  list/list.c			\
 	  instructions/instruction.c	\
 	  instructions/live.c		\
@@ -44,6 +45,7 @@ SRCS	= main.c			\
 	  instructions/lfork.c		\
 	  instructions/aff.c		\
 	  instructions/interval_mem.c	\
+	  instructions/set_carry.c	\
 
 LSRCS	= $(LPATH)/my_putchar.c		\
 	  $(LPATH)/my_string.c		\

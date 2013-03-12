@@ -5,15 +5,70 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:28:20 2013 guillaume fillon
-** Last update Mon Mar  4 18:15:55 2013 remi
+** Last update Tue Mar 12 21:09:48 2013 remi
 */
 
 #include "lib.h"
 #include "vm.h"
 
+t_proc		*add_fork(t_proc **ptete)
+{
+  t_proc	*pcourant;
+  t_proc	*elem;
+
+  if (*ptete == NULL ||
+      (elem = malloc(sizeof(t_proc))) == NULL)
+    return (NULL);
+  pcourant = *ptete;
+  while (pcourant->next != NULL)
+    pcourant = pcourant->next;
+  elem->next = NULL;
+  elem->back = pcourant;
+  pcourant->next = elem;
+  return (elem);
+}
+
+void	view_list(t_proc *ptete)
+{
+  t_proc	*pcourant;
+
+  pcourant = ptete;
+  while (pcourant != NULL)
+    {
+      printf("NNNN{%d}\n", pcourant->reg[0]);
+      pcourant = pcourant->next;
+    }
+}
+
+void	init_new_proc(t_proc **new_proc, t_proc **proc_head, int new_pc)
+{
+  int	indice;
+
+  indice = 0;
+  while (indice < 16)
+    {
+      (*new_proc)->cmd[indice] = 0;
+      (*new_proc)->reg[indice] = (*proc_head)->reg[indice];
+      indice = indice + 1;
+    }
+  (*new_proc)->cmd[indice] = 0;
+  (*new_proc)->wait = -1;
+  (*new_proc)->carry = 1;
+  (*new_proc)->live = 0;
+  (*new_proc)->pc = (((*proc_head)->pc + new_pc) % IDX_MOD) % MEM_SIZE;
+}
+
 void		op_fork(t_vm *vm, t_proc **lproc)
 {
+  int		new_pc;
+  t_proc	*new_proc;
+
   printf("%sFORK%s\n", F_CYAN, REZ);
-  //(*lproc)->pc += interval_memory((*lproc)->cmd, (*lproc)->code, 0, 0);
+  new_pc = ((*lproc)->cmd[0] << 8) | (*lproc)->cmd[1];
+  printf("[%d]\n", new_pc);
+  if ((new_proc = add_fork(&(vm->proc))) == NULL)
+    return ;
+  init_new_proc(&new_proc, lproc, new_pc);
+  view_list(vm->proc);
   (*lproc)->pc += 3;
-}
+ }

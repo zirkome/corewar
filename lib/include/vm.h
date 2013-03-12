@@ -5,7 +5,7 @@
 ** Login   <bridou_n@epitech.net>
 **
 ** Started on  Wed Jan 16 17:58:40 2013 nicolas bridoux
-** Last update Mon Mar 11 11:19:56 2013 remi
+** Last update Tue Mar 12 19:11:31 2013 remi
 */
 
 #ifndef VM_H_
@@ -41,6 +41,7 @@ typedef struct	s_proc
 
 typedef struct	s_vm
 {
+  int		nb_live;
   char		prg_nb;
   char		prg_alive[4];
   char		nbr_live;
@@ -63,6 +64,11 @@ char		*read_file(const int fd, int *nb_carac);
 char		*get_champ(char *file, int *size);
 
 /*
+** wait_proc.c
+*/
+int		wait_proc(int);
+
+/*
 ** list.c
 */
 t_proc		*suppr_elem_list(t_proc **, t_proc **);
@@ -74,6 +80,17 @@ void		add_to_list(t_proc **, int, int);
 ** check_header.c
 */
 header_t	*check_header(const int fd, header_t *header);
+
+/*
+** set_carry.c
+*/
+void		set_carry(t_proc **, int);
+
+/*
+** fork.c
+*/
+t_proc		*add_fork(t_proc **);
+void		init_new_proc(t_proc **, t_proc **, int);
 
 /*
 ** vm_utils.c

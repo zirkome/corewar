@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 28 13:10:36 2013 remi robert
-** Last update Mon Mar 11 15:45:14 2013 remi
+** Last update Tue Mar 12 21:57:46 2013 remi
 */
 
 #include "lib.h"
@@ -72,14 +72,14 @@ int		handle_schedule(t_vm **vm)
       if (cur_proc->wait == -1)
       	{
       	  parser(*vm, cur_proc, 0);
-      	  cur_proc->wait = cmd_tab[cur_proc->code - 1].cycle + 1;
+	  cur_proc->wait = wait_proc(cur_proc->code - 1);
       	}
       cur_proc->wait -= 1;
-      if (cur_proc->wait == 0)
+      if (cur_proc->wait <= 0)
       	{
 	  exec_instruction(*vm, &cur_proc);
       	  parser(*vm, cur_proc, 1);
-      	  cur_proc->wait = cmd_tab[cur_proc->code - 1].cycle;
+	  cur_proc->wait = wait_proc(cur_proc->code - 1);
       	}
       cur_proc = cur_proc->next;
     }
@@ -95,23 +95,25 @@ void		sync_cycle(t_vm *vm)
   n = 0;
   turn = 1;
   cycle = CYCLE_TO_DIE;
+  reset_live_prg(&vm);
+  vm->nb_live = 0;
   while (turn)
     {
       turn = handle_schedule(&vm);
-      if (n == cycle)
+      if (n == cycle || vm->nb_live == 40)
 	{
+	  printf("%s                                                          %d%s\n", F_VERT, n, REZ);
 	  if ((check_prg_live(&vm)) == 0)
 	    {
 	      printf("fin programme\n");
 	      return ;
 	    }
 	  n = 0;
-	  cycle -= CYCLE_DELTA;
+	  vm->nb_live = 0;
 	  reset_live_prg(&vm);
+	  cycle = cycle - CYCLE_DELTA;
 	}
-      vm->cycle += 1;
-      n += 1;
-      /* test instruction */
-      /* A enlever bien evidemment*/
+      //vm->cycle += 1;
+      n = n + 1;
     }
 }

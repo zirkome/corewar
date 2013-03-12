@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Wed Jan 30 08:50:03 2013 remi robert
-** Last update Mon Mar 11 15:29:11 2013 remi
+** Last update Tue Mar 12 11:34:48 2013 remi
 */
 
 #include "lib.h"
@@ -74,7 +74,8 @@ int	decoupage_pc(int pc, int cmd)
   if (interval[3] > 0)
     interval[3] = param_sz[interval[3] - 1];
   rempl_param_sz(interval, cmd);
-  return (interval[0] + interval[1] + interval[2] + interval[3] + 2);
+  return ((interval[0] + interval[1] + interval[2] +
+	   interval[3] + 2) % MEM_SIZE);
 }
 
 int	interval_memory(char *cmd, int pc, int interval, int indice)
