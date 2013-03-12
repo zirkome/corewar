@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:28:39 2013 guillaume fillon
-** Last update Mon Mar  4 15:54:48 2013 remi
+** Last update Mon Mar 11 21:06:17 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -20,6 +20,7 @@ void		op_aff(t_vm *vm, t_proc **lproc)
       (*lproc)->pc += 1;
       return ;
     }
-  printf("%sAFF%s\n", F_CYAN, REZ);
+  printf("%sAFF%s : ", F_CYAN, REZ);
+  my_putchar((*lproc)->reg[(int)(*lproc)->cmd[1]]);
   (*lproc)->pc += interval_memory((*lproc)->cmd, (*lproc)->code, 0, 0);
 }
