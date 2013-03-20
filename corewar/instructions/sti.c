@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:30:00 2013 guillaume fillon
-** Last update Wed Mar 20 10:46:57 2013 remi
+** Last update Wed Mar 20 19:17:14 2013 remi
 */
 
 #include "lib.h"
@@ -24,23 +24,23 @@ int		calc_offset(t_proc **lproc, int *i, int param)
 {
   int		offset;
 
-  if ((((*lproc)->cmd[0] >> param) & 0x03) == 1)
+  if (((((*lproc)->cmd[0] & 0xFF) >> param) & 0x03) == 1)
     {
-      printf("REGISTRE = ");
-      offset = (*lproc)->reg[(int)(*lproc)->cmd[*i]];
+      printf("REGISTRE = \n");
+      offset = (*lproc)->reg[(int)((*lproc)->cmd[*i] & 0xFF)];
       ++(*i);
     }
-  else if ((((*lproc)->cmd[0] >> param) & 0x03) == 2 ||
-	   (((*lproc)->cmd[0] >> param) & 0x03) == 3)
+  else if (((((*lproc)->cmd[0] & 0xFF) >> param) & 0x3) == 2 ||
+	   ((((*lproc)->cmd[0] & 0xFF) >> param) & 0x3) == 3)
     {
-      if ((((*lproc)->cmd[0] >> param) & 0x03) == 2)
-	printf("DIRECTE = ");
-      else if ((((*lproc)->cmd[0] >> param) & 0x03) == 3)
-	printf("INDIRECTE = ");
-      offset = ((*lproc)->cmd[*i] << 8) + ((*lproc)->cmd[*i + 1]);
-      printf("%d", offset);
+      if (((((*lproc)->cmd[0] & 0xFF) >> param) & 0x3) == 2)
+	printf("DIRECTE = \n");
+      else if (((((*lproc)->cmd[0] & 0xFF) >> param) & 0x3) == 3)
+	printf("INDIRECTE = \n");
+      offset = ((((*lproc)->cmd[*i] & 0xFF) << 8)) + ((((*lproc)->cmd[*i + 1]) & 0xFF));
       *i += 2;
     }
+  printf("%d\n", offset);
   return (offset);
 }
 
@@ -55,10 +55,19 @@ void		op_sti(t_vm *vm, t_proc **lproc)
   load_reg(lproc, reg);
   printf("%sSTI%s : ", F_CYAN, REZ);
   offset += calc_offset(lproc, &i, 4);
+  printf("r1 = %d\n", (*lproc)->cmd[1]);
   fflush(stdout);
   my_putstr(", ");
   offset += calc_offset(lproc, &i, 2);
   fflush(stdout);
+  /* if (offset < 0) */
+  /*   { */
+  /*     printf("Bad param\n"); */
+  /*     (*lproc)->pc += interval_memory((*lproc)->cmd, (*lproc)->code, 0, 0); */
+  /*     return ; */
+  /*   } */
+  if (offset < 0)
+    offset = (MEM_SIZE) + offset;
   printf(" OFFSET : %d\n", offset);
   vm->mem[offset % MEM_SIZE] = reg[0];
   vm->mem[(offset + 1) % MEM_SIZE] = reg[1];

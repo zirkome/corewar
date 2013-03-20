@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:29:24 2013 guillaume fillon
-** Last update Tue Mar 12 19:06:02 2013 remi
+** Last update Wed Mar 20 19:04:26 2013 remi
 */
 
 #include "lib.h"
@@ -32,7 +32,7 @@ void		op_lfork(t_vm *vm, t_proc **lproc)
   t_proc	*new_proc;
 
   printf("%sLFORK%s\n", F_CYAN, REZ);
-  new_pc = ((*lproc)->cmd[0] << 8) | (*lproc)->cmd[1];
+  new_pc = (((*lproc)->cmd[0] & 0xFF) << 8) | ((*lproc)->cmd[1] & 0xFF);
   printf("[%d]\n", new_pc);
   if ((new_proc = add_fork(&(vm->proc))) == NULL)
     return ;

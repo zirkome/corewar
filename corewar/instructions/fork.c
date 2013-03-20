@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:28:20 2013 guillaume fillon
-** Last update Tue Mar 12 21:09:48 2013 remi
+** Last update Wed Mar 20 19:11:44 2013 remi
 */
 
 #include "lib.h"
@@ -53,9 +53,12 @@ void	init_new_proc(t_proc **new_proc, t_proc **proc_head, int new_pc)
     }
   (*new_proc)->cmd[indice] = 0;
   (*new_proc)->wait = -1;
-  (*new_proc)->carry = 1;
+  (*new_proc)->carry = 0;
   (*new_proc)->live = 0;
-  (*new_proc)->pc = (((*proc_head)->pc + new_pc) % IDX_MOD) % MEM_SIZE;
+  if (new_pc < 0)
+    (*new_proc)->pc = (MEM_SIZE) + ((*proc_head)->pc - new_pc);
+  else
+    (*new_proc)->pc = (((*proc_head)->pc + new_pc) % IDX_MOD) % MEM_SIZE;
 }
 
 void		op_fork(t_vm *vm, t_proc **lproc)
@@ -64,7 +67,7 @@ void		op_fork(t_vm *vm, t_proc **lproc)
   t_proc	*new_proc;
 
   printf("%sFORK%s\n", F_CYAN, REZ);
-  new_pc = ((*lproc)->cmd[0] << 8) | (*lproc)->cmd[1];
+  new_pc = (((*lproc)->cmd[0] & 0xFF) << 8) | ((*lproc)->cmd[1] & 0xFF);
   printf("[%d]\n", new_pc);
   if ((new_proc = add_fork(&(vm->proc))) == NULL)
     return ;
