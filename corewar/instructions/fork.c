@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:28:20 2013 guillaume fillon
-** Last update Wed Mar 20 22:49:11 2013 remi
+** Last update Wed Mar 20 23:51:46 2013 remi
 */
 
 #include "lib.h"
@@ -71,7 +71,7 @@ void	init_new_proc(t_proc **new_proc, t_proc **proc_head, int new_pc)
       indice = indice + 1;
     }
   (*new_proc)->cmd[indice] = 0;
-  (*new_proc)->wait = -1;
+  (*new_proc)->wait = 0;
   (*new_proc)->carry = 0;
   (*new_proc)->nb_proc = (*proc_head)->nb_proc + 1;;
   (*new_proc)->live = 0;
@@ -86,7 +86,7 @@ void		op_fork(t_vm *vm, t_proc **lproc)
   int		new_pc;
   t_proc	*new_proc;
 
-  printf("%s[%d] FORK%s\n", F_CYAN, (*lproc)->nb_proc, REZ);
+  printf("[%d][%d]fork ", (*lproc)->reg[0], (*lproc)->nb_proc);
   new_pc = (((*lproc)->cmd[0] & 0xFF) << 8) | ((*lproc)->cmd[1] & 0xFF);
   printf("[%d]\n", new_pc);
   if ((new_proc = add_fork(&(vm->proc))) == NULL)

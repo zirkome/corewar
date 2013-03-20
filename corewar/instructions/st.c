@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:27:36 2013 guillaume fillon
-** Last update Wed Mar 20 21:45:43 2013 remi
+** Last update Wed Mar 20 23:37:42 2013 remi
 */
 
 #include "lib.h"
@@ -15,17 +15,14 @@ void		op_st(t_vm *vm, t_proc **lproc)
 {
   int		adress;
 
-  printf("%s[%d] ST%s\n", F_CYAN, (*lproc)->nb_proc,  REZ);
+  printf("[%d][%d]st ", (*lproc)->reg[0], (*lproc)->nb_proc);
   adress = 0;
-  printf("ST ARG = %d\n", (*lproc)->cmd[0]);
   if ((((*lproc)->cmd[0] >> 4) & 0x03) == 1)
     {
-      printf("REGISTRE\n");
       adress = ((*lproc)->pc + (((*lproc)->cmd[2] % IDX_MOD) & 0xFF));
     }
   if ((((*lproc)->cmd[0] >> 4) & 0x03) == 2)
     {
-      printf("DIRECT\n");
       adress = vm->mem[(int)((((*lproc)->cmd[2] << 24) & 0xFF)
 			       + ((((*lproc)->cmd[3] & 0xFF) << 16)) +
 			       ((((*lproc)->cmd[4] & 0xFF) << 8)) +
@@ -34,10 +31,10 @@ void		op_st(t_vm *vm, t_proc **lproc)
     }
   if ((((*lproc)->cmd[0] >> 4) & 0x03) == 3)
     {
-      printf("INDIRECT\n");
       adress = ((*lproc)->pc + ((((((*lproc)->cmd[2] & 0xFF) << 8)) +
 				 ((*lproc)->cmd[3] & 0xFF)) % IDX_MOD));
     }
-      vm->mem[adress % MEM_SIZE] = ((*lproc)->cmd[1] & 0xFF);
-      (*lproc)->pc += interval_memory((*lproc)->cmd, (*lproc)->code, 0, 0);
+  printf("@(%d) <= %d\n", adress, ((*lproc)->cmd[1] & 0xFF));
+  vm->mem[adress % MEM_SIZE] = ((*lproc)->cmd[1] & 0xFF);
+  (*lproc)->pc += interval_memory((*lproc)->cmd, (*lproc)->code, 0, 0);
 }

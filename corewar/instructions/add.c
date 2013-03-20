@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:28:50 2013 guillaume fillon
-** Last update Wed Mar 20 21:47:53 2013 remi
+** Last update Wed Mar 20 23:37:22 2013 remi
 */
 
 #include "lib.h"
@@ -13,7 +13,7 @@
 
 void		op_add(t_vm *vm, t_proc **lproc)
 {
-  printf("%s[%d] ADD%s\n", F_CYAN, (*lproc)->nb_proc, REZ);
+  printf("[%d][%d]add \n", (*lproc)->reg[0], (*lproc)->nb_proc);
   if ((*lproc)->cmd[1] > 16 || (*lproc)->cmd[2] > 16 || (*lproc)->cmd[3] > 16)
     {
       printf("Bad argurment\n");
@@ -23,11 +23,9 @@ void		op_add(t_vm *vm, t_proc **lproc)
   (*lproc)->reg[(int)(*lproc)->cmd[3]] =
     (*lproc)->reg[(int)((*lproc)->cmd[1] & 0xFF)] +
     (*lproc)->reg[(int)((*lproc)->cmd[2] & 0xFF)];
-#ifdef DEBUG
-  printf("%d + %d = [%d]\n", (*lproc)->reg[(int)(*lproc)->cmd[1]],
+  printf("[%d] + [%d] = [%d]\n", (*lproc)->reg[(int)((*lproc)->cmd[1] & 0xFF)],
 	 (*lproc)->reg[(int)((*lproc)->cmd[2] & 0xFF)],
 	 (*lproc)->reg[(int)((*lproc)->cmd[3] & 0xFF)]);
-#endif
   if ((*lproc)->reg[(int)((*lproc)->cmd[3] & 0xFF)] == 0)
     {
       if ((*lproc)->carry == 0)

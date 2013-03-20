@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:27:09 2013 guillaume fillon
-** Last update Wed Mar 20 21:45:10 2013 remi
+** Last update Wed Mar 20 23:07:46 2013 remi
 */
 
 #include "lib.h"
@@ -13,7 +13,7 @@
 
 void		op_sub(t_vm *vm, t_proc **lproc)
 {
-  printf("%s[%d] SUB%s\n", F_CYAN, (*lproc)->nb_proc, REZ);
+  printf("[%d][%d]sub ", (*lproc)->reg[0], (*lproc)->nb_proc);
   if ((*lproc)->cmd[1] > 16 || (*lproc)->cmd[2] > 16 || (*lproc)->cmd[3] > 16)
     {
       printf("Bad argurment\n");
@@ -23,11 +23,6 @@ void		op_sub(t_vm *vm, t_proc **lproc)
   (*lproc)->reg[(int)(*lproc)->cmd[3]] =
     (*lproc)->reg[(int)((*lproc)->cmd[1] & 0xFF)] -
     (*lproc)->reg[(int)((*lproc)->cmd[2] & 0xFF)];
-#ifdef DEBUG
-  printf("%d + %d = [%d]", (*lproc)->reg[(int)(*lproc)->cmd[1]],
-	 (*lproc)->reg[(int)(*lproc)->cmd[2]],
-	 (*lproc)->reg[(int)(*lproc)->cmd[3]]);
-#endif
   if ((*lproc)->reg[(int)((*lproc)->cmd[3] & 0xFF)] == 0)
     {
       if ((*lproc)->carry == 0)
@@ -35,5 +30,8 @@ void		op_sub(t_vm *vm, t_proc **lproc)
       else
 	(*lproc)->carry = 0;
     }
+  printf("[%d] - [%d] = [%d]\n",     (*lproc)->reg[(int)((*lproc)->cmd[1] & 0xFF)],
+	 (*lproc)->reg[(int)((*lproc)->cmd[2] & 0xFF)],
+	 (*lproc)->reg[(int)((*lproc)->cmd[3] & 0xFF)]);
   (*lproc)->pc += interval_memory((*lproc)->cmd, (*lproc)->code, 0, 0);
  }

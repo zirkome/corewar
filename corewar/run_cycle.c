@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 28 13:10:36 2013 remi robert
-** Last update Wed Mar 20 09:07:29 2013 remi
+** Last update Wed Mar 20 23:59:13 2013 remi
 */
 
 #include "lib.h"
@@ -69,10 +69,12 @@ int		handle_schedule(t_vm **vm)
   /*   return (0); */
   while (cur_proc != NULL)
     {
+      //printf("%s%d%s\n", VERT, cur_proc->nb_proc, REZ);
       if (cur_proc->wait == -1)
       	{
       	  parser(*vm, cur_proc, 0);
 	  cur_proc->wait = wait_proc(cur_proc->code - 1);
+	  printf("%s%d%s\n", MAGENTA, cur_proc->wait, REZ);
       	}
       cur_proc->wait -= 1;
       if (cur_proc->wait <= 0)
@@ -80,6 +82,11 @@ int		handle_schedule(t_vm **vm)
 	  exec_instruction(*vm, &cur_proc);
       	  parser(*vm, cur_proc, 1);
 	  cur_proc->wait = wait_proc(cur_proc->code - 1);
+	  if (cur_proc->code != -1)
+	    {
+	      printf("%s%d%s\n", MAGENTA, cur_proc->wait, REZ);
+	      printf("%s%d%s\n", BLEU, cur_proc->pc, REZ);
+	    }
       	}
       cur_proc = cur_proc->next;
     }

@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:28:10 2013 guillaume fillon
-** Last update Wed Mar 20 21:46:51 2013 remi
+** Last update Wed Mar 20 23:33:20 2013 remi
 */
 
 #include "lib.h"
@@ -19,7 +19,7 @@ void	op_ldi(t_vm *vm, t_proc **lproc)
   int	read;
   int	indice;
 
-  printf("%s[%d] LDI%s\n", F_CYAN, (*lproc)->nb_proc, REZ);
+  printf("[%d][%d]ldi ", (*lproc)->reg[0], (*lproc)->nb_proc);
   indice = 0;
   param1 = return_param_op(lproc, &indice, vm, 6);
   param2 = return_param_op(lproc, &indice, vm, 4);
@@ -31,7 +31,7 @@ void	op_ldi(t_vm *vm, t_proc **lproc)
 	  ((vm->mem[s % MEM_SIZE + 2] << 8) & 0xFF) +
 	  ((vm->mem[s % MEM_SIZE + 3] & 0xFF))) % IDX_MOD;
   set_carry(lproc, read);
-  printf("read ldi = %d\n", read);
+  printf("read ldi = %d ", read);
   printf("read reg ldi : %d\n", (int)(*lproc)->cmd[indice]);
   (*lproc)->reg[(int)((*lproc)->cmd[indice] & 0xFF)] = read;
   (*lproc)->pc += interval_memory((*lproc)->cmd, (*lproc)->code, 0, 0);

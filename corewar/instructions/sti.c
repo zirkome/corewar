@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:30:00 2013 guillaume fillon
-** Last update Wed Mar 20 22:32:46 2013 remi
+** Last update Wed Mar 20 23:37:36 2013 remi
 */
 
 #include "lib.h"
@@ -27,17 +27,17 @@ int		calc_offset(t_proc **lproc, int *i, int param)
   offset = 0;
   if (((((*lproc)->cmd[0] & 0xFF) >> param) & 0x03) == 1)
     {
-      printf("REGISTRE = \n");
+      //      printf("REGISTRE = \n");
       offset = (*lproc)->reg[(int)((*lproc)->cmd[*i] & 0xFF)];
       ++(*i);
     }
   else if (((((*lproc)->cmd[0] & 0xFF) >> param) & 0x3) == 2 ||
 	   ((((*lproc)->cmd[0] & 0xFF) >> param) & 0x3) == 3)
     {
-      if (((((*lproc)->cmd[0] & 0xFF) >> param) & 0x3) == 2)
-	printf("DIRECTE = \n");
-      else if (((((*lproc)->cmd[0] & 0xFF) >> param) & 0x3) == 3)
-	printf("INDIRECTE = \n");
+      /* if (((((*lproc)->cmd[0] & 0xFF) >> param) & 0x3) == 2) */
+      /* 	printf("DIRECTE = \n"); */
+      /* else if (((((*lproc)->cmd[0] & 0xFF) >> param) & 0x3) == 3) */
+      /* 	printf("INDIRECTE = \n"); */
       offset = ((((*lproc)->cmd[*i] & 0xFF) << 8)) + ((((*lproc)->cmd[*i + 1]) & 0xFF));
       *i += 2;
     }
@@ -54,11 +54,9 @@ void		op_sti(t_vm *vm, t_proc **lproc)
   offset = 0;
   i = 2;
   load_reg(lproc, reg);
-  printf("%s[%d] STI%s : ", F_CYAN, (*lproc)->nb_proc, REZ);
+  printf("[%d][%d]sti ", (*lproc)->reg[0], (*lproc)->nb_proc);
   offset += calc_offset(lproc, &i, 4);
-  printf("r1 = %d\n", (*lproc)->cmd[1]);
   fflush(stdout);
-  my_putstr(", ");
   offset += calc_offset(lproc, &i, 2);
   fflush(stdout);
   /* if (offset < 0) */
@@ -69,7 +67,7 @@ void		op_sti(t_vm *vm, t_proc **lproc)
   /*   } */
   if (offset < 0)
     offset = (MEM_SIZE) + offset;
-  printf(" OFfFSET : %d\n", offset);
+  printf("@(%d)\n", offset);
   vm->mem[offset % MEM_SIZE] = reg[0];
   vm->mem[(offset + 1) % MEM_SIZE] = reg[1];
   vm->mem[(offset + 2) % MEM_SIZE] = reg[2];
