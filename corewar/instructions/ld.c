@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:29:11 2013 guillaume fillon
-** Last update Tue Mar 12 23:10:53 2013 guillaume fillon
+** Last update Wed Mar 20 11:04:53 2013 remi
 */
 
 #include "lib.h"
@@ -23,7 +23,8 @@ void		op_ld(t_vm *vm, t_proc **lproc)
       printf("%s{%d}%s\n", F_MAGENTA, (*lproc)->cmd[2], REZ);
       set_carry(lproc, (*lproc)->cmd[1]);
       if ((*lproc)->cmd[2] > 0 && (*lproc)->cmd[2] < 16)
-      	(*lproc)->reg[(int)(*lproc)->cmd[2]] = (*lproc)->cmd[1];
+      	(*lproc)->reg[(int)(*lproc)->cmd[2] % REG_NUMBER] =
+	  (*lproc)->cmd[1] % IDX_MOD;
     }
   if ((((*lproc)->cmd[0] >> 6) & 0x03) == 2)
     {
@@ -35,7 +36,8 @@ void		op_ld(t_vm *vm, t_proc **lproc)
       printf("%s{%d}%s\n", F_MAGENTA, (*lproc)->cmd[5], REZ);
       set_carry(lproc, indirect);
       if ((*lproc)->cmd[5] > 0 && (*lproc)->cmd[5] < 16)
-      	(*lproc)->reg[(int)(*lproc)->cmd[5]] = indirect;
+      	(*lproc)->reg[(int)(*lproc)->cmd[5] % REG_NUMBER] =
+	  indirect % IDX_MOD;
     }
   if ((((*lproc)->cmd[0] >> 6) & 0x03) == 3)
     {
@@ -45,7 +47,8 @@ void		op_ld(t_vm *vm, t_proc **lproc)
       printf("%s{%d}%s\n", F_MAGENTA, (*lproc)->cmd[3], REZ);
       set_carry(lproc, direct);
       if ((*lproc)->cmd[3] > 0 && (*lproc)->cmd[3] < 16)
-      	(*lproc)->reg[(int)(*lproc)->cmd[3]] = direct;
+      	(*lproc)->reg[(int)(*lproc)->cmd[3] % REG_NUMBER] =
+	  direct % IDX_MOD;
     }
   (*lproc)->pc += interval_memory((*lproc)->cmd, (*lproc)->code, 0, 0);
 }

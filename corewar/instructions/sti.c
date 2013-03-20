@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:30:00 2013 guillaume fillon
-** Last update Tue Mar 12 23:10:22 2013 guillaume fillon
+** Last update Wed Mar 20 10:46:57 2013 remi
 */
 
 #include "lib.h"
@@ -30,7 +30,8 @@ int		calc_offset(t_proc **lproc, int *i, int param)
       offset = (*lproc)->reg[(int)(*lproc)->cmd[*i]];
       ++(*i);
     }
-  else if ((((*lproc)->cmd[0] >> param) & 0x03) == 2 || (((*lproc)->cmd[0] >> param) & 0x03) == 3)
+  else if ((((*lproc)->cmd[0] >> param) & 0x03) == 2 ||
+	   (((*lproc)->cmd[0] >> param) & 0x03) == 3)
     {
       if ((((*lproc)->cmd[0] >> param) & 0x03) == 2)
 	printf("DIRECTE = ");

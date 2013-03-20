@@ -5,7 +5,7 @@
 ** Login   <bridou_n@epitech.net>
 **
 ** Started on  Wed Jan 16 17:58:40 2013 nicolas bridoux
-** Last update Tue Mar 12 19:11:31 2013 remi
+** Last update Wed Mar 20 09:34:21 2013 remi
 */
 
 #ifndef VM_H_
@@ -139,5 +139,7 @@ int		get_cmd(char code);
 ** instruction / interval_mem.c
 */
 int		interval_memory(char *cmd, int i, int interval, int indice);
+int		return_param_op(t_proc **lproc, int *indice, t_vm *vm, int declallage);
+int		check_carry_champion(t_proc *ptete, int num_champion);
 
 #endif /* VM_H_ */

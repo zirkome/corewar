@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 28 13:10:36 2013 remi robert
-** Last update Tue Mar 12 21:57:46 2013 remi
+** Last update Wed Mar 20 09:07:29 2013 remi
 */
 
 #include "lib.h"
@@ -113,7 +113,7 @@ void		sync_cycle(t_vm *vm)
 	  reset_live_prg(&vm);
 	  cycle = cycle - CYCLE_DELTA;
 	}
-      //vm->cycle += 1;
+           /* vm->cycle += 1; */
       n = n + 1;
     }
 }

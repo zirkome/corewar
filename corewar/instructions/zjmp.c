@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:21:16 2013 guillaume fillon
-** Last update Tue Mar 12 13:20:45 2013 remi
+** Last update Wed Mar 20 10:10:07 2013 remi
 */
 
 #include "lib.h"
@@ -16,7 +16,7 @@ void		op_zjmp(t_vm *vm, t_proc **lproc)
   short		jump;
 
   printf("%sZJUMP%s\n", F_CYAN, REZ);
-  if ((*lproc)->carry == 0)
+  if (check_carry_champion(vm->proc, (*lproc)->reg[0]) == 0)
     {
       (*lproc)->pc += 3;
       return ;

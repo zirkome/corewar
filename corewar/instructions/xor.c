@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:30:12 2013 guillaume fillon
-** Last update Mon Mar 11 20:39:56 2013 guillaume fillon
+** Last update Wed Mar 20 09:32:16 2013 remi
 */
 
 #include "lib.h"
@@ -13,11 +13,15 @@
 
 void		op_xor(t_vm *vm, t_proc **lproc)
 {
+  int	param1;
+  int	param2;
+  int	indice;
+
   printf("%sXOR%s", F_CYAN, REZ);
-  (*lproc)->reg[(int)(*lproc)->cmd[3]] =
-    (*lproc)->reg[(int)(*lproc)->cmd[1]] ^ (*lproc)->reg[(int)(*lproc)->cmd[2]];
-  printf("%d ^ %d = [%d]\n", (*lproc)->reg[(int)(*lproc)->cmd[1]],
-	 (*lproc)->reg[(int)(*lproc)->cmd[2]],
-	 (*lproc)->reg[(int)(*lproc)->cmd[3]]);
+  indice = 0;
+  param1 = return_param_op(lproc, &indice, vm, 6);
+  param2 = return_param_op(lproc, &indice, vm, 4);
+  set_carry(lproc, (param1 ^ param2));
+  (*lproc)->reg[(int)(*lproc)->cmd[indice + 1] % REG_NUMBER] = param1 ^ param2;
   (*lproc)->pc += interval_memory((*lproc)->cmd, (*lproc)->code, 0, 0);
 }

@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Sun Dec  9 21:30:11 2012 guillaume fillon
-** Last update Mon Mar 11 09:24:32 2013 remi
+** Last update Wed Mar 20 09:16:56 2013 remi
 */
 
 #include "lib.h"
@@ -19,7 +19,7 @@ void		push_before(t_proc *elem, int pc, int cid)
     {
       init_reg(new_elem->reg, cid);
       new_elem->wait = -1;
-      new_elem->carry = 1;
+      new_elem->carry = 0;
       new_elem->pc = pc;
       new_elem->prev = elem->prev;
       new_elem->next = elem;
