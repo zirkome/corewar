@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:27:09 2013 guillaume fillon
-** Last update Wed Mar 20 19:14:54 2013 remi
+** Last update Wed Mar 20 21:45:10 2013 remi
 */
 
 #include "lib.h"
@@ -13,7 +13,7 @@
 
 void		op_sub(t_vm *vm, t_proc **lproc)
 {
-  printf("%sSUB%s\n", F_CYAN, REZ);
+  printf("%s[%d] SUB%s\n", F_CYAN, (*lproc)->nb_proc, REZ);
   if ((*lproc)->cmd[1] > 16 || (*lproc)->cmd[2] > 16 || (*lproc)->cmd[3] > 16)
     {
       printf("Bad argurment\n");

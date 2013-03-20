@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:27:36 2013 guillaume fillon
-** Last update Wed Mar 20 19:20:42 2013 remi
+** Last update Wed Mar 20 21:45:43 2013 remi
 */
 
 #include "lib.h"
@@ -15,7 +15,7 @@ void		op_st(t_vm *vm, t_proc **lproc)
 {
   int		adress;
 
-  printf("%sST%s\n", F_CYAN, REZ);
+  printf("%s[%d] ST%s\n", F_CYAN, (*lproc)->nb_proc,  REZ);
   adress = 0;
   printf("ST ARG = %d\n", (*lproc)->cmd[0]);
   if ((((*lproc)->cmd[0] >> 4) & 0x03) == 1)

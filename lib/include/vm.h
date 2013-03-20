@@ -5,7 +5,7 @@
 ** Login   <bridou_n@epitech.net>
 **
 ** Started on  Wed Jan 16 17:58:40 2013 nicolas bridoux
-** Last update Wed Mar 20 09:34:21 2013 remi
+** Last update Wed Mar 20 21:43:16 2013 remi
 */
 
 #ifndef VM_H_
@@ -35,6 +35,7 @@ typedef struct	s_proc
   int		pc;
   int		live;
   int		wait;
+  int		nb_proc;
   struct s_proc	*next;
   struct s_proc	*back;
 }		t_proc;
@@ -73,7 +74,7 @@ int		wait_proc(int);
 */
 t_proc		*suppr_elem_list(t_proc **, t_proc **);
 int		free_elem_prog(t_proc **, int);
-void		init_elem(t_proc **, int, int);
+void		init_elem(t_proc **, int, int, int);
 void		add_to_list(t_proc **, int, int);
 
 /*

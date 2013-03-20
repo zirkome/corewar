@@ -5,11 +5,30 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:28:20 2013 guillaume fillon
-** Last update Wed Mar 20 19:11:44 2013 remi
+** Last update Wed Mar 20 22:49:11 2013 remi
 */
 
 #include "lib.h"
 #include "vm.h"
+
+int		get_nb_proc(t_proc *ptete, int nb_champion)
+{
+  int		nb;
+  t_proc	*pcourant;
+
+  if (ptete == NULL)
+    return (0);
+  pcourant = ptete;
+  nb = 0;
+  while (pcourant != NULL)
+    {
+      if (pcourant->reg[0] == nb_champion &&
+	  pcourant->nb_proc > nb)
+	nb = pcourant->nb_proc;
+      pcourant = pcourant->next;
+    }
+  return (nb);
+}
 
 t_proc		*add_fork(t_proc **ptete)
 {
@@ -54,6 +73,7 @@ void	init_new_proc(t_proc **new_proc, t_proc **proc_head, int new_pc)
   (*new_proc)->cmd[indice] = 0;
   (*new_proc)->wait = -1;
   (*new_proc)->carry = 0;
+  (*new_proc)->nb_proc = (*proc_head)->nb_proc + 1;;
   (*new_proc)->live = 0;
   if (new_pc < 0)
     (*new_proc)->pc = (MEM_SIZE) + ((*proc_head)->pc - new_pc);
@@ -66,12 +86,13 @@ void		op_fork(t_vm *vm, t_proc **lproc)
   int		new_pc;
   t_proc	*new_proc;
 
-  printf("%sFORK%s\n", F_CYAN, REZ);
+  printf("%s[%d] FORK%s\n", F_CYAN, (*lproc)->nb_proc, REZ);
   new_pc = (((*lproc)->cmd[0] & 0xFF) << 8) | ((*lproc)->cmd[1] & 0xFF);
   printf("[%d]\n", new_pc);
   if ((new_proc = add_fork(&(vm->proc))) == NULL)
     return ;
   init_new_proc(&new_proc, lproc, new_pc);
+  new_proc->nb_proc = get_nb_proc(vm->proc, (*lproc)->reg[0]);
   view_list(vm->proc);
   (*lproc)->pc += 3;
  }

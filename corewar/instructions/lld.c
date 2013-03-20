@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:29:37 2013 guillaume fillon
-** Last update Wed Mar 20 19:28:06 2013 remi
+** Last update Wed Mar 20 21:46:16 2013 remi
 */
 
 #include "lib.h"
@@ -16,7 +16,7 @@ void		op_lld(t_vm *vm, t_proc **lproc)
   int		indirect;
   short		direct;
 
-  printf("%sLLD%s\n", F_CYAN, REZ);
+  printf("%s[%d] LLD%s\n", F_CYAN, (*lproc)->nb_proc, REZ);
   if ((((*lproc)->cmd[0] >> 6) & 0x03) == 1)
     {
       printf("REGISTRE\n");

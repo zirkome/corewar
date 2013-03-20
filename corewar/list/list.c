@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Mon Mar 11 09:18:32 2013 remi
-** Last update Tue Mar 12 16:49:22 2013 remi
+** Last update Wed Mar 20 21:48:49 2013 remi
 */
 
 #include <stdlib.h>
@@ -56,24 +56,27 @@ int		free_elem_prog(t_proc **proc, int prg)
   return (0);
 }
 
-void		init_elem(t_proc **new_elem, int pc, int cid)
+void		init_elem(t_proc **new_elem, int pc, int cid, int nb_proc)
 {
   init_reg((*new_elem)->reg, cid);
   (*new_elem)->wait = -1;
   (*new_elem)->carry = 1;
   (*new_elem)->pc = pc;
+  (*new_elem)->nb_proc = nb_proc;
 }
 
 void		add_to_list(t_proc **proc, int pc , int cid)
 {
   t_proc	*pcourant;
   t_proc	*elem;
+  static int	nb_proc = 0;
 
   if ((*proc) == NULL)
     {
       if (((*proc) = malloc(sizeof(t_proc))) == NULL)
 	return ;
-      init_elem(proc, pc, cid);
+      init_elem(proc, pc, cid, nb_proc);
+      nb_proc = nb_proc + 1;
       (*proc)->next = NULL;
       (*proc)->back = NULL;
       return ;
@@ -83,7 +86,8 @@ void		add_to_list(t_proc **proc, int pc , int cid)
   pcourant = (*proc);
   while (pcourant->next != NULL)
     pcourant = pcourant->next;
-  init_elem(&elem, pc, cid);
+  init_elem(&elem, pc, cid, nb_proc);
+  nb_proc = nb_proc + 1;
   elem->next = NULL;
   elem->back = pcourant;
   pcourant->next = elem;

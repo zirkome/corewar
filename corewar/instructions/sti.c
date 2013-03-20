@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:30:00 2013 guillaume fillon
-** Last update Wed Mar 20 19:17:14 2013 remi
+** Last update Wed Mar 20 22:32:46 2013 remi
 */
 
 #include "lib.h"
@@ -24,6 +24,7 @@ int		calc_offset(t_proc **lproc, int *i, int param)
 {
   int		offset;
 
+  offset = 0;
   if (((((*lproc)->cmd[0] & 0xFF) >> param) & 0x03) == 1)
     {
       printf("REGISTRE = \n");
@@ -53,7 +54,7 @@ void		op_sti(t_vm *vm, t_proc **lproc)
   offset = 0;
   i = 2;
   load_reg(lproc, reg);
-  printf("%sSTI%s : ", F_CYAN, REZ);
+  printf("%s[%d] STI%s : ", F_CYAN, (*lproc)->nb_proc, REZ);
   offset += calc_offset(lproc, &i, 4);
   printf("r1 = %d\n", (*lproc)->cmd[1]);
   fflush(stdout);
@@ -68,7 +69,7 @@ void		op_sti(t_vm *vm, t_proc **lproc)
   /*   } */
   if (offset < 0)
     offset = (MEM_SIZE) + offset;
-  printf(" OFFSET : %d\n", offset);
+  printf(" OFfFSET : %d\n", offset);
   vm->mem[offset % MEM_SIZE] = reg[0];
   vm->mem[(offset + 1) % MEM_SIZE] = reg[1];
   vm->mem[(offset + 2) % MEM_SIZE] = reg[2];
