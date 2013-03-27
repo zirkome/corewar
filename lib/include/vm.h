@@ -5,7 +5,7 @@
 ** Login   <bridou_n@epitech.net>
 **
 ** Started on  Wed Jan 16 17:58:40 2013 nicolas bridoux
-** Last update Wed Mar 20 21:43:16 2013 remi
+** Last update Wed Mar 27 14:17:57 2013 remi
 */
 
 #ifndef VM_H_
@@ -42,6 +42,7 @@ typedef struct	s_proc
 
 typedef struct	s_vm
 {
+  int		old_live;
   int		nb_live;
   char		prg_nb;
   char		prg_alive[4];
@@ -142,5 +143,8 @@ int		get_cmd(char code);
 int		interval_memory(char *cmd, int i, int interval, int indice);
 int		return_param_op(t_proc **lproc, int *indice, t_vm *vm, int declallage);
 int		check_carry_champion(t_proc *ptete, int num_champion);
+void		load_reg(t_vm *, t_proc **, char *, int *);
+void		get_adress_st(t_vm *, t_proc **, int *);
+void		set_ld(t_vm *, t_proc **, int);
 
 #endif /* VM_H_ */

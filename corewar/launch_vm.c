@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Thu Jan 24 23:12:01 2013 remi
-** Last update Mon Mar 11 15:43:40 2013 remi
+** Last update Wed Mar 27 09:18:25 2013 remi
 */
 
 #include "lib.h"
@@ -25,6 +25,7 @@ t_vm		*init_vm(int mem_tmp, t_proc *lproc)
   vm->prg_alive[2] = 1;
   vm->prg_alive[3] = 1;
   vm->proc = lproc;
+  vm->old_live = -1;
   reset_mem(&vm);
   return (vm);
 }

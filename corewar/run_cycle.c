@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 28 13:10:36 2013 remi robert
-** Last update Wed Mar 20 23:59:13 2013 remi
+** Last update Wed Mar 27 14:18:34 2013 remi
 */
 
 #include "lib.h"
@@ -65,16 +65,12 @@ int		handle_schedule(t_vm **vm)
   if ((*vm)->proc == NULL)
     return (0);
   cur_proc = (*vm)->proc;
-  /* if (check_prg_live(*vm) == 1) */
-  /*   return (0); */
   while (cur_proc != NULL)
     {
-      //printf("%s%d%s\n", VERT, cur_proc->nb_proc, REZ);
       if (cur_proc->wait == -1)
       	{
       	  parser(*vm, cur_proc, 0);
 	  cur_proc->wait = wait_proc(cur_proc->code - 1);
-	  printf("%s%d%s\n", MAGENTA, cur_proc->wait, REZ);
       	}
       cur_proc->wait -= 1;
       if (cur_proc->wait <= 0)
@@ -82,11 +78,6 @@ int		handle_schedule(t_vm **vm)
 	  exec_instruction(*vm, &cur_proc);
       	  parser(*vm, cur_proc, 1);
 	  cur_proc->wait = wait_proc(cur_proc->code - 1);
-	  if (cur_proc->code != -1)
-	    {
-	      printf("%s%d%s\n", MAGENTA, cur_proc->wait, REZ);
-	      printf("%s%d%s\n", BLEU, cur_proc->pc, REZ);
-	    }
       	}
       cur_proc = cur_proc->next;
     }
@@ -104,12 +95,15 @@ void		sync_cycle(t_vm *vm)
   cycle = CYCLE_TO_DIE;
   reset_live_prg(&vm);
   vm->nb_live = 0;
-  while (turn)
+  while (turn && cycle > 0)
     {
       turn = handle_schedule(&vm);
       if (n == cycle || vm->nb_live == 40)
 	{
-	  printf("%s                                                          %d%s\n", F_VERT, n, REZ);
+	  if (vm->nb_live == 40)
+	    printf("%s              40 LIVE                                     %d => [%d]%s\n", F_VERT, n, cycle, REZ);
+	  else
+	    printf("%s                                                          %d => [%d]%s\n", F_VERT, n, cycle, REZ);
 	  if ((check_prg_live(&vm)) == 0)
 	    {
 	      printf("fin programme\n");
@@ -119,6 +113,8 @@ void		sync_cycle(t_vm *vm)
 	  vm->nb_live = 0;
 	  reset_live_prg(&vm);
 	  cycle = cycle - CYCLE_DELTA;
+	  if (cycle <= 0)
+	    return ;
 	}
            /* vm->cycle += 1; */
       n = n + 1;

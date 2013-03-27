@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 21 18:27:28 2013 remi robert
-** Last update Mon Mar 11 09:25:38 2013 remi
+** Last update Tue Mar 26 14:42:36 2013 remi
 */
 
 #include "lib.h"
@@ -17,13 +17,20 @@ void		display_usage()
   my_error("[[-n prog_number] [-a load_address ] prog_name] ...\n", 1);
 }
 
+int		check_value_vm()
+{
+  if (MEM_SIZE == 0 || REG_NUMBER == 0)
+    return (0);
+  return (1);
+}
+
 int		main(int argc, char **argv)
 {
   t_proc	*lproc;
   header_t	*header;
   int		i;
 
-  if (argc == 1 || argc > 5)
+  if (argc == 1 || argc > 5 || check_value_vm() == 0)
     display_usage();
   i = 1;
   lproc = NULL;

@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:28:20 2013 guillaume fillon
-** Last update Wed Mar 20 23:51:46 2013 remi
+** Last update Wed Mar 27 12:59:08 2013 remi
 */
 
 #include "lib.h"
@@ -70,6 +70,7 @@ void	init_new_proc(t_proc **new_proc, t_proc **proc_head, int new_pc)
       (*new_proc)->reg[indice] = (*proc_head)->reg[indice];
       indice = indice + 1;
     }
+  (*new_proc)->code = 0;
   (*new_proc)->cmd[indice] = 0;
   (*new_proc)->wait = 0;
   (*new_proc)->carry = 0;
@@ -93,6 +94,6 @@ void		op_fork(t_vm *vm, t_proc **lproc)
     return ;
   init_new_proc(&new_proc, lproc, new_pc);
   new_proc->nb_proc = get_nb_proc(vm->proc, (*lproc)->reg[0]);
-  view_list(vm->proc);
+  //view_list(vm->proc);
   (*lproc)->pc += 3;
  }

@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Mon Mar 11 08:18:24 2013 remi
-** Last update Tue Mar 12 23:11:32 2013 guillaume fillon
+** Last update Wed Mar 27 09:32:28 2013 remi
 */
 
 #include "lib.h"
@@ -41,7 +41,7 @@ void		gere_prog_live(char *live, t_vm **vm)
   (*vm)->prg_nb = (*vm)->prg_nb - suppr;
 }
 
-int		there_is_last_champ(char *live)
+int		there_is_last_champ(char *live, t_vm *vm)
 {
   int		i;
   int		count;
@@ -59,16 +59,22 @@ int		there_is_last_champ(char *live)
       count = 0;
       i = 0;
       while (i < 4)
-	{
-	  if (live[i] > 0)
-	    count = i;
-	  ++i;
-	}
+  	{
+  	  if (live[i] > 0)
+  	    count = i;
+  	  ++i;
+  	}
       printf("Champion %d a gagne !\n", count + 1);
       return (1);
     }
   if (count == 0)
-    return (1);
+    {
+      if (vm->old_live != -1)
+	printf("Champion %d a gagne !\n", vm->old_live);
+      else
+	printf("Aucun gagnant\n");
+      return (1);
+    }
   return (0);
 }
 
@@ -83,15 +89,13 @@ int		check_prg_live(t_vm **vm)
   cur_proc = (*vm)->proc;
   while (cur_proc != NULL)
     {
-      if  ((cur_proc->reg[0] - 1) < 4 && (cur_proc->reg[0] - 1) >= 0)
-	{
-	  if (cur_proc->live == 1)
-	    live[cur_proc->reg[0] - 1] = cur_proc->live;
-	}
+      if  (cur_proc->live == 1)
+	live[cur_proc->nb_proc] = cur_proc->live;
+      printf ("%s[%d]%s\n", ROUGE, cur_proc->reg[0], REZ);
       cur_proc = cur_proc->next;
     }
   gere_prog_live(live, vm);
-  if (there_is_last_champ(live))
+  if (there_is_last_champ(live, *vm))
     return (0);
   printf ("%sRETURN 1%s\n", F_ROUGE, REZ);
   return (1);

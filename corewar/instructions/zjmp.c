@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:21:16 2013 guillaume fillon
-** Last update Wed Mar 20 23:04:42 2013 remi
+** Last update Tue Mar 26 17:51:27 2013 remi
 */
 
 #include "lib.h"
@@ -13,16 +13,20 @@
 
 void		op_zjmp(t_vm *vm, t_proc **lproc)
 {
-  short		jump;
+  int		jump;
 
   printf("[%d][%d]zjump ", (*lproc)->reg[0], (*lproc)->nb_proc);
   if (check_carry_champion(vm->proc, (*lproc)->reg[0]) == 0)
     {
+      printf("carry 0\n");
       (*lproc)->pc += 3;
       return ;
     }
-  jump = (((*lproc)->cmd[0] << 8) & 0xFF) | (((*lproc)->cmd[1]) & 0xFF);
+  //printf("{%d}{%d} = {%d}  ", (*lproc)->cmd[0] % 0xFF, (*lproc)->cmd[1] % 0xFF, (((*lproc)->cmd[0] << 8) | (*lproc)->cmd[1]) % 0xFF);
+  jump = (((((*lproc)->cmd[0] << 8)) | (((*lproc)->cmd[1]))) % 0xFFFF) % IDX_MOD;
   printf("jump : [%d] + pc[%d] = ", jump, (*lproc)->pc);
-  (*lproc)->pc = MEM_SIZE % (((*lproc)->pc + jump) + 1);
+  (*lproc)->pc = (((*lproc)->pc + (jump))) % MEM_SIZE;
+  if ((*lproc)->pc < 0)
+    (*lproc)->pc = MEM_SIZE - (*lproc)->pc;
   printf("[%d]\n", (*lproc)->pc);
 }

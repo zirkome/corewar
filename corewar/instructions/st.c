@@ -5,36 +5,67 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:27:36 2013 guillaume fillon
-** Last update Wed Mar 20 23:37:42 2013 remi
+** Last update Wed Mar 27 11:46:44 2013 remi
 */
 
 #include "lib.h"
 #include "vm.h"
 
-void		op_st(t_vm *vm, t_proc **lproc)
+void	load_reg_st(t_proc **lproc, char *reg)
 {
-  int		adress;
+  reg[0] = ((*lproc)->reg[((int)(*lproc)->cmd[1] - 1) % REG_NUMBER] >> 24) & 0xFF;
+  reg[1] = ((*lproc)->reg[((int)(*lproc)->cmd[1] - 1) % REG_NUMBER] >> 16) & 0xFF;
+  reg[2] = ((*lproc)->reg[((int)(*lproc)->cmd[1] - 1) % REG_NUMBER] >> 8) & 0xFF;
+  reg[3] = ((*lproc)->reg[((int)(*lproc)->cmd[1] - 1) % REG_NUMBER]) & 0xFF;
+}
 
-  printf("[%d][%d]st ", (*lproc)->reg[0], (*lproc)->nb_proc);
-  adress = 0;
+void	get_adress_st(t_vm *vm, t_proc **lproc, int *adress)
+{
   if ((((*lproc)->cmd[0] >> 4) & 0x03) == 1)
     {
-      adress = ((*lproc)->pc + (((*lproc)->cmd[2] % IDX_MOD) & 0xFF));
-    }
-  if ((((*lproc)->cmd[0] >> 4) & 0x03) == 2)
-    {
-      adress = vm->mem[(int)((((*lproc)->cmd[2] << 24) & 0xFF)
-			       + ((((*lproc)->cmd[3] & 0xFF) << 16)) +
-			       ((((*lproc)->cmd[4] & 0xFF) << 8)) +
-			       (((*lproc)->cmd[5] & 0xFF)) % MEM_SIZE)];
-      adress = (adress + (*lproc)->pc) % IDX_MOD;
+      *adress = (*lproc)->cmd[2];
     }
   if ((((*lproc)->cmd[0] >> 4) & 0x03) == 3)
     {
-      adress = ((*lproc)->pc + ((((((*lproc)->cmd[2] & 0xFF) << 8)) +
-				 ((*lproc)->cmd[3] & 0xFF)) % IDX_MOD));
+      *adress = (((*lproc)->cmd[2] << 8) | (*lproc)->cmd[3]) & 0xFFFF;
     }
-  printf("@(%d) <= %d\n", adress, ((*lproc)->cmd[1] & 0xFF));
-  vm->mem[adress % MEM_SIZE] = ((*lproc)->cmd[1] & 0xFF);
+  if ((((*lproc)->cmd[0] >> 4) & 0x03) == 2)
+    {
+      *adress = (((*lproc)->cmd[2] << 24) | ((*lproc)->cmd[3] << 16) |
+		 ((*lproc)->cmd[4] << 8) | ((*lproc)->cmd[5])) & 0xFFFFFFFF;
+      if (*adress < 0)
+	*adress = MEM_SIZE - *adress;
+      *adress = vm->mem[*adress % MEM_SIZE];
+    }
+}
+
+void	store_st(t_vm *vm, char *reg, t_proc **lproc, int adress)
+{
+  if ((((*lproc)->cmd[0] >> 4) & 0x03) == 1)
+    {
+      (*lproc)->reg[(adress - 1) % REG_NUMBER] = (reg[0] << 24) | (reg[1] << 16) |
+	(reg[2] << 8) | (reg[3]);
+    }
+  if ((((*lproc)->cmd[0] >> 4) & 0x03) == 2 ||
+      (((*lproc)->cmd[0] >> 4) & 0x03) == 3)
+    {
+      vm->mem[((*lproc)->pc + adress) % MEM_SIZE] = reg[0];
+      vm->mem[((*lproc)->pc + (adress + 1)) % MEM_SIZE] = reg[1];
+      vm->mem[((*lproc)->pc + (adress + 2)) % MEM_SIZE] = reg[2];
+      vm->mem[((*lproc)->pc + (adress + 3)) % MEM_SIZE] = reg[3];
+    }
+}
+
+void		op_st(t_vm *vm, t_proc **lproc)
+{
+  int		adress;
+  char		reg[4];
+
+  printf("[%d][%d]st ", (*lproc)->reg[0], (*lproc)->nb_proc);
+  load_reg_st(lproc, reg);
+  get_adress_st(vm, lproc, &adress);
+  printf("Adress = %d  ", adress);
+  printf("[%d] => @(%d)\n", ((*lproc)->cmd[1] & 0xFF), adress);
+  store_st(vm, reg, lproc, adress);
   (*lproc)->pc += interval_memory((*lproc)->cmd, (*lproc)->code, 0, 0);
 }
