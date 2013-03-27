@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:29:11 2013 guillaume fillon
-** Last update Wed Mar 27 14:16:36 2013 remi
+** Last update Wed Mar 27 19:08:58 2013 remi
 */
 
 #include "lib.h"
@@ -60,6 +60,7 @@ void	op_ld(t_vm *vm, t_proc **lproc)
 {
   int	val;
 
+  val = 0;
   printf("[%d][%d]ld ", (*lproc)->reg[0], (*lproc)->nb_proc);
   get_adress_ld(vm, lproc, &val);
   printf("[%d]  => ", val);

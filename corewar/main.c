@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 21 18:27:28 2013 remi robert
-** Last update Tue Mar 26 14:42:36 2013 remi
+** Last update Wed Mar 27 21:39:10 2013 remi
 */
 
 #include "lib.h"
@@ -19,7 +19,7 @@ void		display_usage()
 
 int		check_value_vm()
 {
-  if (MEM_SIZE == 0 || REG_NUMBER == 0)
+  if (MEM_SIZE <= 0 || REG_NUMBER <= 0 || REG_SIZE != 4)
     return (0);
   return (1);
 }

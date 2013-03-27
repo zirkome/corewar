@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:28:57 2013 guillaume fillon
-** Last update Tue Mar 26 17:37:20 2013 remi
+** Last update Wed Mar 27 19:04:29 2013 remi
 */
 
 #include "lib.h"
@@ -25,10 +25,9 @@ int	return_param_op(t_proc **lproc, int *indice, t_vm *vm, int decallage)
   if (((((*lproc)->cmd[0] & 0xFF) >> decallage) & 0x03) == 3)
     {
       printf ("ADRESSSE\n");
-      var = (((int)(((((*lproc)->cmd[*indice + 1] & 0xFF) << 24))
-		  | ((((*lproc)->cmd[*indice + 2] & 0xFF) << 16)) |
-		  ((((*lproc)->cmd[*indice + 3] & 0xFF) << 8)) |
-		    (((*lproc)->cmd[*indice + 4]))) % MEM_SIZE));
+      var = (/* (*lproc)->pc + */ ((((((*lproc)->cmd[*indice + 1] & 0xFF) << 8)) |
+			      (((*lproc)->cmd[*indice + 1] & 0xFF)) % IDX_MOD)));
+
       if (var < 0)
 	var = MEM_SIZE - var;
       printf("  =={%d}==\n", var);
@@ -38,9 +37,11 @@ int	return_param_op(t_proc **lproc, int *indice, t_vm *vm, int decallage)
     }
   if (((((*lproc)->cmd[0] & 0xFF) >> decallage) & 0x03) == 2)
     {
+      ret = (((int)(((((*lproc)->cmd[*indice + 1] & 0xFF) << 24))
+		    | ((((*lproc)->cmd[*indice + 2] & 0xFF) << 16)) |
+		    ((((*lproc)->cmd[*indice + 3] & 0xFF) << 8)) |
+		    (((*lproc)->cmd[*indice + 4]))) % MEM_SIZE));
       printf ("DIRECT\n");
-      ret = (/* (*lproc)->pc + */ ((((((*lproc)->cmd[*indice + 1] & 0xFF) << 8)) |
-			      (((*lproc)->cmd[*indice + 1] & 0xFF)) % IDX_MOD)));
       *indice = *indice + 2;
       return (ret);
     }

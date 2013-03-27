@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Thu Jan 24 23:12:01 2013 remi
-** Last update Wed Mar 27 09:18:25 2013 remi
+** Last update Wed Mar 27 21:53:34 2013 remi
 */
 
 #include "lib.h"
@@ -83,13 +83,14 @@ int		launch_vm(t_proc *lproc, header_t *header,
     mem_tmp += header[i++].prog_size;
   vm = init_vm(mem_tmp, lproc);
   vm->prg_nb = prg_nb;
+  vm->nb_proc = prg_nb;
   vm->proc = load_champions(vm, argv, header, mem_tmp);
 #ifdef DEBUG
   printf("%s", "VM initialiser avec succès !\n");
   dump_memory(vm);
 #endif
-  printf("\nPRG1 : %02X ; PRG2 : %02X ; PRG3 : %02X\n",
-	 (int) vm->mem[0] & 0xFF, (int) vm->mem[2048 - 4], (int) vm->mem[4096] & 0xFF);
+  /* printf("\nPRG1 : %02X ; PRG2 : %02X ; PRG3 : %02X\n", */
+  /* 	 (int) vm->mem[0] & 0xFF, (int) vm->mem[2048 - 4], (int) vm->mem[4096] & 0xFF); */
   sync_cycle(vm);
   //free_proc(vm->proc);
   free(vm->mem);

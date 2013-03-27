@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 28 13:10:36 2013 remi robert
-** Last update Wed Mar 27 14:18:34 2013 remi
+** Last update Wed Mar 27 21:52:51 2013 remi
 */
 
 #include "lib.h"
@@ -31,10 +31,11 @@ int	exec_instruction(t_vm *vm, t_proc **proc)
 {
   int	cmd_idx;
 
-  if (vm->prg_alive[(*proc)->reg[0] - 1] == 0 || (*proc)->wait-- > 0)
+  if (((*proc)->wait != 0 && (*proc)->wait != -1) || (vm->prg_alive[(*proc)->nb_proc % 4] == 0))
     return (0);
+  cmd_idx = 0;
   cmd_idx = get_cmd((*proc)->code);
-  if (cmd_idx >= 0 && cmd_idx <= 16)
+  if (cmd_idx >= 0 && cmd_idx <= REG_NUMBER)
     {
       (cmd_tab[cmd_idx].f)(vm, proc);
       return (0);
@@ -98,7 +99,7 @@ void		sync_cycle(t_vm *vm)
   while (turn && cycle > 0)
     {
       turn = handle_schedule(&vm);
-      if (n == cycle || vm->nb_live == 40)
+      if (n == cycle || vm->nb_live == NBR_LIVE)
 	{
 	  if (vm->nb_live == 40)
 	    printf("%s              40 LIVE                                     %d => [%d]%s\n", F_VERT, n, cycle, REZ);

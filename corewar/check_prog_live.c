@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Mon Mar 11 08:18:24 2013 remi
-** Last update Wed Mar 27 09:32:28 2013 remi
+** Last update Wed Mar 27 19:15:08 2013 remi
 */
 
 #include "lib.h"
@@ -91,7 +91,6 @@ int		check_prg_live(t_vm **vm)
     {
       if  (cur_proc->live == 1)
 	live[cur_proc->nb_proc] = cur_proc->live;
-      printf ("%s[%d]%s\n", ROUGE, cur_proc->reg[0], REZ);
       cur_proc = cur_proc->next;
     }
   gere_prog_live(live, vm);

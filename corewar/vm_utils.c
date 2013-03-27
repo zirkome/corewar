@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Tue Jan 29 04:05:43 2013 guillaume fillon
-** Last update Mon Feb 25 09:24:45 2013 remi robert
+** Last update Wed Mar 27 19:18:17 2013 remi
 */
 
 #include "lib.h"
@@ -62,7 +62,7 @@ void		init_reg(int *buf, int cid)
   int		i;
 
   i = 0;
-  while (i < 16)
+  while (i < REG_NUMBER)
     buf[i++] = 0;
   buf[0] = cid;
 }

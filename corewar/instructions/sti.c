@@ -5,12 +5,20 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:30:00 2013 guillaume fillon
-** Last update Wed Mar 27 11:27:19 2013 remi
+** Last update Wed Mar 27 18:57:50 2013 remi
 */
 
 #include "lib.h"
 #include "vm.h"
 #include "couleur.h"
+
+void	init_tab(char *reg)
+{
+  reg[0] = 0;
+  reg[1] = 0;
+  reg[2] = 0;
+  reg[3] = 0;
+}
 
 void		load_reg(t_vm *vm, t_proc **lproc, char *reg, int *i)
 {
@@ -70,10 +78,6 @@ int		calc_offset(t_proc **lproc, int *i, int param)
   return (offset);
 }
 
-/*
-** STI BUGE NE FONCTIONNE PAS !!!!
-*/
-
 void		op_sti(t_vm *vm, t_proc **lproc)
 {
   int		i;
@@ -82,6 +86,9 @@ void		op_sti(t_vm *vm, t_proc **lproc)
 
   offset = 0;
   i = 2;
+  if (*lproc == NULL)
+    return ;
+  init_tab(reg);
   load_reg(vm, lproc, reg, &i);
   printf("[%d][%d]sti ", (*lproc)->reg[0], (*lproc)->nb_proc);
   offset += calc_offset(lproc, &i, 4);
@@ -89,10 +96,10 @@ void		op_sti(t_vm *vm, t_proc **lproc)
   offset += calc_offset(lproc, &i, 2);
   fflush(stdout);
   if (offset < 0)
-    offset = (MEM_SIZE) + offset;
+    offset = (MEM_SIZE) - offset;
   printf("@(%d)\n", offset);
   //printf("REG = {%d}=> %d  ", (*lproc)->reg[(int)(*lproc)->cmd[1]], (int)(*lproc)->cmd[1]);
-  printf("copy : [%d][%d][%d][%d] \n", reg[0], reg[1], reg[2], reg[3]);
+  //printf("copy : [%d][%d][%d][%d] \n", reg[0], reg[1], reg[2], reg[3]);
   vm->mem[((*lproc)->pc + offset) % MEM_SIZE] = reg[0];
   vm->mem[((*lproc)->pc + (offset + 1)) % MEM_SIZE] = reg[1];
   vm->mem[((*lproc)->pc + (offset + 2)) % MEM_SIZE] = reg[2];

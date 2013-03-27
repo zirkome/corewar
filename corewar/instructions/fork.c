@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:28:20 2013 guillaume fillon
-** Last update Wed Mar 27 12:59:08 2013 remi
+** Last update Wed Mar 27 22:05:00 2013 remi
 */
 
 #include "lib.h"
@@ -47,35 +47,23 @@ t_proc		*add_fork(t_proc **ptete)
   return (elem);
 }
 
-void	view_list(t_proc *ptete)
-{
-  t_proc	*pcourant;
-
-  pcourant = ptete;
-  while (pcourant != NULL)
-    {
-      printf("NNNN{%d}\n", pcourant->reg[0]);
-      pcourant = pcourant->next;
-    }
-}
-
 void	init_new_proc(t_proc **new_proc, t_proc **proc_head, int new_pc)
 {
   int	indice;
 
   indice = 0;
-  while (indice < 16)
+  while (indice < REG_NUMBER)
     {
       (*new_proc)->cmd[indice] = 0;
       (*new_proc)->reg[indice] = (*proc_head)->reg[indice];
       indice = indice + 1;
     }
   (*new_proc)->code = 0;
-  (*new_proc)->cmd[indice] = 0;
   (*new_proc)->wait = 0;
   (*new_proc)->carry = 0;
-  (*new_proc)->nb_proc = (*proc_head)->nb_proc + 1;;
+  (*new_proc)->nb_proc = (*proc_head)->nb_proc + 1;
   (*new_proc)->live = 0;
+  (*new_proc)->pc = 0;
   if (new_pc < 0)
     (*new_proc)->pc = (MEM_SIZE) + ((*proc_head)->pc - new_pc);
   else
@@ -88,12 +76,15 @@ void		op_fork(t_vm *vm, t_proc **lproc)
   t_proc	*new_proc;
 
   printf("[%d][%d]fork ", (*lproc)->reg[0], (*lproc)->nb_proc);
-  new_pc = (((*lproc)->cmd[0] & 0xFF) << 8) | ((*lproc)->cmd[1] & 0xFF);
+  new_pc = ((((*lproc)->cmd[0]) << 8) | ((*lproc)->cmd[1])) & 0xFFFF;
   printf("[%d]\n", new_pc);
   if ((new_proc = add_fork(&(vm->proc))) == NULL)
-    return ;
+    {
+      (*lproc)->pc += 3;
+      return ;
+    }
+  vm->nb_proc = vm->nb_proc + 1;
   init_new_proc(&new_proc, lproc, new_pc);
   new_proc->nb_proc = get_nb_proc(vm->proc, (*lproc)->reg[0]);
-  //view_list(vm->proc);
   (*lproc)->pc += 3;
  }
