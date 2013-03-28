@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:30:00 2013 guillaume fillon
-** Last update Wed Mar 27 18:57:50 2013 remi
+** Last update Thu Mar 28 08:43:02 2013 remi
 */
 
 #include "lib.h"
@@ -63,6 +63,10 @@ int		calc_offset(t_proc **lproc, int *i, int param)
   int		offset;
 
   offset = 0;
+  if ((*lproc)->cmd[*i] - 1 < 0)
+    (*lproc)->cmd[*i] = 0;
+  if ((*lproc)->cmd[*i + 1] - 1 < 0)
+    (*lproc)->cmd[*i + 1] = 0;
   if (((((*lproc)->cmd[0] & 0xFF) >> param) & 0x03) == 1)
     {
       offset = (*lproc)->reg[(int)(((*lproc)->cmd[*i] - 1) & 0xFF) % REG_NUMBER];
@@ -100,6 +104,8 @@ void		op_sti(t_vm *vm, t_proc **lproc)
   printf("@(%d)\n", offset);
   //printf("REG = {%d}=> %d  ", (*lproc)->reg[(int)(*lproc)->cmd[1]], (int)(*lproc)->cmd[1]);
   //printf("copy : [%d][%d][%d][%d] \n", reg[0], reg[1], reg[2], reg[3]);
+  if ((*lproc)->pc + offset < 0)
+    (*lproc)->pc = MEM_SIZE - (*lproc)->pc;
   vm->mem[((*lproc)->pc + offset) % MEM_SIZE] = reg[0];
   vm->mem[((*lproc)->pc + (offset + 1)) % MEM_SIZE] = reg[1];
   vm->mem[((*lproc)->pc + (offset + 2)) % MEM_SIZE] = reg[2];

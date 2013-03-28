@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:30:12 2013 guillaume fillon
-** Last update Tue Mar 26 13:33:48 2013 remi
+** Last update Thu Mar 28 08:37:04 2013 remi
 */
 
 #include "lib.h"
@@ -21,6 +21,8 @@ void		op_xor(t_vm *vm, t_proc **lproc)
   indice = 0;
   param1 = return_param_op(lproc, &indice, vm, 6);
   param2 = return_param_op(lproc, &indice, vm, 4);
+  if ((*lproc)->cmd[indice - 1] < 0)
+    (*lproc)->cmd[indice] = 1;
   (*lproc)->reg[(int)(((*lproc)->cmd[indice + 1] - 1) & 0xFF) % REG_NUMBER] =
     param1 ^ param2;
   printf("[%d] ^ [%d] = [%d]\n", param1, param2, param1 ^ param2);

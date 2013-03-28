@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:29:11 2013 guillaume fillon
-** Last update Wed Mar 27 19:08:58 2013 remi
+** Last update Thu Mar 28 09:18:47 2013 remi
 */
 
 #include "lib.h"
@@ -27,6 +27,8 @@ void	get_adress_ld(t_vm *vm, t_proc **lproc, int *adress)
       *adress = (((*lproc)->cmd[1] << 8) | (*lproc)->cmd[1]) & 0xFFFF;
       if (*adress < 0)
 	*adress = MEM_SIZE - *adress;
+      if ((*lproc)->pc < 0)
+	(*lproc)->pc = MEM_SIZE - (*lproc)->pc;
       *adress = vm->mem[(((*lproc)->pc + *adress) % IDX_MOD) % MEM_SIZE];
     }
 }

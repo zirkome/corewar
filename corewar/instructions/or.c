@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:29:51 2013 guillaume fillon
-** Last update Tue Mar 26 13:37:54 2013 remi
+** Last update Thu Mar 28 09:16:42 2013 remi
 */
 
 #include "lib.h"
@@ -23,6 +23,10 @@ void		op_or(t_vm *vm, t_proc **lproc)
   param2 = return_param_op(lproc, &indice, vm, 4);
   set_carry(lproc, (param1 | param2));
   printf("[%d] | [%d] = [%d]\n", param1, param2, param1 | param2);
+  if (indice < 0)
+    indice = 1;
+  if ((*lproc)->cmd[indice + 1] - 1 < 0)
+    (*lproc)->cmd[indice + 1] = 1;
   (*lproc)->reg[(int)((*lproc)->cmd[indice + 1] - 1) % REG_NUMBER] = param1 | param2;
   (*lproc)->pc += interval_memory((*lproc)->cmd, (*lproc)->code, 0, 0);
 }
