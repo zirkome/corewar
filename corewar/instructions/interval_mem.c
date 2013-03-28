@@ -5,27 +5,11 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Wed Jan 30 08:50:03 2013 remi robert
-** Last update Wed Mar 20 09:22:04 2013 remi
+** Last update Thu Mar 28 12:38:25 2013 remi
 */
 
 #include "lib.h"
 #include "vm.h"
-
-/*
-**           |   |
-**           |   |
-**           |   |
-**          --   --
-**          \     /
-**           \   /
-**            \ /
-**      CALCUL ET RETOURNE LE PC
-**
-*/
-
-/*
-** Test de retour valeur Pc + 1 car decallage de 1 avec les instructions.
-*/
 
 void	rempl_param_sz(char *interval, int cmd)
 {

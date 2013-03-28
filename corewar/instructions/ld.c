@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:29:11 2013 guillaume fillon
-** Last update Thu Mar 28 09:18:47 2013 remi
+** Last update Thu Mar 28 12:59:20 2013 remi
 */
 
 #include "lib.h"
@@ -14,9 +14,7 @@
 void	get_adress_ld(t_vm *vm, t_proc **lproc, int *adress)
 {
   if ((((*lproc)->cmd[0] >> 6) & 0x03) == 1)
-    {
-      *adress = (*lproc)->cmd[1];
-    }
+    *adress = (*lproc)->cmd[1];
   if ((((*lproc)->cmd[0] >> 6) & 0x03) == 2)
     {
       *adress = (((*lproc)->cmd[1] << 24) | ((*lproc)->cmd[2] << 16) |
@@ -39,21 +37,18 @@ void	set_ld(t_vm *vm, t_proc **lproc, int val)
     {
       if (((*lproc)->cmd[2] - 1) < 0)
 	((*lproc)->cmd[2]) = 1;
-      printf("@%d\n", ((*lproc)->cmd[2] - 1));
       (*lproc)->reg[((*lproc)->cmd[2] - 1) % REG_NUMBER] = val;
     }
   if ((((*lproc)->cmd[0] >> 6) & 0x03) == 3)
     {
       if (((*lproc)->cmd[3] - 1) < 0)
 	((*lproc)->cmd[3]) = 1;
-      printf("@%d\n", ((*lproc)->cmd[3] - 1));
       (*lproc)->reg[((*lproc)->cmd[3] - 1) % REG_NUMBER] = val;
     }
   if ((((*lproc)->cmd[0] >> 6) & 0x03) == 2)
     {
       if (((*lproc)->cmd[5] - 1) < 0)
 	((*lproc)->cmd[5]) = 1;
-      printf("@%d\n", ((*lproc)->cmd[5] - 1));
       (*lproc)->reg[((*lproc)->cmd[5] - 1) % REG_NUMBER] = val;
     }
 }
@@ -63,9 +58,7 @@ void	op_ld(t_vm *vm, t_proc **lproc)
   int	val;
 
   val = 0;
-  printf("[%d][%d]ld ", (*lproc)->reg[0], (*lproc)->nb_proc);
   get_adress_ld(vm, lproc, &val);
-  printf("[%d]  => ", val);
   set_carry(lproc, val);
   set_ld(vm, lproc, val);
   (*lproc)->pc += interval_memory((*lproc)->cmd, (*lproc)->code, 0, 0);

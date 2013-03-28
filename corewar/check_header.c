@@ -5,13 +5,13 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Thu Jan 24 21:46:54 2013 guillaume fillon
-** Last update Tue Feb 19 17:19:19 2013 remi robert
+** Last update Thu Mar 28 12:28:19 2013 remi
 */
 
 #include "lib.h"
 #include "vm.h"
 
-int		little_to_big_endian(int val)
+int	little_to_big_endian(int val)
 {
   val = ((val << 8) & 0xFF00FF00) | ((val >> 8) & 0xFF00FF );
   return (val << 16) | ((val >> 16) & 0xFFFF);

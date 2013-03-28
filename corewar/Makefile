@@ -5,7 +5,7 @@
 ## Login   <bridou_n@epitech.net>
 ## 
 ## Started on  Fri Nov  9 20:29:49 2012 nicolas bridoux
-## Last update Wed Mar 20 09:30:06 2013 remi
+## Last update Thu Mar 28 16:03:00 2013 remi
 ##
 
 NAME	= corewar
@@ -16,36 +16,37 @@ RM	= rm -f
 
 LPATH	= ../lib
 
-SRCS	= main.c			\
-	  check_header.c		\
-	  open_file.c			\
-	  launch_vm.c			\
-	  vm_utils.c			\
-	  parser.c			\
-	  free_champ.c			\
-	  run_cycle.c			\
-	  check_prog_live.c		\
-	  wait_proc.c			\
-	  list/list.c			\
-	  instructions/instruction.c	\
-	  instructions/live.c		\
-	  instructions/ld.c		\
-	  instructions/st.c		\
-	  instructions/add.c		\
-	  instructions/sub.c		\
-	  instructions/and.c		\
-	  instructions/or.c		\
-	  instructions/xor.c		\
-	  instructions/zjmp.c		\
-	  instructions/ldi.c		\
-	  instructions/sti.c		\
-	  instructions/fork.c		\
-	  instructions/lld.c		\
-	  instructions/lldi.c		\
-	  instructions/lfork.c		\
-	  instructions/aff.c		\
-	  instructions/interval_mem.c	\
-	  instructions/set_carry.c	\
+SRCS	= main.c				\
+	  check_header.c			\
+	  open_file.c				\
+	  launch_vm.c				\
+	  vm_utils.c				\
+	  parser.c				\
+	  free_champ.c				\
+	  run_cycle.c				\
+	  check_prog_live.c			\
+	  wait_proc.c				\
+	  list/list.c				\
+	  instructions/instruction.c		\
+	  instructions/live.c			\
+	  instructions/ld.c			\
+	  instructions/st.c			\
+	  instructions/add.c			\
+	  instructions/sub.c			\
+	  instructions/and.c			\
+	  instructions/or.c			\
+	  instructions/xor.c			\
+	  instructions/zjmp.c			\
+	  instructions/ldi.c			\
+	  instructions/sti.c			\
+	  instructions/fork.c			\
+	  instructions/lld.c			\
+	  instructions/lldi.c			\
+	  instructions/lfork.c			\
+	  instructions/get_sti.c		\
+	  instructions/aff.c			\
+	  instructions/interval_mem.c		\
+	  instructions/set_carry.c		\
 	  instructions/check_carry_champion.c	\
 
 LSRCS	= $(LPATH)/my_putchar.c		\

@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 28 13:10:36 2013 remi robert
-** Last update Wed Mar 27 21:52:51 2013 remi
+** Last update Thu Mar 28 12:26:46 2013 remi
 */
 
 #include "lib.h"
@@ -31,7 +31,8 @@ int	exec_instruction(t_vm *vm, t_proc **proc)
 {
   int	cmd_idx;
 
-  if (((*proc)->wait != 0 && (*proc)->wait != -1) || (vm->prg_alive[(*proc)->nb_proc % 4] == 0))
+  if (((*proc)->wait != 0 && (*proc)->wait != -1) ||
+      (vm->prg_alive[(*proc)->nb_proc % 4] == 0))
     return (0);
   cmd_idx = 0;
   cmd_idx = get_cmd((*proc)->code);
@@ -101,15 +102,12 @@ void		sync_cycle(t_vm *vm)
       turn = handle_schedule(&vm);
       if (n == cycle || vm->nb_live == NBR_LIVE)
 	{
-	  if (vm->nb_live == 40)
-	    printf("%s              40 LIVE                                     %d => [%d]%s\n", F_VERT, n, cycle, REZ);
-	  else
-	    printf("%s                                                          %d => [%d]%s\n", F_VERT, n, cycle, REZ);
+	  /* if (vm->nb_live == 40) */
+	  /*   printf("%s              40 LIVE                                     %d => [%d]%s\n", F_VERT, n, cycle, REZ); */
+	  /* else */
+	  /*   printf("%s                                                          %d => [%d]%s\n", F_VERT, n, cycle, REZ); */
 	  if ((check_prg_live(&vm)) == 0)
-	    {
-	      printf("fin programme\n");
-	      return ;
-	    }
+	    return ;
 	  n = 0;
 	  vm->nb_live = 0;
 	  reset_live_prg(&vm);
@@ -117,7 +115,6 @@ void		sync_cycle(t_vm *vm)
 	  if (cycle <= 0)
 	    return ;
 	}
-           /* vm->cycle += 1; */
       n = n + 1;
     }
 }

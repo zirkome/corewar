@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 21 18:27:28 2013 remi robert
-** Last update Wed Mar 27 21:39:10 2013 remi
+** Last update Thu Mar 28 15:32:52 2013 remi
 */
 
 #include "lib.h"
@@ -17,12 +17,33 @@ void		display_usage()
   my_error("[[-n prog_number] [-a load_address ] prog_name] ...\n", 1);
 }
 
-int		check_value_vm()
+int	check_value_vm()
 {
-  if (MEM_SIZE <= 0 || REG_NUMBER <= 0 || REG_SIZE != 4)
-    return (0);
+  if (MEM_SIZE <= 0)
+    {
+      my_putstr("Error MEM_SIZE vm is to small\n");
+      return (0);
+    }
+  if (REG_NUMBER <= 0)
+    {
+      my_putstr("Error there are 0 or less, instructions on the vm\n");
+      return (0);
+    }
+  if (REG_SIZE <= 0)
+    {
+      my_putstr("Error not egal 4\n");
+      return (0);
+    }
   return (1);
 }
+
+/* #ifdef DEBUG */
+/*       printf("HEADER CHAMPION N°%d\n", i); */
+/*       printf("MAGIC_CODE : 0x%X\n", header[i - 1].magic); */
+/*       printf("NAME : %s\n", header[i - 1].prog_name); */
+/*       printf("SIZE : %d octets\n", header[i - 1].prog_size); */
+/*       printf("COMMENT : %s\n\n", header[i - 1].comment); */
+/* #endif */
 
 int		main(int argc, char **argv)
 {
@@ -34,23 +55,14 @@ int		main(int argc, char **argv)
     display_usage();
   i = 1;
   lproc = NULL;
-  //lproc = create_list();
   header = NULL;
   while (i < argc)
     {
       if ((header = realloc(header, sizeof(*header) * i)) == NULL)
 	return (0);
       open_file_champion(argv[i], &header[i - 1]);
-#ifdef DEBUG
-      printf("HEADER CHAMPION N°%d\n", i);
-      printf("MAGIC_CODE : 0x%X\n", header[i - 1].magic);
-      printf("NAME : %s\n", header[i - 1].prog_name);
-      printf("SIZE : %d octets\n", header[i - 1].prog_size);
-      printf("COMMENT : %s\n\n", header[i - 1].comment);
-#endif
       i = i + 1;
     }
   launch_vm(lproc, header, argv, argc - 1);
-  //free_champ(header, argc - 1);
   return (0);
 }

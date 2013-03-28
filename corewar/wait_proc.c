@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Tue Mar 12 13:02:47 2013 remi
-** Last update Tue Mar 12 13:05:00 2013 remi
+** Last update Thu Mar 28 12:27:43 2013 remi
 */
 
 #include "lib.h"
@@ -15,7 +15,7 @@
 
 int	wait_proc(int cmd)
 {
-  if (cmd >= 0 && cmd <= 16)
+  if (cmd >= 0 && cmd <= REG_NUMBER)
     return (cmd_tab[cmd].cycle);
   return (1);
 }

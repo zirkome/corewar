@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Wed Jan 30 09:21:35 2013 remi robert
-** Last update Wed Jan 30 09:52:29 2013 remi robert
+** Last update Thu Mar 28 12:39:58 2013 remi
 */
 
 #include "lib.h"
@@ -42,7 +42,8 @@ void	param_memomy(char *cmd, char *param)
     {
       if (((mem[i + 1] >> offset) & 0x3) != 0)
 	param[indice] =
-	  value_param(cmd, &pos, param_sz[(int)((cmd[0] >> offset) & 0x3)]);
+	  value_param(cmd, &pos,
+		      param_sz[(int)((cmd[0] >> offset) & 0x3)]);
       offset -= 2;
       indice += 1;
     }

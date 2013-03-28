@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:29:37 2013 guillaume fillon
-** Last update Wed Mar 27 21:28:03 2013 remi
+** Last update Thu Mar 28 12:59:08 2013 remi
 */
 
 #include "lib.h"
@@ -14,9 +14,7 @@
 void	get_adress_lld(t_vm *vm, t_proc **lproc, int *adress)
 {
   if ((((*lproc)->cmd[0] >> 6) & 0x03) == 1)
-    {
-      *adress = (*lproc)->cmd[1];
-    }
+    *adress = (*lproc)->cmd[1];
   if ((((*lproc)->cmd[0] >> 6) & 0x03) == 2)
     {
       *adress = (((*lproc)->cmd[1] << 24) | ((*lproc)->cmd[2] << 16) |
@@ -36,9 +34,7 @@ void		op_lld(t_vm *vm, t_proc **lproc)
   int	val;
 
   val = 0;
-  printf("[%d][%d]lld ", (*lproc)->reg[0], (*lproc)->nb_proc);
   get_adress_lld(vm, lproc, &val);
-  printf("[%d]  => ", val);
   set_carry(lproc, val);
   set_ld(vm, lproc, val);
   (*lproc)->pc += interval_memory((*lproc)->cmd, (*lproc)->code, 0, 0);

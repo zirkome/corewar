@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:28:20 2013 guillaume fillon
-** Last update Thu Mar 28 10:58:28 2013 remi
+** Last update Thu Mar 28 13:44:25 2013 remi
 */
 
 #include "lib.h"
@@ -75,11 +75,7 @@ void		op_fork(t_vm *vm, t_proc **lproc)
   int		new_pc;
   t_proc	*new_proc;
 
-  (*lproc)->pc += 3;
-  return ;
-  printf("[%d][%d]fork ", (*lproc)->reg[0], (*lproc)->nb_proc);
   new_pc = ((((*lproc)->cmd[0]) << 8) | ((*lproc)->cmd[1])) & 0xFFFF;
-  printf("[%d]\n", new_pc);
   if ((new_proc = add_fork(&(vm->proc))) == NULL)
     {
       (*lproc)->pc += 3;

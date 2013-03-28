@@ -5,7 +5,7 @@
 ** Login   <bridou_n@epitech.net>
 **
 ** Started on  Wed Jan 16 17:58:40 2013 nicolas bridoux
-** Last update Wed Mar 27 21:53:57 2013 remi
+** Last update Thu Mar 28 16:36:15 2013 remi
 */
 
 #ifndef VM_H_
@@ -58,6 +58,7 @@ typedef struct	s_vm
 ** tmp
 */
 void		free_champ(header_t *header, int nb);
+void		free_vm(t_vm *vm);
 
 /*
 ** open_file.c
@@ -147,6 +148,10 @@ int		check_carry_champion(t_proc *ptete, int num_champion);
 void		load_reg(t_vm *, t_proc **, char *, int *);
 void		get_adress_st(t_vm *, t_proc **, int *);
 void		set_ld(t_vm *, t_proc **, int);
-int		get_adress_ldi(t_vm *, t_proc **, int, int*);
+int		get_adress_reg(t_vm *, t_proc **, int *);
+int		get_direct_reg(t_vm *, t_proc **, int *);
+void		get_reg_reg(t_vm *, t_proc **, int *, char *);
+int		get_direct_ldi(t_vm *, t_proc **, int, int *);
+int		get_adress_ldi(t_vm *, t_proc **, int, int *);
 
 #endif /* VM_H_ */

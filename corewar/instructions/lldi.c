@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:27:49 2013 guillaume fillon
-** Last update Wed Mar 27 19:06:48 2013 remi
+** Last update Thu Mar 28 13:13:27 2013 remi
 */
 
 #include "lib.h"
@@ -17,7 +17,6 @@ void		op_lldi(t_vm *vm, t_proc **lproc)
   int	param2;
   int	indice;
 
-  printf("[%d][%d]lldi ", (*lproc)->reg[0], (*lproc)->nb_proc);
   indice = 2;
   param1 = get_adress_ldi(vm, lproc, 6, &indice);
   param2 = get_adress_ldi(vm, lproc, 4, &indice);
@@ -30,8 +29,7 @@ void		op_lldi(t_vm *vm, t_proc **lproc)
     (*lproc)->cmd[indice + 1] = 1;
   if (param1 < 0)
     param1 = MEM_SIZE - param1;
-  printf("{%d} {%d}  ", ((*lproc)->cmd[indice] - 1), (param1) % MEM_SIZE);
-  (*lproc)->reg[((*lproc)->cmd[indice + 1] - 1) % REG_NUMBER] = vm->mem[(param1 % IDX_MOD) % MEM_SIZE];
-  printf("param 1 %d param 2 % d\n", param1, param2);
+  (*lproc)->reg[((*lproc)->cmd[indice + 1] - 1) %
+		REG_NUMBER] = vm->mem[(param1 % IDX_MOD) % MEM_SIZE];
   (*lproc)->pc += interval_memory((*lproc)->cmd, (*lproc)->code, 0, 0);
 }
