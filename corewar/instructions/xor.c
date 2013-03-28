@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:30:12 2013 guillaume fillon
-** Last update Thu Mar 28 12:48:52 2013 remi
+** Last update Thu Mar 28 17:41:46 2013 remi
 */
 
 #include "lib.h"
@@ -18,6 +18,7 @@ void		op_xor(t_vm *vm, t_proc **lproc)
   int	indice;
 
   indice = 0;
+  debug(vm, lproc);
   param1 = return_param_op(lproc, &indice, vm, 6);
   param2 = return_param_op(lproc, &indice, vm, 4);
   if ((*lproc)->cmd[indice - 1] < 0)

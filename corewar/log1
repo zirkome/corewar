@@ -1,0 +1,30 @@
+==12017== Memcheck, a memory error detector
+==12017== Copyright (C) 2002-2011, and GNU GPL'd, by Julian Seward et al.
+==12017== Using Valgrind-3.7.0 and LibVEX; rerun with -h for copyright info
+==12017== Command: ./corewar src2/3615sleep.cor src/tdc4.cor src2/42.cor src2/42.cor
+==12017== Parent PID: 3158
+==12017== 
+==12017== Invalid read of size 4
+==12017==    at 0x402A51: op_add (add.c:26)
+==12017==    by 0x401700: exec_instruction (run_cycle.c:41)
+==12017==    by 0x401806: handle_schedule (run_cycle.c:80)
+==12017==    by 0x4018A4: sync_cycle (run_cycle.c:102)
+==12017==    by 0x401142: launch_vm (launch_vm.c:91)
+==12017==    by 0x400AB4: main (main.c:65)
+==12017==  Address 0x5346088 is not stack'd, malloc'd or (recently) free'd
+==12017== 
+==12017== 
+==12017== HEAP SUMMARY:
+==12017==     in use at exit: 21,568 bytes in 101 blocks
+==12017==   total heap usage: 2,755 allocs, 2,654 frees, 1,200,250 bytes allocated
+==12017== 
+==12017== LEAK SUMMARY:
+==12017==    definitely lost: 8,896 bytes in 2 blocks
+==12017==    indirectly lost: 12,672 bytes in 99 blocks
+==12017==      possibly lost: 0 bytes in 0 blocks
+==12017==    still reachable: 0 bytes in 0 blocks
+==12017==         suppressed: 0 bytes in 0 blocks
+==12017== Rerun with --leak-check=full to see details of leaked memory
+==12017== 
+==12017== For counts of detected and suppressed errors, rerun with: -v
+==12017== ERROR SUMMARY: 35 errors from 1 contexts (suppressed: 2 from 2)

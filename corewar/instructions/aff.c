@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:28:39 2013 guillaume fillon
-** Last update Thu Mar 28 12:59:31 2013 remi
+** Last update Thu Mar 28 17:40:46 2013 remi
 */
 
 #include "lib.h"
@@ -14,6 +14,7 @@
 
 void		op_aff(t_vm *vm, t_proc **lproc)
 {
+  debug(vm, lproc);
   if ((*lproc)->cmd[1] > 16)
     {
       (*lproc)->pc += 1;

@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:29:11 2013 guillaume fillon
-** Last update Thu Mar 28 12:59:20 2013 remi
+** Last update Thu Mar 28 17:40:32 2013 remi
 */
 
 #include "lib.h"
@@ -58,6 +58,7 @@ void	op_ld(t_vm *vm, t_proc **lproc)
   int	val;
 
   val = 0;
+  debug(vm, lproc);
   get_adress_ld(vm, lproc, &val);
   set_carry(lproc, val);
   set_ld(vm, lproc, val);

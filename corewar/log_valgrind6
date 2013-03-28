@@ -1,0 +1,342 @@
+==3884== Memcheck, a memory error detector
+==3884== Copyright (C) 2002-2011, and GNU GPL'd, by Julian Seward et al.
+==3884== Using Valgrind-3.7.0 and LibVEX; rerun with -h for copyright info
+==3884== Command: ./corewar src2/3615sleep.cor src/tdc4.cor src2/42.cor src2/win98.cor
+==3884== Parent PID: 4073
+==3884== 
+==3884== Conditional jump or move depends on uninitialised value(s)
+==3884==    at 0x403B6E: load_reg (sti.c:27)
+==3884==    by 0x404124: op_sti (sti.c:92)
+==3884==    by 0x40166C: exec_instruction (run_cycle.c:40)
+==3884==    by 0x401772: handle_schedule (run_cycle.c:79)
+==3884==    by 0x401813: sync_cycle (run_cycle.c:101)
+==3884==    by 0x401142: launch_vm (launch_vm.c:94)
+==3884==    by 0x400AB4: main (main.c:53)
+==3884== 
+==3884== Conditional jump or move depends on uninitialised value(s)
+==3884==    at 0x403C98: load_reg (sti.c:35)
+==3884==    by 0x404124: op_sti (sti.c:92)
+==3884==    by 0x40166C: exec_instruction (run_cycle.c:40)
+==3884==    by 0x401772: handle_schedule (run_cycle.c:79)
+==3884==    by 0x401813: sync_cycle (run_cycle.c:101)
+==3884==    by 0x401142: launch_vm (launch_vm.c:94)
+==3884==    by 0x400AB4: main (main.c:53)
+==3884== 
+==3884== Conditional jump or move depends on uninitialised value(s)
+==3884==    at 0x403ECF: load_reg (sti.c:49)
+==3884==    by 0x404124: op_sti (sti.c:92)
+==3884==    by 0x40166C: exec_instruction (run_cycle.c:40)
+==3884==    by 0x401772: handle_schedule (run_cycle.c:79)
+==3884==    by 0x401813: sync_cycle (run_cycle.c:101)
+==3884==    by 0x401142: launch_vm (launch_vm.c:94)
+==3884==    by 0x400AB4: main (main.c:53)
+==3884== 
+==3884== Conditional jump or move depends on uninitialised value(s)
+==3884==    at 0x403FC2: calc_offset (sti.c:66)
+==3884==    by 0x404161: op_sti (sti.c:94)
+==3884==    by 0x40166C: exec_instruction (run_cycle.c:40)
+==3884==    by 0x401772: handle_schedule (run_cycle.c:79)
+==3884==    by 0x401813: sync_cycle (run_cycle.c:101)
+==3884==    by 0x401142: launch_vm (launch_vm.c:94)
+==3884==    by 0x400AB4: main (main.c:53)
+==3884== 
+==3884== Conditional jump or move depends on uninitialised value(s)
+==3884==    at 0x40402D: calc_offset (sti.c:71)
+==3884==    by 0x404161: op_sti (sti.c:94)
+==3884==    by 0x40166C: exec_instruction (run_cycle.c:40)
+==3884==    by 0x401772: handle_schedule (run_cycle.c:79)
+==3884==    by 0x401813: sync_cycle (run_cycle.c:101)
+==3884==    by 0x401142: launch_vm (launch_vm.c:94)
+==3884==    by 0x400AB4: main (main.c:53)
+==3884== 
+==3884== Conditional jump or move depends on uninitialised value(s)
+==3884==    at 0x404051: calc_offset (sti.c:71)
+==3884==    by 0x404161: op_sti (sti.c:94)
+==3884==    by 0x40166C: exec_instruction (run_cycle.c:40)
+==3884==    by 0x401772: handle_schedule (run_cycle.c:79)
+==3884==    by 0x401813: sync_cycle (run_cycle.c:101)
+==3884==    by 0x401142: launch_vm (launch_vm.c:94)
+==3884==    by 0x400AB4: main (main.c:53)
+==3884== 
+==3884== Conditional jump or move depends on uninitialised value(s)
+==3884==    at 0x403FC2: calc_offset (sti.c:66)
+==3884==    by 0x40418B: op_sti (sti.c:96)
+==3884==    by 0x40166C: exec_instruction (run_cycle.c:40)
+==3884==    by 0x401772: handle_schedule (run_cycle.c:79)
+==3884==    by 0x401813: sync_cycle (run_cycle.c:101)
+==3884==    by 0x401142: launch_vm (launch_vm.c:94)
+==3884==    by 0x400AB4: main (main.c:53)
+==3884== 
+==3884== Conditional jump or move depends on uninitialised value(s)
+==3884==    at 0x40402D: calc_offset (sti.c:71)
+==3884==    by 0x40418B: op_sti (sti.c:96)
+==3884==    by 0x40166C: exec_instruction (run_cycle.c:40)
+==3884==    by 0x401772: handle_schedule (run_cycle.c:79)
+==3884==    by 0x401813: sync_cycle (run_cycle.c:101)
+==3884==    by 0x401142: launch_vm (launch_vm.c:94)
+==3884==    by 0x400AB4: main (main.c:53)
+==3884== 
+==3884== Conditional jump or move depends on uninitialised value(s)
+==3884==    at 0x404051: calc_offset (sti.c:71)
+==3884==    by 0x40418B: op_sti (sti.c:96)
+==3884==    by 0x40166C: exec_instruction (run_cycle.c:40)
+==3884==    by 0x401772: handle_schedule (run_cycle.c:79)
+==3884==    by 0x401813: sync_cycle (run_cycle.c:101)
+==3884==    by 0x401142: launch_vm (launch_vm.c:94)
+==3884==    by 0x400AB4: main (main.c:53)
+==3884== 
+==3884== Conditional jump or move depends on uninitialised value(s)
+==3884==    at 0x404EC7: interval_memory (interval_mem.c:83)
+==3884==    by 0x404317: op_sti (sti.c:107)
+==3884==    by 0x40166C: exec_instruction (run_cycle.c:40)
+==3884==    by 0x401772: handle_schedule (run_cycle.c:79)
+==3884==    by 0x401813: sync_cycle (run_cycle.c:101)
+==3884==    by 0x401142: launch_vm (launch_vm.c:94)
+==3884==    by 0x400AB4: main (main.c:53)
+==3884== 
+==3884== Conditional jump or move depends on uninitialised value(s)
+==3884==    at 0x404DC3: decoupage_pc (interval_mem.c:68)
+==3884==    by 0x404EE8: interval_memory (interval_mem.c:85)
+==3884==    by 0x404317: op_sti (sti.c:107)
+==3884==    by 0x40166C: exec_instruction (run_cycle.c:40)
+==3884==    by 0x401772: handle_schedule (run_cycle.c:79)
+==3884==    by 0x401813: sync_cycle (run_cycle.c:101)
+==3884==    by 0x401142: launch_vm (launch_vm.c:94)
+==3884==    by 0x400AB4: main (main.c:53)
+==3884== 
+==3884== Conditional jump or move depends on uninitialised value(s)
+==3884==    at 0x404DDF: decoupage_pc (interval_mem.c:70)
+==3884==    by 0x404EE8: interval_memory (interval_mem.c:85)
+==3884==    by 0x404317: op_sti (sti.c:107)
+==3884==    by 0x40166C: exec_instruction (run_cycle.c:40)
+==3884==    by 0x401772: handle_schedule (run_cycle.c:79)
+==3884==    by 0x401813: sync_cycle (run_cycle.c:101)
+==3884==    by 0x401142: launch_vm (launch_vm.c:94)
+==3884==    by 0x400AB4: main (main.c:53)
+==3884== 
+==3884== Conditional jump or move depends on uninitialised value(s)
+==3884==    at 0x404DFB: decoupage_pc (interval_mem.c:72)
+==3884==    by 0x404EE8: interval_memory (interval_mem.c:85)
+==3884==    by 0x404317: op_sti (sti.c:107)
+==3884==    by 0x40166C: exec_instruction (run_cycle.c:40)
+==3884==    by 0x401772: handle_schedule (run_cycle.c:79)
+==3884==    by 0x401813: sync_cycle (run_cycle.c:101)
+==3884==    by 0x401142: launch_vm (launch_vm.c:94)
+==3884==    by 0x400AB4: main (main.c:53)
+==3884== 
+==3884== Conditional jump or move depends on uninitialised value(s)
+==3884==    at 0x404E17: decoupage_pc (interval_mem.c:74)
+==3884==    by 0x404EE8: interval_memory (interval_mem.c:85)
+==3884==    by 0x404317: op_sti (sti.c:107)
+==3884==    by 0x40166C: exec_instruction (run_cycle.c:40)
+==3884==    by 0x401772: handle_schedule (run_cycle.c:79)
+==3884==    by 0x401813: sync_cycle (run_cycle.c:101)
+==3884==    by 0x401142: launch_vm (launch_vm.c:94)
+==3884==    by 0x400AB4: main (main.c:53)
+==3884== 
+==3884== Conditional jump or move depends on uninitialised value(s)
+==3884==    at 0x40137F: parser (parser.c:19)
+==3884==    by 0x40178D: handle_schedule (run_cycle.c:80)
+==3884==    by 0x401813: sync_cycle (run_cycle.c:101)
+==3884==    by 0x401142: launch_vm (launch_vm.c:94)
+==3884==    by 0x400AB4: main (main.c:53)
+==3884== 
+==3884== Use of uninitialised value of size 8
+==3884==    at 0x4013C3: parser (parser.c:21)
+==3884==    by 0x40178D: handle_schedule (run_cycle.c:80)
+==3884==    by 0x401813: sync_cycle (run_cycle.c:101)
+==3884==    by 0x401142: launch_vm (launch_vm.c:94)
+==3884==    by 0x400AB4: main (main.c:53)
+==3884== 
+==3884== Use of uninitialised value of size 8
+==3884==    at 0x4013EA: parser (parser.c:22)
+==3884==    by 0x40178D: handle_schedule (run_cycle.c:80)
+==3884==    by 0x401813: sync_cycle (run_cycle.c:101)
+==3884==    by 0x401142: launch_vm (launch_vm.c:94)
+==3884==    by 0x400AB4: main (main.c:53)
+==3884== 
+==3884== Use of uninitialised value of size 8
+==3884==    at 0x401412: parser (parser.c:24)
+==3884==    by 0x40178D: handle_schedule (run_cycle.c:80)
+==3884==    by 0x401813: sync_cycle (run_cycle.c:101)
+==3884==    by 0x401142: launch_vm (launch_vm.c:94)
+==3884==    by 0x400AB4: main (main.c:53)
+==3884== 
+==3884== Conditional jump or move depends on uninitialised value(s)
+==3884==    at 0x401435: parser (parser.c:27)
+==3884==    by 0x40178D: handle_schedule (run_cycle.c:80)
+==3884==    by 0x401813: sync_cycle (run_cycle.c:101)
+==3884==    by 0x401142: launch_vm (launch_vm.c:94)
+==3884==    by 0x400AB4: main (main.c:53)
+==3884== 
+==3884== Use of uninitialised value of size 8
+==3884==    at 0x401474: parser (parser.c:28)
+==3884==    by 0x40178D: handle_schedule (run_cycle.c:80)
+==3884==    by 0x401813: sync_cycle (run_cycle.c:101)
+==3884==    by 0x401142: launch_vm (launch_vm.c:94)
+==3884==    by 0x400AB4: main (main.c:53)
+==3884== 
+==3884== Use of uninitialised value of size 8
+==3884==    at 0x403931: op_ldi (ldi.c:57)
+==3884==    by 0x40166C: exec_instruction (run_cycle.c:40)
+==3884==    by 0x401772: handle_schedule (run_cycle.c:79)
+==3884==    by 0x401813: sync_cycle (run_cycle.c:101)
+==3884==    by 0x401142: launch_vm (launch_vm.c:94)
+==3884==    by 0x400AB4: main (main.c:53)
+==3884== 
+==3884== Use of uninitialised value of size 8
+==3884==    at 0x4027F8: store_st (st.c:56)
+==3884==    by 0x4029C1: op_st (st.c:79)
+==3884==    by 0x40166C: exec_instruction (run_cycle.c:40)
+==3884==    by 0x401772: handle_schedule (run_cycle.c:79)
+==3884==    by 0x401813: sync_cycle (run_cycle.c:101)
+==3884==    by 0x401142: launch_vm (launch_vm.c:94)
+==3884==    by 0x400AB4: main (main.c:53)
+==3884== 
+==3884== Use of uninitialised value of size 8
+==3884==    at 0x402844: store_st (st.c:57)
+==3884==    by 0x4029C1: op_st (st.c:79)
+==3884==    by 0x40166C: exec_instruction (run_cycle.c:40)
+==3884==    by 0x401772: handle_schedule (run_cycle.c:79)
+==3884==    by 0x401813: sync_cycle (run_cycle.c:101)
+==3884==    by 0x401142: launch_vm (launch_vm.c:94)
+==3884==    by 0x400AB4: main (main.c:53)
+==3884== 
+==3884== Use of uninitialised value of size 8
+==3884==    at 0x402890: store_st (st.c:58)
+==3884==    by 0x4029C1: op_st (st.c:79)
+==3884==    by 0x40166C: exec_instruction (run_cycle.c:40)
+==3884==    by 0x401772: handle_schedule (run_cycle.c:79)
+==3884==    by 0x401813: sync_cycle (run_cycle.c:101)
+==3884==    by 0x401142: launch_vm (launch_vm.c:94)
+==3884==    by 0x400AB4: main (main.c:53)
+==3884== 
+==3884== Use of uninitialised value of size 8
+==3884==    at 0x4028DC: store_st (st.c:59)
+==3884==    by 0x4029C1: op_st (st.c:79)
+==3884==    by 0x40166C: exec_instruction (run_cycle.c:40)
+==3884==    by 0x401772: handle_schedule (run_cycle.c:79)
+==3884==    by 0x401813: sync_cycle (run_cycle.c:101)
+==3884==    by 0x401142: launch_vm (launch_vm.c:94)
+==3884==    by 0x400AB4: main (main.c:53)
+==3884== 
+==3884== Use of uninitialised value of size 8
+==3884==    at 0x404206: op_sti (sti.c:103)
+==3884==    by 0x40166C: exec_instruction (run_cycle.c:40)
+==3884==    by 0x401772: handle_schedule (run_cycle.c:79)
+==3884==    by 0x401813: sync_cycle (run_cycle.c:101)
+==3884==    by 0x401142: launch_vm (launch_vm.c:94)
+==3884==    by 0x400AB4: main (main.c:53)
+==3884== 
+==3884== Use of uninitialised value of size 8
+==3884==    at 0x40424E: op_sti (sti.c:104)
+==3884==    by 0x40166C: exec_instruction (run_cycle.c:40)
+==3884==    by 0x401772: handle_schedule (run_cycle.c:79)
+==3884==    by 0x401813: sync_cycle (run_cycle.c:101)
+==3884==    by 0x401142: launch_vm (launch_vm.c:94)
+==3884==    by 0x400AB4: main (main.c:53)
+==3884== 
+==3884== Use of uninitialised value of size 8
+==3884==    at 0x404296: op_sti (sti.c:105)
+==3884==    by 0x40166C: exec_instruction (run_cycle.c:40)
+==3884==    by 0x401772: handle_schedule (run_cycle.c:79)
+==3884==    by 0x401813: sync_cycle (run_cycle.c:101)
+==3884==    by 0x401142: launch_vm (launch_vm.c:94)
+==3884==    by 0x400AB4: main (main.c:53)
+==3884== 
+==3884== Use of uninitialised value of size 8
+==3884==    at 0x4042DE: op_sti (sti.c:106)
+==3884==    by 0x40166C: exec_instruction (run_cycle.c:40)
+==3884==    by 0x401772: handle_schedule (run_cycle.c:79)
+==3884==    by 0x401813: sync_cycle (run_cycle.c:101)
+==3884==    by 0x401142: launch_vm (launch_vm.c:94)
+==3884==    by 0x400AB4: main (main.c:53)
+==3884== 
+==3884== Conditional jump or move depends on uninitialised value(s)
+==3884==    at 0x4E7C4F1: vfprintf (vfprintf.c:1629)
+==3884==    by 0x4E858D8: printf (printf.c:35)
+==3884==    by 0x4035E4: op_zjmp (zjmp.c:29)
+==3884==    by 0x40166C: exec_instruction (run_cycle.c:40)
+==3884==    by 0x401772: handle_schedule (run_cycle.c:79)
+==3884==    by 0x401813: sync_cycle (run_cycle.c:101)
+==3884==    by 0x401142: launch_vm (launch_vm.c:94)
+==3884==    by 0x400AB4: main (main.c:53)
+==3884== 
+==3884== Use of uninitialised value of size 8
+==3884==    at 0x4E7A7EB: _itoa_word (_itoa.c:195)
+==3884==    by 0x4E7C837: vfprintf (vfprintf.c:1629)
+==3884==    by 0x4E858D8: printf (printf.c:35)
+==3884==    by 0x4035E4: op_zjmp (zjmp.c:29)
+==3884==    by 0x40166C: exec_instruction (run_cycle.c:40)
+==3884==    by 0x401772: handle_schedule (run_cycle.c:79)
+==3884==    by 0x401813: sync_cycle (run_cycle.c:101)
+==3884==    by 0x401142: launch_vm (launch_vm.c:94)
+==3884==    by 0x400AB4: main (main.c:53)
+==3884== 
+==3884== Conditional jump or move depends on uninitialised value(s)
+==3884==    at 0x4E7A7F5: _itoa_word (_itoa.c:195)
+==3884==    by 0x4E7C837: vfprintf (vfprintf.c:1629)
+==3884==    by 0x4E858D8: printf (printf.c:35)
+==3884==    by 0x4035E4: op_zjmp (zjmp.c:29)
+==3884==    by 0x40166C: exec_instruction (run_cycle.c:40)
+==3884==    by 0x401772: handle_schedule (run_cycle.c:79)
+==3884==    by 0x401813: sync_cycle (run_cycle.c:101)
+==3884==    by 0x401142: launch_vm (launch_vm.c:94)
+==3884==    by 0x400AB4: main (main.c:53)
+==3884== 
+==3884== Conditional jump or move depends on uninitialised value(s)
+==3884==    at 0x4035F6: op_zjmp (zjmp.c:30)
+==3884==    by 0x40166C: exec_instruction (run_cycle.c:40)
+==3884==    by 0x401772: handle_schedule (run_cycle.c:79)
+==3884==    by 0x401813: sync_cycle (run_cycle.c:101)
+==3884==    by 0x401142: launch_vm (launch_vm.c:94)
+==3884==    by 0x400AB4: main (main.c:53)
+==3884== 
+==3884== Conditional jump or move depends on uninitialised value(s)
+==3884==    at 0x4E7C4F1: vfprintf (vfprintf.c:1629)
+==3884==    by 0x4E858D8: printf (printf.c:35)
+==3884==    by 0x403657: op_zjmp (zjmp.c:33)
+==3884==    by 0x40166C: exec_instruction (run_cycle.c:40)
+==3884==    by 0x401772: handle_schedule (run_cycle.c:79)
+==3884==    by 0x401813: sync_cycle (run_cycle.c:101)
+==3884==    by 0x401142: launch_vm (launch_vm.c:94)
+==3884==    by 0x400AB4: main (main.c:53)
+==3884== 
+==3884== Use of uninitialised value of size 8
+==3884==    at 0x4E7A7EB: _itoa_word (_itoa.c:195)
+==3884==    by 0x4E7C837: vfprintf (vfprintf.c:1629)
+==3884==    by 0x4E858D8: printf (printf.c:35)
+==3884==    by 0x403657: op_zjmp (zjmp.c:33)
+==3884==    by 0x40166C: exec_instruction (run_cycle.c:40)
+==3884==    by 0x401772: handle_schedule (run_cycle.c:79)
+==3884==    by 0x401813: sync_cycle (run_cycle.c:101)
+==3884==    by 0x401142: launch_vm (launch_vm.c:94)
+==3884==    by 0x400AB4: main (main.c:53)
+==3884== 
+==3884== Conditional jump or move depends on uninitialised value(s)
+==3884==    at 0x4E7A7F5: _itoa_word (_itoa.c:195)
+==3884==    by 0x4E7C837: vfprintf (vfprintf.c:1629)
+==3884==    by 0x4E858D8: printf (printf.c:35)
+==3884==    by 0x403657: op_zjmp (zjmp.c:33)
+==3884==    by 0x40166C: exec_instruction (run_cycle.c:40)
+==3884==    by 0x401772: handle_schedule (run_cycle.c:79)
+==3884==    by 0x401813: sync_cycle (run_cycle.c:101)
+==3884==    by 0x401142: launch_vm (launch_vm.c:94)
+==3884==    by 0x400AB4: main (main.c:53)
+==3884== 
+==3884== 
+==3884== HEAP SUMMARY:
+==3884==     in use at exit: 9,280 bytes in 5 blocks
+==3884==   total heap usage: 1,692 allocs, 1,687 frees, 698,660 bytes allocated
+==3884== 
+==3884== LEAK SUMMARY:
+==3884==    definitely lost: 8,896 bytes in 2 blocks
+==3884==    indirectly lost: 384 bytes in 3 blocks
+==3884==      possibly lost: 0 bytes in 0 blocks
+==3884==    still reachable: 0 bytes in 0 blocks
+==3884==         suppressed: 0 bytes in 0 blocks
+==3884== Rerun with --leak-check=full to see details of leaked memory
+==3884== 
+==3884== For counts of detected and suppressed errors, rerun with: -v
+==3884== Use --track-origins=yes to see where uninitialised values come from
+==3884== ERROR SUMMARY: 252694 errors from 36 contexts (suppressed: 2 from 2)

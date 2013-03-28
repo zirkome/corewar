@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:21:16 2013 guillaume fillon
-** Last update Thu Mar 28 16:58:26 2013 remi
+** Last update Thu Mar 28 17:39:56 2013 remi
 */
 
 #include "lib.h"
@@ -16,9 +16,10 @@ void		op_zjmp(t_vm *vm, t_proc **lproc)
   int		jump;
 
   jump = 0;
+  debug(vm, lproc);
   if (*lproc == NULL)
     return ;
-  if (check_carry_champion(vm->proc, (*lproc)->reg[0]) == 0)
+  if (check_carry_champion(vm->proc, (*lproc)->nb_proc) == 0)
     {
       (*lproc)->pc += 3;
       return ;

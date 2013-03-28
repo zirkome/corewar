@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:30:00 2013 guillaume fillon
-** Last update Thu Mar 28 16:02:37 2013 remi
+** Last update Thu Mar 28 17:52:27 2013 remi
 */
 
 #include "lib.h"
@@ -80,6 +80,7 @@ void		op_sti(t_vm *vm, t_proc **lproc)
 
   offset = 0;
   i = 2;
+  debug(vm, lproc);
   init_tab(reg);
   load_reg(vm, lproc, reg, &i);
   offset += calc_offset(lproc, &i, 4);

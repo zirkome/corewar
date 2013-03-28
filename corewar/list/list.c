@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Mon Mar 11 09:18:32 2013 remi
-** Last update Tue Mar 26 14:29:08 2013 remi
+** Last update Thu Mar 28 17:33:44 2013 remi
 */
 
 #include <stdlib.h>
@@ -62,6 +62,7 @@ void		init_elem(t_proc **new_elem, int pc, int cid, int nb_proc)
   (*new_elem)->wait = -1;
   (*new_elem)->carry = 1;
   (*new_elem)->pc = pc;
+  (*new_elem)->num_proc = 0;
   (*new_elem)->nb_proc = nb_proc;
 }
 

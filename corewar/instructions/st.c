@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:27:36 2013 guillaume fillon
-** Last update Thu Mar 28 16:54:10 2013 remi
+** Last update Thu Mar 28 17:41:27 2013 remi
 */
 
 #include "lib.h"
@@ -75,6 +75,7 @@ void		op_st(t_vm *vm, t_proc **lproc)
   reg[2] = 0;
   reg[3] = 0;
   adress = 0;
+  debug(vm, lproc);
   load_reg_st(lproc, reg);
   get_adress_st(vm, lproc, &adress);
   store_st(vm, reg, lproc, adress);

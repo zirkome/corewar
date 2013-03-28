@@ -5,7 +5,7 @@
 ** Login   <bridou_n@epitech.net>
 **
 ** Started on  Wed Jan 16 17:58:40 2013 nicolas bridoux
-** Last update Thu Mar 28 16:36:15 2013 remi
+** Last update Thu Mar 28 17:33:20 2013 remi
 */
 
 #ifndef VM_H_
@@ -35,6 +35,7 @@ typedef struct	s_proc
   int		pc;
   int		live;
   int		wait;
+  int		num_proc;
   int		nb_proc;
   struct s_proc	*next;
   struct s_proc	*back;
@@ -59,6 +60,7 @@ typedef struct	s_vm
 */
 void		free_champ(header_t *header, int nb);
 void		free_vm(t_vm *vm);
+void		my_putstr(char *str);
 
 /*
 ** open_file.c
@@ -153,5 +155,6 @@ int		get_direct_reg(t_vm *, t_proc **, int *);
 void		get_reg_reg(t_vm *, t_proc **, int *, char *);
 int		get_direct_ldi(t_vm *, t_proc **, int, int *);
 int		get_adress_ldi(t_vm *, t_proc **, int, int *);
+void		debug(t_vm *, t_proc **);
 
 #endif /* VM_H_ */

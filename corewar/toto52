@@ -1,0 +1,87 @@
+==24190== Memcheck, a memory error detector
+==24190== Copyright (C) 2002-2011, and GNU GPL'd, by Julian Seward et al.
+==24190== Using Valgrind-3.7.0 and LibVEX; rerun with -h for copyright info
+==24190== Command: ./corewar src/ex.cor src/ex.cor src/ex.cor src/42.cor
+==24190== Parent PID: 3158
+==24190== 
+==24190== Use of uninitialised value of size 8
+==24190==    at 0x404884: get_reg_reg (get_sti.c:38)
+==24190==    by 0x4037DA: load_reg (sti.c:28)
+==24190==    by 0x403B84: op_sti (sti.c:85)
+==24190==    by 0x401630: exec_instruction (run_cycle.c:41)
+==24190==    by 0x401736: handle_schedule (run_cycle.c:80)
+==24190==    by 0x4017D4: sync_cycle (run_cycle.c:102)
+==24190==    by 0x401072: launch_vm (launch_vm.c:91)
+==24190==    by 0x4009E2: main (main.c:66)
+==24190== 
+==24190== Use of uninitialised value of size 8
+==24190==    at 0x4048CC: get_reg_reg (get_sti.c:40)
+==24190==    by 0x4037DA: load_reg (sti.c:28)
+==24190==    by 0x403B84: op_sti (sti.c:85)
+==24190==    by 0x401630: exec_instruction (run_cycle.c:41)
+==24190==    by 0x401736: handle_schedule (run_cycle.c:80)
+==24190==    by 0x4017D4: sync_cycle (run_cycle.c:102)
+==24190==    by 0x401072: launch_vm (launch_vm.c:91)
+==24190==    by 0x4009E2: main (main.c:66)
+==24190== 
+==24190== Use of uninitialised value of size 8
+==24190==    at 0x40490E: get_reg_reg (get_sti.c:42)
+==24190==    by 0x4037DA: load_reg (sti.c:28)
+==24190==    by 0x403B84: op_sti (sti.c:85)
+==24190==    by 0x401630: exec_instruction (run_cycle.c:41)
+==24190==    by 0x401736: handle_schedule (run_cycle.c:80)
+==24190==    by 0x4017D4: sync_cycle (run_cycle.c:102)
+==24190==    by 0x401072: launch_vm (launch_vm.c:91)
+==24190==    by 0x4009E2: main (main.c:66)
+==24190== 
+==24190== Use of uninitialised value of size 8
+==24190==    at 0x404950: get_reg_reg (get_sti.c:44)
+==24190==    by 0x4037DA: load_reg (sti.c:28)
+==24190==    by 0x403B84: op_sti (sti.c:85)
+==24190==    by 0x401630: exec_instruction (run_cycle.c:41)
+==24190==    by 0x401736: handle_schedule (run_cycle.c:80)
+==24190==    by 0x4017D4: sync_cycle (run_cycle.c:102)
+==24190==    by 0x401072: launch_vm (launch_vm.c:91)
+==24190==    by 0x4009E2: main (main.c:66)
+==24190== 
+==24190== Conditional jump or move depends on uninitialised value(s)
+==24190==    at 0x4039C7: calc_offset (sti.c:55)
+==24190==    by 0x403B9C: op_sti (sti.c:86)
+==24190==    by 0x401630: exec_instruction (run_cycle.c:41)
+==24190==    by 0x401736: handle_schedule (run_cycle.c:80)
+==24190==    by 0x4017D4: sync_cycle (run_cycle.c:102)
+==24190==    by 0x401072: launch_vm (launch_vm.c:91)
+==24190==    by 0x4009E2: main (main.c:66)
+==24190== 
+==24190== Conditional jump or move depends on uninitialised value(s)
+==24190==    at 0x4039FC: calc_offset (sti.c:57)
+==24190==    by 0x403B9C: op_sti (sti.c:86)
+==24190==    by 0x401630: exec_instruction (run_cycle.c:41)
+==24190==    by 0x401736: handle_schedule (run_cycle.c:80)
+==24190==    by 0x4017D4: sync_cycle (run_cycle.c:102)
+==24190==    by 0x401072: launch_vm (launch_vm.c:91)
+==24190==    by 0x4009E2: main (main.c:66)
+==24190== 
+==24190== Conditional jump or move depends on uninitialised value(s)
+==24190==    at 0x4012F0: parser (parser.c:21)
+==24190==    by 0x401751: handle_schedule (run_cycle.c:81)
+==24190==    by 0x4017D4: sync_cycle (run_cycle.c:102)
+==24190==    by 0x401072: launch_vm (launch_vm.c:91)
+==24190==    by 0x4009E2: main (main.c:66)
+==24190== 
+==24190== 
+==24190== HEAP SUMMARY:
+==24190==     in use at exit: 17,984 bytes in 73 blocks
+==24190==   total heap usage: 1,172 allocs, 1,099 frees, 528,765 bytes allocated
+==24190== 
+==24190== LEAK SUMMARY:
+==24190==    definitely lost: 8,896 bytes in 2 blocks
+==24190==    indirectly lost: 9,088 bytes in 71 blocks
+==24190==      possibly lost: 0 bytes in 0 blocks
+==24190==    still reachable: 0 bytes in 0 blocks
+==24190==         suppressed: 0 bytes in 0 blocks
+==24190== Rerun with --leak-check=full to see details of leaked memory
+==24190== 
+==24190== For counts of detected and suppressed errors, rerun with: -v
+==24190== Use --track-origins=yes to see where uninitialised values come from
+==24190== ERROR SUMMARY: 76 errors from 7 contexts (suppressed: 2 from 2)
