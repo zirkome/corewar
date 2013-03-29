@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Thu Jan 24 23:12:01 2013 remi
-** Last update Thu Mar 28 15:31:54 2013 remi
+** Last update Fri Mar 29 09:44:40 2013 remi
 */
 
 #include "lib.h"
@@ -24,6 +24,10 @@ t_vm		*init_vm(int mem_tmp, t_proc *lproc)
   vm->prg_alive[1] = 1;
   vm->prg_alive[2] = 1;
   vm->prg_alive[3] = 1;
+  vm->cycle_champion[0] = 0;
+  vm->cycle_champion[1] = 0;
+  vm->cycle_champion[2] = 0;
+  vm->cycle_champion[3] = 0;
   vm->proc = lproc;
   vm->old_live = -1;
   reset_mem(&vm);
@@ -83,6 +87,7 @@ int		launch_vm(t_proc *lproc, header_t *header,
   vm = init_vm(mem_tmp, lproc);
   vm->prg_nb = prg_nb;
   vm->nb_proc = prg_nb;
+  vm->header = header;
   vm->proc = load_champions(vm, argv, header, mem_tmp);
 #ifdef DEBUG
   printf("%s", "VM initialiser avec succès !\n");

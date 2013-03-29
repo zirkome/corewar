@@ -5,7 +5,7 @@
 ** Login   <bridou_n@epitech.net>
 **
 ** Started on  Wed Jan 16 17:58:40 2013 nicolas bridoux
-** Last update Thu Mar 28 17:33:20 2013 remi
+** Last update Fri Mar 29 10:34:30 2013 remi
 */
 
 #ifndef VM_H_
@@ -43,6 +43,7 @@ typedef struct	s_proc
 
 typedef struct	s_vm
 {
+  header_t	*header;
   int		old_live;
   int		nb_live;
   char		prg_nb;
@@ -50,6 +51,7 @@ typedef struct	s_vm
   char		nbr_live;
   int		nb_proc;
   int		cycle;
+  int		cycle_champion[4];
   char		*mem;
   t_proc	*proc;
 }		t_vm;
@@ -61,6 +63,7 @@ typedef struct	s_vm
 void		free_champ(header_t *header, int nb);
 void		free_vm(t_vm *vm);
 void		my_putstr(char *str);
+void		print_champion(int, t_vm *);
 
 /*
 ** open_file.c
@@ -95,8 +98,8 @@ void		set_carry(t_proc **, int);
 /*
 ** fork.c
 */
-t_proc		*add_fork(t_proc **);
-void		init_new_proc(t_proc **, t_proc **, int);
+t_proc		*add_fork(t_proc **, t_proc **);
+void		init_new_proc(t_vm *, t_proc **, t_proc **, int);
 
 /*
 ** vm_utils.c
@@ -156,5 +159,7 @@ void		get_reg_reg(t_vm *, t_proc **, int *, char *);
 int		get_direct_ldi(t_vm *, t_proc **, int, int *);
 int		get_adress_ldi(t_vm *, t_proc **, int, int *);
 void		debug(t_vm *, t_proc **);
+int		get_last_num_proc(t_vm *, int);
+void		init_cmd_proc(t_vm *);
 
 #endif /* VM_H_ */

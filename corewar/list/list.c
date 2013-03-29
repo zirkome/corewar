@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Mon Mar 11 09:18:32 2013 remi
-** Last update Thu Mar 28 17:33:44 2013 remi
+** Last update Fri Mar 29 11:20:59 2013 remi
 */
 
 #include <stdlib.h>
@@ -58,7 +58,7 @@ int		free_elem_prog(t_proc **proc, int prg)
 
 void		init_elem(t_proc **new_elem, int pc, int cid, int nb_proc)
 {
-  init_reg((*new_elem)->reg, cid - 1);
+  init_reg((*new_elem)->reg, cid);
   (*new_elem)->wait = -1;
   (*new_elem)->carry = 1;
   (*new_elem)->pc = pc;

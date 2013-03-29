@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Tue Mar 12 13:57:31 2013 remi
-** Last update Wed Mar 20 10:26:12 2013 remi
+** Last update Fri Mar 29 09:05:49 2013 remi
 */
 
 #include "vm.h"
@@ -14,12 +14,11 @@ void	set_carry(t_proc **lproc, int val)
 {
   if (val == 0)
     {
-      printf("%s%s%scarry = 1%s\n", INTENSITE, F_ROUGE, BLANC, REZ);
+      my_putstr(ROUGE);
+      my_putstr("carry = 1\n");
+      my_putstr(REZ);
       (*lproc)->carry = 1;
     }
   else
-    {
-      printf("%s%s%scarry = 0%s\n", INTENSITE, F_ROUGE, BLANC, REZ);
-      (*lproc)->carry = 0;
-    }
+    (*lproc)->carry = 0;
 }

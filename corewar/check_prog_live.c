@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Mon Mar 11 08:18:24 2013 remi
-** Last update Thu Mar 28 16:50:15 2013 remi
+** Last update Thu Mar 28 23:34:59 2013 remi
 */
 
 #include "lib.h"
@@ -33,7 +33,6 @@ void		gere_prog_live(char *live, t_vm **vm)
       if (live[indice] == 0)
 	{
 	  suppr = suppr + 1;
-	  printf("%schampion : [%d] mort !!%s\n", ROUGE, indice + 1, REZ);
 	  while (free_elem_prog(&((*vm)->proc), indice + 1) == 1);
 	}
       ++indice;
@@ -46,9 +45,9 @@ int	get_condition_count(int count, t_vm *vm)
   if (count == 0)
     {
       if (vm->old_live != -1)
-	printf("Champion %d a gagne !\n", vm->old_live);
+	print_champion(count, vm);
       else
-	printf("Aucun gagnant\n");
+	my_putstr("Aucun gagnant\n");
       return (1);
     }
   return (0);
@@ -77,7 +76,7 @@ int		there_is_last_champ(char *live, t_vm *vm)
   	    count = i;
   	  ++i;
   	}
-      printf("Champion %d a gagne !\n", count);
+      print_champion(count, vm);
       return (1);
     }
   return (get_condition_count(count, vm));

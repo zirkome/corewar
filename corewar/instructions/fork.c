@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:28:20 2013 guillaume fillon
-** Last update Thu Mar 28 17:56:44 2013 remi
+** Last update Fri Mar 29 09:55:14 2013 remi
 */
 
 #include "lib.h"
@@ -30,39 +30,40 @@ int		get_nb_proc(t_proc *ptete, int nb_champion)
   return (nb);
 }
 
-t_proc		*add_fork(t_proc **ptete)
+t_proc		*add_fork(t_proc **ptete, t_proc **elem)
 {
   t_proc	*pcourant;
-  t_proc	*elem;
 
   if (*ptete == NULL ||
-      (elem = malloc(sizeof(t_proc))) == NULL)
-    return (NULL);
+      (*elem = malloc(sizeof(t_proc))) == NULL)
+    return (*ptete);
   pcourant = *ptete;
   while (pcourant->next != NULL)
     pcourant = pcourant->next;
-  elem->next = NULL;
-  elem->back = pcourant;
-  pcourant->next = elem;
-  return (elem);
+  (*elem)->next = NULL;
+  (*elem)->back = pcourant;
+  init_elem(elem, 0, 0, 0);
+  pcourant->next = *elem;
+  return (*ptete);
 }
 
-void	init_new_proc(t_proc **new_proc, t_proc **proc_head, int new_pc)
+void	init_new_proc(t_vm *vm, t_proc **new_proc, t_proc **proc_head, int new_pc)
 {
   int	indice;
 
   indice = 0;
   while (indice < REG_NUMBER)
     {
-      (*new_proc)->cmd[indice] = 0;
-      (*new_proc)->reg[indice] = (*proc_head)->reg[indice];
+      (*new_proc)->cmd[indice % 16] = 0;
+      (*new_proc)->reg[indice % REG_NUMBER] =
+	(*proc_head)->reg[indice % REG_NUMBER];
       indice = indice + 1;
     }
   (*new_proc)->code = 0;
-  (*new_proc)->wait = 0;
+  (*new_proc)->wait = -1;
   (*new_proc)->carry = 0;
   (*new_proc)->nb_proc = (*proc_head)->nb_proc;
-  (*new_proc)->num_proc = (*proc_head)->num_proc + 1;
+  (*new_proc)->num_proc = get_last_num_proc(vm, (*proc_head)->nb_proc) + 1;
   (*new_proc)->live = 0;
   (*new_proc)->pc = 0;
   if (new_pc < 0)
@@ -76,15 +77,15 @@ void		op_fork(t_vm *vm, t_proc **lproc)
   int		new_pc;
   t_proc	*new_proc;
 
-  debug(vm, lproc);
   new_pc = ((((*lproc)->cmd[0]) << 8) | ((*lproc)->cmd[1])) & 0xFFFF;
-  if ((new_proc = add_fork(&(vm->proc))) == NULL)
+  if ((vm->proc = add_fork(&(vm->proc), &new_proc)) == NULL)
     {
       (*lproc)->pc += 3;
       return ;
     }
+  init_new_proc(vm, &new_proc, lproc, new_pc);
   vm->nb_proc = vm->nb_proc + 1;
-  init_new_proc(&new_proc, lproc, new_pc);
   new_proc->nb_proc = get_nb_proc(vm->proc, (*lproc)->reg[0]);
+  debug(vm, lproc);
   (*lproc)->pc += 3;
  }

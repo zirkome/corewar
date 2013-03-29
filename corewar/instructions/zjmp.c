@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:21:16 2013 guillaume fillon
-** Last update Thu Mar 28 17:39:56 2013 remi
+** Last update Fri Mar 29 12:43:22 2013 remi
 */
 
 #include "lib.h"
@@ -26,6 +26,6 @@ void		op_zjmp(t_vm *vm, t_proc **lproc)
     }
   jump = ((((*lproc)->cmd[0] << 8) | ((*lproc)->cmd[1])) % 0xFFFF) % IDX_MOD;
   if ((*lproc)->pc + (jump) < 0)
-    jump = MEM_SIZE- jump;
+    jump = MEM_SIZE - jump;
   (*lproc)->pc = (((*lproc)->pc + (jump))) % MEM_SIZE;
 }
