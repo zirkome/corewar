@@ -5,12 +5,16 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:21:16 2013 guillaume fillon
-** Last update Fri Mar 29 12:43:22 2013 remi
+** Last update Fri Mar 29 22:36:43 2013 remi
 */
 
 #include "lib.h"
 #include "vm.h"
 
+/*
+** fais un saut du pc.
+** pc actuel + jump;
+*/
 void		op_zjmp(t_vm *vm, t_proc **lproc)
 {
   int		jump;

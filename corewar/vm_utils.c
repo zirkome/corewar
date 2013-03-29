@@ -5,13 +5,18 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Tue Jan 29 04:05:43 2013 guillaume fillon
-** Last update Fri Mar 29 12:23:15 2013 remi
+** Last update Fri Mar 29 22:55:33 2013 remi
 */
 
 #include "lib.h"
 #include "vm.h"
 #include "couleur.h"
 
+/*
+** initialise les premiers processus wait de 1,
+** comme sur la vm de test pour commencer à parser
+** dés le premier tour.
+*/
 void		init_cmd_proc(t_vm *vm)
 {
   t_proc	*pcourant;
@@ -27,15 +32,9 @@ void		init_cmd_proc(t_vm *vm)
     }
 }
 
-void	reset_mem(t_vm **vm)
-{
-  int	i;
-
-  i = 0;
-  while (i < MEM_SIZE)
-    (*vm)->mem[i++] = 0x0;
-}
-
+/*
+** Dump memory => affiche la mémoire
+*/
 void	dump_memory(t_vm *vm)
 {
   int	i;
@@ -55,6 +54,9 @@ void	dump_memory(t_vm *vm)
   fflush(stdout);
 }
 
+/*
+** calcul de l' interval entre les champions dans la memoire
+*/
 int	calc_interval(int prg_nb, int total_size)
 {
   int	interval;
@@ -72,6 +74,9 @@ int	calc_interval(int prg_nb, int total_size)
   return (interval);
 }
 
+/*
+** initialise les registre de chaque proc
+*/
 void		init_reg(int *buf, int cid)
 {
   int		i;

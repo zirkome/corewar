@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:27:36 2013 guillaume fillon
-** Last update Fri Mar 29 13:21:06 2013 remi
+** Last update Fri Mar 29 22:49:07 2013 remi
 */
 
 #include "lib.h"
@@ -31,13 +31,11 @@ void	get_adress_st(t_vm *vm, t_proc **lproc, int *adress)
     *adress = (*lproc)->cmd[2];
   if ((((*lproc)->cmd[0] >> 4) & 0x03) == 3)
     {
-      printf("DIRECT [%d][%d][%d][%d]\n", (*lproc)->cmd[2], (*lproc)->cmd[3], (*lproc)->cmd[4], (*lproc)->cmd[5]);
       *adress = (((*lproc)->cmd[2] << 8) | ((*lproc)->cmd[3]) |
 		 ((*lproc)->cmd[4] << 8) | ((*lproc)->cmd[5])) & 0xFFFFFFFF;
     }
   if ((((*lproc)->cmd[0] >> 4) & 0x03) == 2)
     {
-      printf("INDIRECT\n");
       *adress = (((*lproc)->cmd[2] << 8) | (*lproc)->cmd[3]) & 0xFFFF;
       if (*adress < 0)
 	*adress = MEM_SIZE - *adress;
@@ -78,7 +76,6 @@ void		op_st(t_vm *vm, t_proc **lproc)
   debug(vm, lproc);
   load_reg_st(lproc, reg);
   get_adress_st(vm, lproc, &adress);
-  printf("[%d] %d \n", (*lproc)->reg[0], adress % 0xFFFFFFFF);
   store_st(vm, reg, lproc, adress);
   (*lproc)->pc += interval_memory((*lproc)->cmd, (*lproc)->code, 0, 0);
 }

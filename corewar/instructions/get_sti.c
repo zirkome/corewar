@@ -5,11 +5,15 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Thu Mar 28 16:02:20 2013 remi
-** Last update Fri Mar 29 08:58:54 2013 remi
+** Last update Fri Mar 29 22:46:31 2013 remi
 */
 
 #include "lib.h"
 #include "vm.h"
+
+/*
+** permet en autre de recupérer des arguments d un certain type.
+*/
 
 int	get_adress_reg(t_vm *vm, t_proc **lproc, int *i)
 {

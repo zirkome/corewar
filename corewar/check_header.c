@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Thu Jan 24 21:46:54 2013 guillaume fillon
-** Last update Thu Mar 28 12:28:19 2013 remi
+** Last update Fri Mar 29 22:32:04 2013 remi
 */
 
 #include "lib.h"
@@ -17,6 +17,9 @@ int	little_to_big_endian(int val)
   return (val << 16) | ((val >> 16) & 0xFFFF);
 }
 
+/*
+** Check la validité du header en fonction du .h
+*/
 header_t	*check_header(const int fd, header_t *header)
 {
   int		i;

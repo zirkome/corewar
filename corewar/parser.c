@@ -5,12 +5,17 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Tue Jan 29 13:13:40 2013 remi robert
-** Last update Fri Mar 29 09:58:33 2013 remi
+** Last update Fri Mar 29 22:28:30 2013 remi
 */
 
 #include "lib.h"
 #include "vm.h"
 
+/*
+** Permet de "prendre" 16 cases de mémoire a partir du pc.
+** Permet d' avoir les parametre pour linstruction.
+** 16 car on peut avoir au maximum 4 argument de 4 octets maximum
+*/
 void	parser(t_vm *vm, t_proc *lproc, int add)
 {
   int	i;

@@ -5,12 +5,16 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Wed Mar 20 09:21:26 2013 remi
-** Last update Thu Mar 28 21:08:54 2013 remi
+** Last update Fri Mar 29 22:43:44 2013 remi
 */
 
 #include "lib.h"
 #include "vm.h"
 
+/*
+** retourne l etat de carry d un champion, utilise par
+** sjump par exmple pour savoir si on effectuer cette instruction
+*/
 int		check_carry_champion(t_proc *ptete, int num_champion)
 {
   t_proc	*pcourant;

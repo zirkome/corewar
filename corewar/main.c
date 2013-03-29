@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 21 18:27:28 2013 remi robert
-** Last update Thu Mar 28 15:32:52 2013 remi
+** Last update Fri Mar 29 22:29:04 2013 remi
 */
 
 #include "lib.h"
@@ -37,32 +37,46 @@ int	check_value_vm()
   return (1);
 }
 
-/* #ifdef DEBUG */
-/*       printf("HEADER CHAMPION N°%d\n", i); */
-/*       printf("MAGIC_CODE : 0x%X\n", header[i - 1].magic); */
-/*       printf("NAME : %s\n", header[i - 1].prog_name); */
-/*       printf("SIZE : %d octets\n", header[i - 1].prog_size); */
-/*       printf("COMMENT : %s\n\n", header[i - 1].comment); */
-/* #endif */
+/*
+** recupére option parseur => Merci fabien !!!
+*/
+t_prog		*get_arg_parsing(int argc, char **av)
+{
+  t_prog	*tab;
+
+  if ((tab = malloc(4 * sizeof(t_prog))) == NULL)
+    return (NULL);
+  initialize_tab(tab);
+  if (parsing_param(&av[1], tab) == -1 ||
+      tab[0].prog_name == NULL)
+    {
+      printf("OKOKOK\n");
+      display_usage();
+    }
+  return (tab);
+}
 
 int		main(int argc, char **argv)
 {
   t_proc	*lproc;
   header_t	*header;
   int		i;
+  t_prog	*tab;
 
-  if (argc == 1 || argc > 5 || check_value_vm() == 0)
+  if (argc == 1 || check_value_vm() == 0 ||
+      (tab = get_arg_parsing(argc, argv)) == NULL)
     display_usage();
-  i = 1;
+  i = 0;
   lproc = NULL;
   header = NULL;
-  while (i < argc)
+  while (i < 4 && tab[i].prog_name != NULL)
     {
-      if ((header = realloc(header, sizeof(*header) * i)) == NULL)
-	return (0);
-      open_file_champion(argv[i], &header[i - 1]);
+      if ((header = realloc(header, sizeof(*header) * (i + 1))) == NULL)
+      	return (0);
+      printf("[%s]\n", tab[i].prog_name);
+      open_file_champion(tab[i].prog_name, &header[i]);
       i = i + 1;
     }
-  launch_vm(lproc, header, argv, argc - 1);
+  launch_vm(lproc, header, tab, i);
   return (0);
 }

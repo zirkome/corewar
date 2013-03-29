@@ -5,7 +5,7 @@
 ** Login   <bridou_n@epitech.net>
 **
 ** Started on  Wed Jan 16 17:58:40 2013 nicolas bridoux
-** Last update Fri Mar 29 10:34:30 2013 remi
+** Last update Fri Mar 29 22:58:03 2013 remi
 */
 
 #ifndef VM_H_
@@ -17,6 +17,15 @@
 # include "couleur.h"
 
 # define READ 4096
+
+typedef	struct	s_prog
+{
+  char		*prog_name;
+  int		prog_numb;
+  int		load_add;
+  int		debug;
+  int		mem;
+}		t_prog;
 
 typedef struct	s_options
 {
@@ -47,6 +56,7 @@ typedef struct	s_vm
   int		old_live;
   int		nb_live;
   char		prg_nb;
+  t_prog	*option;
   char		prg_alive[4];
   char		nbr_live;
   int		nb_proc;
@@ -56,6 +66,21 @@ typedef struct	s_vm
   t_proc	*proc;
 }		t_vm;
 
+/*
+** Parseur
+*/
+int		syntax_error(char *msg);
+void		initialize_tab(t_prog *tab);
+int		parsing_param(char **av, t_prog *tab);
+int		my_get_nbr_hex(char *str);
+int		fill_prog_tab(char **av, t_prog *tab, int rk);
+int		fill_prog_name(char **av, t_prog *tab, int rk);
+t_prog		prog_name(char **av);
+t_prog		prog_number(char **av);
+t_prog		load_address(char **av);
+int		my_strcmp(char *a, char *b);
+int		my_getnbr(char *str);
+void		my_put_nbr(int nb);
 
 /*
 ** tmp
@@ -64,6 +89,7 @@ void		free_champ(header_t *header, int nb);
 void		free_vm(t_vm *vm);
 void		my_putstr(char *str);
 void		print_champion(int, t_vm *);
+void		init_option_number_proc(t_proc *, int);
 
 /*
 ** open_file.c
@@ -114,7 +140,7 @@ void		init_reg(int *buf, int cid);
 */
 int		load_champ(char *file, t_vm **vm, header_t *header, int pos_mem);
 t_vm		*init_vm(int mem_tmp, t_proc *lproc);
-int		launch_vm(t_proc *l_proc, header_t *header, char **av, int nb_ch);
+int		launch_vm(t_proc *l_proc, header_t *header, t_prog *tab, int nb_ch);
 
 /*
 ** check_prog_live.c
@@ -161,5 +187,12 @@ int		get_adress_ldi(t_vm *, t_proc **, int, int *);
 void		debug(t_vm *, t_proc **);
 int		get_last_num_proc(t_vm *, int);
 void		init_cmd_proc(t_vm *);
+
+/*
+** init_memory.c
+*/
+void		reset_mem(t_vm **);
+void		init_memory_by_zero(t_vm **);
+void		init_memory_by_random(t_vm **, int);
 
 #endif /* VM_H_ */

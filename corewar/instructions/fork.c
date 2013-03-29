@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:28:20 2013 guillaume fillon
-** Last update Fri Mar 29 09:55:14 2013 remi
+** Last update Fri Mar 29 22:45:56 2013 remi
 */
 
 #include "lib.h"
@@ -30,6 +30,9 @@ int		get_nb_proc(t_proc *ptete, int nb_champion)
   return (nb);
 }
 
+/*
+** ajoute a la liste de processus le nouveau proc fork
+*/
 t_proc		*add_fork(t_proc **ptete, t_proc **elem)
 {
   t_proc	*pcourant;
@@ -47,6 +50,9 @@ t_proc		*add_fork(t_proc **ptete, t_proc **elem)
   return (*ptete);
 }
 
+/*
+** init le nouveau proc.
+*/
 void	init_new_proc(t_vm *vm, t_proc **new_proc, t_proc **proc_head, int new_pc)
 {
   int	indice;

@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:30:00 2013 guillaume fillon
-** Last update Fri Mar 29 13:17:45 2013 remi
+** Last update Fri Mar 29 22:39:12 2013 remi
 */
 
 #include "lib.h"
@@ -20,6 +20,9 @@ void	init_tab(char *reg)
   reg[3] = 0;
 }
 
+/*
+** load la valeur du registre en fonction du type d' argument
+*/
 void	load_reg(t_vm *vm, t_proc **lproc, char *reg, int *i)
 {
   int	adress;
@@ -47,6 +50,9 @@ void	load_reg(t_vm *vm, t_proc **lproc, char *reg, int *i)
     }
 }
 
+/*
+** calcul la valeur du paramaétre en focntion de son type
+*/
 int	calc_offset(t_proc **lproc, int *i, int param)
 {
   int	offset;

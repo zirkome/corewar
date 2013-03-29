@@ -5,13 +5,16 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:28:39 2013 guillaume fillon
-** Last update Thu Mar 28 22:14:31 2013 remi
+** Last update Fri Mar 29 22:42:44 2013 remi
 */
 
 #include "lib.h"
 #include "vm.h"
 #include "couleur.h"
 
+/*
+** affiche la valeur ascii contenu dans un registre
+*/
 void		op_aff(t_vm *vm, t_proc **lproc)
 {
   debug(vm, lproc);

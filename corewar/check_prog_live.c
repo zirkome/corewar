@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Mon Mar 11 08:18:24 2013 remi
-** Last update Thu Mar 28 23:34:59 2013 remi
+** Last update Fri Mar 29 22:31:23 2013 remi
 */
 
 #include "lib.h"
@@ -21,6 +21,9 @@ void	init_tab_live(char *tab)
   tab[3] = -1;
 }
 
+/*
+** supprime les process du champion qui est plus en vie
+*/
 void		gere_prog_live(char *live, t_vm **vm)
 {
   int		indice;
@@ -53,6 +56,11 @@ int	get_condition_count(int count, t_vm *vm)
   return (0);
 }
 
+/*
+** check le combre de champion actuellement en vie.
+** s il y en a aucun alors aucun gagnant sinon on print
+** le gagnant et on arrete la vm
+*/
 int		there_is_last_champ(char *live, t_vm *vm)
 {
   int		i;

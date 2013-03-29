@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Tue Mar 12 13:02:47 2013 remi
-** Last update Thu Mar 28 12:27:43 2013 remi
+** Last update Fri Mar 29 22:22:35 2013 remi
 */
 
 #include "lib.h"
@@ -13,6 +13,9 @@
 #include "couleur.h"
 #include "instructions/instruction.h"
 
+/*
+** retourn le temp de de cycle de l' instruction.
+*/
 int	wait_proc(int cmd)
 {
   if (cmd >= 0 && cmd <= REG_NUMBER)

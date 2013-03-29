@@ -5,12 +5,15 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:29:24 2013 guillaume fillon
-** Last update Fri Mar 29 09:55:23 2013 remi
+** Last update Fri Mar 29 22:40:31 2013 remi
 */
 
 #include "lib.h"
 #include "vm.h"
 
+/*
+** initialise le nouveau processus de lfork;
+*/
 void	init_new_proc_lfork(t_vm *vm, t_proc **new_proc, t_proc **proc_head, int new_pc)
 {
   int	indice;

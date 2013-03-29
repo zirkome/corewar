@@ -5,14 +5,20 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Thu Mar 28 17:05:43 2013 remi
-** Last update Fri Mar 29 09:56:39 2013 remi
+** Last update Fri Mar 29 22:42:01 2013 remi
 */
 
 #include "lib.h"
 #include "vm.h"
 
-void	debug(t_vm *vm, t_proc ** lproc)
+/*
+** affiche des informations complémentaires.
+** pour activer cette option = -v
+*/
+void	debug(t_vm *vm, t_proc **lproc)
 {
+  if (vm->option[0].debug != 1)
+    return ;
   my_putstr(INTENSITE);
   my_putstr("[wait : ");
   my_put_nbr(vm->cycle_champion[(*lproc)->nb_proc % 4]);

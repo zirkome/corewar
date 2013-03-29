@@ -5,12 +5,16 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:28:00 2013 guillaume fillon
-** Last update Fri Mar 29 13:31:40 2013 remi
+** Last update Fri Mar 29 22:48:43 2013 remi
 */
 
 #include "lib.h"
 #include "vm.h"
 
+/*
+** recherche dans la liste de proc, le numero de champion
+** si trouve, ce champion a live et est donc en vie
+*/
 void		live_champion(t_vm *vm, int live)
 {
   t_proc	*pcourant;
@@ -21,7 +25,6 @@ void		live_champion(t_vm *vm, int live)
   while (pcourant != NULL)
     {
       if (pcourant->nb_proc == live)
-	  /* pcourant->reg[0] == live) */
 	{
 	  my_putstr(VERT);
 	  my_putstr("Le champion : ");

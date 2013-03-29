@@ -5,11 +5,15 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Tue Mar 12 13:57:31 2013 remi
-** Last update Fri Mar 29 09:05:49 2013 remi
+** Last update Fri Mar 29 22:39:44 2013 remi
 */
 
 #include "vm.h"
 
+/*
+** met le carry à 0 ou a 1 suivant la valeur passé.
+** si val == 0 alors carry = 1;
+*/
 void	set_carry(t_proc **lproc, int val)
 {
   if (val == 0)

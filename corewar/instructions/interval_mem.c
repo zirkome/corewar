@@ -5,12 +5,20 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Wed Jan 30 08:50:03 2013 remi robert
-** Last update Fri Mar 29 09:18:01 2013 remi
+** Last update Fri Mar 29 22:47:59 2013 remi
 */
 
 #include "lib.h"
 #include "vm.h"
 
+/*
+** Fonction permettant de calculer l avancer du pc aprés avoir
+** executé une instruction.
+*/
+
+/*
+** cas partisulier
+*/
 void	rempl_param_sz(char *interval, int cmd)
 {
   if (cmd == 0x0B)
@@ -37,6 +45,9 @@ void	rempl_param_sz(char *interval, int cmd)
     }
 }
 
+/*
+** calculdu pc on focntion de l octet de codage
+*/
 int	decoupage_pc(int pc, int cmd)
 {
   char	interval[4];
