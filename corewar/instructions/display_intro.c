@@ -5,7 +5,7 @@
 ** Login   <kokaz@epitech.net>
 **
 ** Started on  Sun Mar 31 09:36:31 2013 guillaume fillon
-** Last update Sun Mar 31 10:27:45 2013 guillaume fillon
+** Last update Sun Mar 31 14:10:54 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -92,7 +92,7 @@ void		display_sidebar(SDL_Surface *screen)
   SDL_BlitSurface(surface, NULL, screen, &pos);
   SDL_FreeSurface(surface);
   display_intro("CoreWar", 0, screen);
-  display_intro("v1.0 build 151", 1, screen);
+  display_intro("v1.0 build 155", 1, screen);
   display_intro("Made by Remi Robert, " \
 		"Guillaume Fillon, Nicolas Bridoux" \
 		" & Fabien Linardon", 2, screen);
