@@ -5,12 +5,9 @@
 ** Login   <kokaz@epitech.net>
 **
 ** Started on  Tue Mar 26 10:24:47 2013 guillaume fillon
-** Last update Sun Mar 31 14:55:17 2013 guillaume fillon
+** Last update Sun Mar 31 19:32:45 2013 guillaume fillon
 */
 
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
 #include "lib.h"
 #include "vm.h"
 
@@ -27,17 +24,6 @@ SDL_Surface	*init_sdl(SDL_Surface *screen)
   if (TTF_Init() == -1)
     my_error("Erreur d'initialisation de TTF_Init\n", 1);
   return (screen);
-}
-
-Mix_Music	*play_music(Mix_Music *music)
-{
-  if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT,
-		   MIX_DEFAULT_CHANNELS, HEIGHT) == -1)
-    my_error("Can't play the music. So sad...", 0);
-  Mix_VolumeMusic(MIX_MAX_VOLUME / 2);
-  music = Mix_LoadMUS("corewar.xm");
-  Mix_PlayMusic(music, -1);
-  return (music);
 }
 
 void			intro_corewar(TTF_Font *font, char *label,
@@ -67,8 +53,8 @@ int			launch_sdl(t_sdl *sdl)
   font288 = TTF_OpenFont("game_over.ttf", FONT_SIZE1);
   font200 = TTF_OpenFont("game_over.ttf", 100);
   intro_corewar(font288, "CoreWar", sdl->screen, 0);
-  intro_corewar(font200, "An original game by Victor A. Vyssotsky, Robert Morris Sr. " \
-		"& M. Douglas McIlroy of the Bell Labs", sdl->screen, 100);
+  intro_corewar(font200, "An original game by Victor A. Vyssotsky, Robert " \
+		"Morris Sr. & M. Douglas McIlroy", sdl->screen, 100);
   intro_corewar(font200, "Coded by Le Gang de la Toundra", sdl->screen, 200);
   intro_corewar(font200, "(Insert coin to play)", sdl->screen, 400);
   SDL_Flip(sdl->screen);

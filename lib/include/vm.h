@@ -5,7 +5,7 @@
 ** Login   <bridou_n@epitech.net>
 **
 ** Started on  Wed Jan 16 17:58:40 2013 nicolas bridoux
-** Last update Sun Mar 31 18:46:54 2013 guillaume fillon
+** Last update Sun Mar 31 19:35:18 2013 guillaume fillon
 */
 
 #ifndef VM_H_
@@ -103,7 +103,17 @@ void		my_put_nbr(int nb);
 /*
 ** sdl_gui.c
 */
-int	launch_sdl(t_sdl *sdl);
+SDL_Surface	*init_sdl(SDL_Surface *screen);
+int		launch_sdl(t_sdl *sdl);
+void	intro_corewar(TTF_Font *font, char *label, SDL_Surface *screen, int);
+
+/*
+** sdl_gui.c
+*/
+void		handle_event2(SDL_Event *event);
+void		handle_event(SDL_Event *event, t_sdl *sdl);
+void		sdl_free(Mix_Music *music);
+Mix_Music	*play_music(Mix_Music *music);
 
 /*
 ** display_intro.c
@@ -204,8 +214,14 @@ void	queue(t_proc **root, int pc, int cid);
 void	pop(t_proc *elem);
 
 /*
+** display_intro.c
+*/
+void		display_champions(t_vm *vm);
+
+/*
 ** run_cycle.c
 */
+void	reset_live_prg(t_vm **vm);
 void	sync_cycle(t_vm *vm);
 int	handle_schedule(t_vm **vm);
 int	exec_instruction(t_vm *vm, t_proc **proc);

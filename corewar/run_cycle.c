@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 28 13:10:36 2013 remi robert
-** Last update Sun Mar 31 18:39:00 2013 guillaume fillon
+** Last update Sun Mar 31 19:36:50 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -13,9 +13,6 @@
 #include "couleur.h"
 #include "instructions/instruction.h"
 
-/*
-** retourn le code de l' instruction
-*/
 int	get_cmd(char code)
 {
   int	i;
@@ -30,10 +27,6 @@ int	get_cmd(char code)
   return (-1);
 }
 
-/*
-** Permet d' executer l' instruction sur lequel le proc a parsé
-** une fois le wait ecoule
-*/
 int	exec_instruction(t_vm *vm, t_proc **proc)
 {
   int	cmd_idx;
@@ -55,9 +48,6 @@ int	exec_instruction(t_vm *vm, t_proc **proc)
   return (-1);
 }
 
-/*
-** renitialise les live des champions
-*/
 void		reset_live_prg(t_vm **vm)
 {
   t_proc	*cur_proc;
@@ -72,11 +62,6 @@ void		reset_live_prg(t_vm **vm)
     }
 }
 
-/*
-** boucle de process qui gere l attente des processus.
-** decremente de wait de 1, si le wait  = 0 alors
-** on execute.
-*/
 int		handle_schedule(t_vm **vm)
 {
   t_proc	*cur_proc;
@@ -104,30 +89,6 @@ int		handle_schedule(t_vm **vm)
     }
   return (1);
 }
-
-void		sdl_free(Mix_Music *music)
-{
-  Mix_FreeMusic(music);
-  Mix_CloseAudio();
-  TTF_Quit();
-  SDL_Quit();
-  exit(EXIT_SUCCESS);
-}
-
-void		handle_event(SDL_Event *event, t_sdl *sdl)
-{
-  while (SDL_PollEvent(event))
-    {
-      if (event->type == SDL_KEYDOWN)
-	if (event->key.keysym.sym == SDLK_ESCAPE)
-	  sdl_free(sdl->music);
-      if (event->type == SDL_QUIT)
-	sdl_free(sdl->music);
-    }
-}
-
-void			display_sidebar(SDL_Surface *screen);
-void		display_champions(t_vm *vm);
 
 void		sync_cycle(t_vm *vm)
 {

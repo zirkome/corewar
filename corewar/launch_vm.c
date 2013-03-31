@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Thu Jan 24 23:12:01 2013 remi
-** Last update Sun Mar 31 18:25:10 2013 guillaume fillon
+** Last update Sun Mar 31 19:14:22 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -35,7 +35,6 @@ t_vm		*init_vm(int mem_tmp, t_proc *lproc,
   vm->prg_nb = prg_nb;
   vm->nb_proc = prg_nb;
   vm->header = header;
-  reset_mem(&vm);
   return (vm);
 }
 

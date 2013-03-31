@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Thu Mar 28 23:32:23 2013 remi
-** Last update Sun Mar 31 18:46:23 2013 guillaume fillon
+** Last update Sun Mar 31 19:24:45 2013 guillaume fillon
 */
 
 #include "vm.h"
@@ -34,7 +34,8 @@ void			print_champion(int count, t_vm *vm)
 
   font288 = TTF_OpenFont("game_over.ttf", 288);
   print_champ_data(vm->header[count % 4]);
-  surface = TTF_RenderText_Blended(font288, vm->header[count % 4].prog_name, color);
+  surface = TTF_RenderText_Blended(font288,
+				   vm->header[count % 4].prog_name, color);
   pos.x = (WIDTH / 2) - (surface->w / 2);
   pos.y = (HEIGHT / 2) - (surface->h / 2);
   SDL_BlitSurface(surface, NULL, vm->sdl->screen, &pos);

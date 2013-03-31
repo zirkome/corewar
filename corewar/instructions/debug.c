@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Thu Mar 28 17:05:43 2013 remi
-** Last update Sun Mar 31 18:11:39 2013 guillaume fillon
+** Last update Sun Mar 31 19:16:49 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -105,7 +105,6 @@ void	debug(t_vm *vm, t_proc **lproc, int address)
   my_putstr("] ");
   my_putstr(REZ);
   my_putstr(op_tab[((*lproc)->code - 1) % REG_NUMBER].mnemonique);
-  my_putstr("\n");
   actualize_memory(vm, lproc, address);
   actualize_data(vm, lproc);
   if (SDL_Flip(vm->sdl->screen) == -1)

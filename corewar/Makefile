@@ -5,7 +5,7 @@
 ## Login   <bridou_n@epitech.net>
 ## 
 ## Started on  Fri Nov  9 20:29:49 2012 nicolas bridoux
-## Last update Sun Mar 31 17:57:47 2013 guillaume fillon
+## Last update Sun Mar 31 19:37:35 2013 guillaume fillon
 ##
 
 NAME	= corewar
@@ -27,10 +27,12 @@ SRCS	= main.c				\
 	  check_prog_live.c			\
 	  wait_proc.c				\
 	  sdl_gui.c				\
+	  sdl_misc.c				\
 	  print_champion.c			\
 	  init_option_number_proc.c		\
 	  init_memory.c				\
 	  list/list.c				\
+	  display_func.c			\
 	  instructions/display_data.c		\
 	  instructions/display_intro.c		\
 	  instructions/instruction.c		\
@@ -64,6 +66,7 @@ LSRCS	= $(LPATH)/my_putchar.c		\
 	  $(LPATH)/read_fd.c		\
 	  $(LPATH)/op.c			\
 	  $(LPATH)/my_itoa.c		\
+	  $(LPATH)/my_memset.c		\
 	  $(LPATH)/my_getnbr.c		\
 
 OBJS	= $(SRCS:.c=.o)

@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 21 18:27:28 2013 remi robert
-** Last update Sun Mar 31 18:17:39 2013 guillaume fillon
+** Last update Sun Mar 31 19:30:17 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -42,9 +42,6 @@ int		check_display(char **envp)
   return (0);
 }
 
-/*
-** recupére option parseur => Merci fabien !!!
-*/
 t_prog		*get_arg_parsing(int argc, char **av)
 {
   t_prog	*tab;
@@ -56,22 +53,6 @@ t_prog		*get_arg_parsing(int argc, char **av)
       tab[0].prog_name == NULL)
     display_usage();
   return (tab);
-}
-
-void		handle_event2(SDL_Event *event)
-{
-  int		flag;
-
-  flag = 1;
-  while (flag)
-    {
-      SDL_WaitEvent(event);
-      if (event->type == SDL_KEYDOWN)
-	if (event->key.keysym.sym == SDLK_ESCAPE)
-	  flag = 0;
-      if (event->type == SDL_QUIT)
-	flag = 0;
-    }
 }
 
 int		main(int argc, char **argv, char **envp)
