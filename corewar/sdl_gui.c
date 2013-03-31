@@ -5,7 +5,7 @@
 ** Login   <kokaz@epitech.net>
 **
 ** Started on  Tue Mar 26 10:24:47 2013 guillaume fillon
-** Last update Sun Mar 31 14:12:53 2013 guillaume fillon
+** Last update Sun Mar 31 14:55:17 2013 guillaume fillon
 */
 
 #include <unistd.h>
@@ -70,7 +70,7 @@ int			launch_sdl(t_sdl *sdl)
   intro_corewar(font200, "An original game by Victor A. Vyssotsky, Robert Morris Sr. " \
 		"& M. Douglas McIlroy of the Bell Labs", sdl->screen, 100);
   intro_corewar(font200, "Coded by Le Gang de la Toundra", sdl->screen, 200);
-  intro_corewar(font200, "(Press any key to start)", sdl->screen, 400);
+  intro_corewar(font200, "(Insert coin to play)", sdl->screen, 400);
   SDL_Flip(sdl->screen);
   while (1)
     {
