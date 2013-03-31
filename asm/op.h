@@ -5,14 +5,12 @@
 ** Tue Jul 13 18:53:48 1993
 */
 
-
 #ifndef _OP_H_
 # define _OP_H_
 
 #define MEM_SIZE                (6*1024)
 #define IDX_MOD                 512   /* modulo de l'index < */
 #define MAX_ARGS_NUMBER         4     /* this may not be changed 2^*IND_SIZE */
-
 #define COMMENT_CHAR            '#'
 #define LABEL_CHAR              ':'
 #define DIRECT_CHAR             '%'
@@ -20,8 +18,7 @@
 #define LABEL_CHARS             "abcdefghijklmnopqrstuvwxyz_0123456789"
 #define NAME_CMD_STRING         ".name"
 #define COMMENT_CMD_STRING      ".comment"
-
-#define REG_NUMBER      16              /* r1 <--> rx */
+#define REG_NUMBER		16              /* r1 <--> rx */
 
 typedef char    args_type_t;
 
@@ -32,7 +29,7 @@ typedef char    args_type_t;
                                    dans r1 (4 octecs )) */
 #define T_LAB           8       /* LABEL */
 
-struct  op_s    
+struct  op_s
 {
    char         *mnemonique;
    char         nbr_args;
@@ -53,13 +50,14 @@ extern  op_t    op_tab[];
 #define PROG_NAME_LENGTH        128
 #define COMMENT_LENGTH          2048
 
+#define COREWAR_EXEC_MAGIC      0xea83f3        /* why not */
+
 struct header_s
 {
-   int  magic;
-#define COREWAR_EXEC_MAGIC      0xea83f3        /* why not */
-   char prog_name[PROG_NAME_LENGTH+1];
-   int  prog_size;
-   char comment[COMMENT_LENGTH+1];
+  int  magico; /* 4 octets */
+  char prog_name[PROG_NAME_LENGTH+1]; /* 129 */
+  int  prog_size;  /* 4 octets */
+  char comment[COMMENT_LENGTH+1]; /* 2049 */
 };
 
 typedef struct header_s header_t;

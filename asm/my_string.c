@@ -5,7 +5,7 @@
 ** Login   <bridou_n@epitech.net>
 ** 
 ** Started on  Wed Jan 16 17:59:57 2013 nicolas bridoux
-** Last update Tue Jan 22 14:35:25 2013 nicolas bridoux
+** Last update Sat Jan 26 22:12:05 2013 nicolas bridoux
 */
 
 #include "asm.h"
@@ -22,8 +22,8 @@ int	my_strcmp(char *s1, char *s2)
       if (s1[i] > s2[i])
         return (1);
     }
-  if (s1[i] == s2[i])
-    return (0);
+  if (s1[i] != s2[i])
+    return (1);
   return (0);
 }
 
@@ -32,6 +32,8 @@ int	my_strncmp(char *s1, char *s2, int n)
   int	i;
 
   i = -1;
+  if (!n)
+    return (1);
   while (++i < n)
     {
       if (s1[i] < s2[i])
@@ -71,7 +73,7 @@ char	*my_strdup(char *src)
 
   len = my_strlen(src);
   if ((str = malloc(sizeof(char) * (len + 1))) == NULL)
-    my_error("Can not malloc\n", 1);
+    my_error("Can't perform malloc.\n", 1);
   my_strcpy(str, src);
   return (str);
 }

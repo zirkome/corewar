@@ -5,15 +5,12 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 28 13:10:36 2013 remi robert
-** Last update Sun Mar 31 03:48:21 2013 guillaume fillon
+** Last update Sun Mar 31 08:39:21 2013 guillaume fillon
 */
 
 #include "lib.h"
 #include "vm.h"
 #include "couleur.h"
-#include <SDL/SDL.h>
-#include <SDL/SDL_mixer.h>
-#include <SDL/SDL_ttf.h>
 #include "instructions/instruction.h"
 
 int	get_cmd(char code)
@@ -86,6 +83,7 @@ int		handle_schedule(t_vm **vm)
 	  cur_proc->wait = wait_proc(cur_proc->code - 1);
 	  (*vm)->cycle_champion[cur_proc->nb_proc % 4] += cur_proc->wait;
       	}
+      usleep(10240);
       cur_proc = cur_proc->next;
     }
   return (1);
@@ -125,19 +123,19 @@ void		sync_cycle(t_vm *vm)
   reset_live_prg(&vm);
   init_cmd_proc(vm);
   display_sidebar(vm->sdl->screen);
-  while (turn && vm->cycle_to_die > 0)
+  while (turn && vm->ctd > 0)
     {
       ++vm->cycle;
       handle_event(&event, vm->sdl);
       turn = handle_schedule(&vm);
-      if (n == vm->cycle_to_die || vm->nb_live == NBR_LIVE)
+      if (n == vm->ctd || vm->nb_live == NBR_LIVE)
 	{
 	  if ((check_prg_live(&vm)) == 0)
 	    return ;
 	  n = 0;
 	  vm->nb_live = 0;
 	  reset_live_prg(&vm);
-	  vm->cycle_to_die = vm->cycle_to_die - CYCLE_DELTA;
+	  vm->ctd = vm->ctd - CYCLE_DELTA;
 	  if (vm->cycle <= 0)
 	    return ;
 	}

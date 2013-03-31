@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Thu Jan 24 23:12:01 2013 remi
-** Last update Sun Mar 31 03:47:29 2013 guillaume fillon
+** Last update Sun Mar 31 08:39:32 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -32,7 +32,7 @@ t_vm		*init_vm(int mem_tmp, t_proc *lproc)
   vm->old_live = -1;
   vm->nb_live = 0;
   vm->cycle = 0;
-  vm->cycle_to_die = CYCLE_TO_DIE;
+  vm->ctd = CYCLE_TO_DIE;
   reset_mem(&vm);
   return (vm);
 }
@@ -75,8 +75,7 @@ t_proc		*load_champions(t_vm *vm,char **argv,
   return (vm->proc);
 }
 
-int		launch_vm(t_proc *lproc, header_t *header,
-			  char **argv, int prg_nb)
+int		launch_vm(header_t *header, char **argv, int prg_nb)
 {
   t_proc	*lproc;
   t_sdl		sdl;
@@ -97,7 +96,7 @@ int		launch_vm(t_proc *lproc, header_t *header,
   vm->sdl = &sdl;
   vm->proc = load_champions(vm, argv, header, mem_tmp);
   if (launch_sdl(&sdl) == EXIT_FAILURE)
-    {
+   {
       free_vm(vm);
       exit(EXIT_FAILURE);
     }
