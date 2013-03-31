@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Thu Jan 24 23:12:01 2013 remi
-** Last update Fri Mar 29 23:01:42 2013 remi
+** Last update Sun Mar 31 14:57:41 2013 remi
 */
 
 #include "lib.h"
@@ -49,7 +49,6 @@ int	load_champ(char *file, t_vm **vm, header_t *header, int pos_mem)
   buf = get_champ(file, &size);
   pos_buf = 0;
   size = pos_mem;
-  printf("POS_MEM : %d\n", pos_mem);
   while (pos_mem + pos_buf < header->prog_size + size)
     {
       (*vm)->mem[(pos_mem + pos_buf) % MEM_SIZE] = buf[pos_buf];
@@ -78,7 +77,8 @@ t_proc		*load_champions(t_vm *vm, t_prog *tab,
 	pos_mem = tab[i % 4].load_add % MEM_SIZE;
       add_to_list(&(vm)->proc, pos_mem, i + 1);
       init_option_number_proc(vm->proc, tab[i % 4].prog_numb);
-      pos_mem = load_champ(tab[i].prog_name, &vm, &header[i], pos_mem) + interval;
+      pos_mem = load_champ(tab[i].prog_name, &vm,
+			   &header[i], pos_mem) + interval;
       i = i + 1;
     }
   return (vm->proc);
@@ -106,10 +106,8 @@ int		launch_vm(t_proc *lproc, header_t *header,
   vm->option = tab;
   reset_mem(&vm);
   vm->proc = load_champions(vm, tab, header, mem_tmp);
-#ifdef DEBUG
-  printf("%s", "VM initialiser avec succès !\n");
-  dump_memory(vm);
-#endif
+  if (vm->option[0].dump != -1)
+    dump_memory(vm);
   sync_cycle(vm);
   free_vm(vm);
   return (0);

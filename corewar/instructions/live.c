@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:28:00 2013 guillaume fillon
-** Last update Fri Mar 29 22:48:43 2013 remi
+** Last update Sun Mar 31 14:30:03 2013 remi
 */
 
 #include "lib.h"
@@ -24,12 +24,12 @@ void		live_champion(t_vm *vm, int live)
   pcourant = vm->proc;
   while (pcourant != NULL)
     {
-      if (pcourant->nb_proc == live)
+      if (pcourant->reg[0] == live + 1)
 	{
 	  my_putstr(VERT);
-	  my_putstr("Le champion : ");
+	  my_putstr("\nLe champion : ");
 	  my_put_nbr(live + 1);
-	  my_putstr(" est en vie\n");
+	  my_putstr(" est en vie");
 	  my_putstr(REZ);
 	  vm->old_live = pcourant->nb_proc;
 	  pcourant->live = 1;
@@ -47,6 +47,8 @@ void	op_live(t_vm *vm, t_proc **lproc)
   vm->nb_live = vm->nb_live + 1;
   live = ((((*lproc)->cmd[0]) << 24) | (((*lproc)->cmd[1]) << 16) |
 	  (((*lproc)->cmd[2]) << 8) | ((*lproc)->cmd[3])) & 0xFFFFFFFF;
+  if (vm->option[0].debug != -1)
+    print_debug(live, "live : ", 0);
   live_champion(vm, live - 1);
   (*lproc)->pc += 5;
 }

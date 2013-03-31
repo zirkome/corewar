@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:29:37 2013 guillaume fillon
-** Last update Fri Mar 29 22:40:12 2013 remi
+** Last update Sat Mar 30 14:11:33 2013 remi
 */
 
 #include "lib.h"
@@ -39,7 +39,9 @@ void		op_lld(t_vm *vm, t_proc **lproc)
   val = 0;
   debug(vm, lproc);
   get_adress_lld(vm, lproc, &val);
-  set_carry(lproc, val);
   set_ld(vm, lproc, val);
+  if (vm->option[0].debug != -1)
+    print_debug(val, "value : ", 0);
+  set_carry(lproc, val);
   (*lproc)->pc += interval_memory((*lproc)->cmd, (*lproc)->code, 0, 0);
 }

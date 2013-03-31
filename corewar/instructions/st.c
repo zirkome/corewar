@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:27:36 2013 guillaume fillon
-** Last update Fri Mar 29 22:49:07 2013 remi
+** Last update Sun Mar 31 11:38:14 2013 remi
 */
 
 #include "lib.h"
@@ -77,5 +77,7 @@ void		op_st(t_vm *vm, t_proc **lproc)
   load_reg_st(lproc, reg);
   get_adress_st(vm, lproc, &adress);
   store_st(vm, reg, lproc, adress);
+  if (vm->option[0].debug != -1)
+    print_debug(adress, "adress : ", 1);
   (*lproc)->pc += interval_memory((*lproc)->cmd, (*lproc)->code, 0, 0);
 }

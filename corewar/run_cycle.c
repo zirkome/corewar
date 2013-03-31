@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 28 13:10:36 2013 remi robert
-** Last update Fri Mar 29 22:27:09 2013 remi
+** Last update Sun Mar 31 17:41:48 2013 remi
 */
 
 #include "lib.h"
@@ -46,6 +46,8 @@ int	exec_instruction(t_vm *vm, t_proc **proc)
   if (cmd_idx >= 0 && cmd_idx <= REG_NUMBER)
     {
       (cmd_tab[cmd_idx].f)(vm, proc);
+      if (vm->option[0].debug != -1)
+	my_putstr("\n");
       return (0);
     }
   else
@@ -106,10 +108,10 @@ int		handle_schedule(t_vm **vm)
 /*
 ** boucle principale de cycle.
 */
-void		sync_cycle(t_vm *vm)
+void	sync_cycle(t_vm *vm)
 {
-  int		turn;
-  int		n;
+  int	turn;
+  int	n;
 
   n = 0;
   turn = 1;

@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:29:24 2013 guillaume fillon
-** Last update Fri Mar 29 22:40:31 2013 remi
+** Last update Sat Mar 30 15:24:41 2013 remi
 */
 
 #include "lib.h"
@@ -14,7 +14,8 @@
 /*
 ** initialise le nouveau processus de lfork;
 */
-void	init_new_proc_lfork(t_vm *vm, t_proc **new_proc, t_proc **proc_head, int new_pc)
+void	init_new_proc_lfork(t_vm *vm, t_proc **new_proc,
+			    t_proc **proc_head, int new_pc)
 {
   int	indice;
 
@@ -47,6 +48,8 @@ void		op_lfork(t_vm *vm, t_proc **lproc)
       (*lproc)->pc += 3;
       return ;
     }
+  if (vm->option[0].debug != -1)
+    print_debug(new_pc, "new pc : ", 1);
   init_new_proc_lfork(vm, &new_proc, lproc, new_pc);
   debug(vm, lproc);
   (*lproc)->pc += 3;

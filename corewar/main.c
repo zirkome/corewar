@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 21 18:27:28 2013 remi robert
-** Last update Fri Mar 29 22:29:04 2013 remi
+** Last update Sun Mar 31 17:28:47 2013 remi
 */
 
 #include "lib.h"
@@ -20,20 +20,11 @@ void		display_usage()
 int	check_value_vm()
 {
   if (MEM_SIZE <= 0)
-    {
-      my_putstr("Error MEM_SIZE vm is to small\n");
-      return (0);
-    }
+    my_error("Error MEM_SIZE vm is to small\n", 1);
   if (REG_NUMBER <= 0)
-    {
-      my_putstr("Error there are 0 or less, instructions on the vm\n");
-      return (0);
-    }
+    my_error("Error there are 0 or less, instructions on the vm\n" , 1);
   if (REG_SIZE <= 0)
-    {
-      my_putstr("Error not egal 4\n");
-      return (0);
-    }
+    my_error("Error not egal 4\n" , 1);
   return (1);
 }
 
@@ -47,12 +38,9 @@ t_prog		*get_arg_parsing(int argc, char **av)
   if ((tab = malloc(4 * sizeof(t_prog))) == NULL)
     return (NULL);
   initialize_tab(tab);
-  if (parsing_param(&av[1], tab) == -1 ||
+  if (parsing_param(&av[1], tab, 0) == -1 ||
       tab[0].prog_name == NULL)
-    {
-      printf("OKOKOK\n");
-      display_usage();
-    }
+    display_usage();
   return (tab);
 }
 
@@ -72,11 +60,10 @@ int		main(int argc, char **argv)
   while (i < 4 && tab[i].prog_name != NULL)
     {
       if ((header = realloc(header, sizeof(*header) * (i + 1))) == NULL)
-      	return (0);
-      printf("[%s]\n", tab[i].prog_name);
+      	return (EXIT_FAILURE);
       open_file_champion(tab[i].prog_name, &header[i]);
       i = i + 1;
     }
   launch_vm(lproc, header, tab, i);
-  return (0);
+  return (EXIT_SUCCESS);
 }

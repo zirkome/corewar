@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Tue Mar 12 13:57:31 2013 remi
-** Last update Fri Mar 29 22:39:44 2013 remi
+** Last update Sat Mar 30 14:21:24 2013 remi
 */
 
 #include "vm.h"
@@ -18,8 +18,9 @@ void	set_carry(t_proc **lproc, int val)
 {
   if (val == 0)
     {
-      my_putstr(ROUGE);
-      my_putstr("carry = 1\n");
+      my_putstr("\n");
+      my_putstr(F_ROUGE);
+      my_putstr("carry = 1");
       my_putstr(REZ);
       (*lproc)->carry = 1;
     }

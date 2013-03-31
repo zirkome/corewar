@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:28:20 2013 guillaume fillon
-** Last update Fri Mar 29 22:45:56 2013 remi
+** Last update Sat Mar 30 15:24:00 2013 remi
 */
 
 #include "lib.h"
@@ -53,7 +53,8 @@ t_proc		*add_fork(t_proc **ptete, t_proc **elem)
 /*
 ** init le nouveau proc.
 */
-void	init_new_proc(t_vm *vm, t_proc **new_proc, t_proc **proc_head, int new_pc)
+void	init_new_proc(t_vm *vm, t_proc **new_proc,
+		      t_proc **proc_head, int new_pc)
 {
   int	indice;
 
@@ -91,6 +92,8 @@ void		op_fork(t_vm *vm, t_proc **lproc)
     }
   init_new_proc(vm, &new_proc, lproc, new_pc);
   vm->nb_proc = vm->nb_proc + 1;
+  if (vm->option[0].debug != -1)
+    print_debug(new_pc, "new pc : ", 1);
   new_proc->nb_proc = get_nb_proc(vm->proc, (*lproc)->reg[0]);
   debug(vm, lproc);
   (*lproc)->pc += 3;

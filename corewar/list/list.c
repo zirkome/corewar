@@ -5,10 +5,9 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Mon Mar 11 09:18:32 2013 remi
-** Last update Fri Mar 29 11:20:59 2013 remi
+** Last update Sun Mar 31 17:40:45 2013 remi
 */
 
-#include <stdlib.h>
 #include "lib.h"
 #include "vm.h"
 

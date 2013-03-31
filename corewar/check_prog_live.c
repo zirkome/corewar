@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Mon Mar 11 08:18:24 2013 remi
-** Last update Fri Mar 29 22:31:23 2013 remi
+** Last update Sat Mar 30 20:20:49 2013 remi
 */
 
 #include "lib.h"
@@ -107,6 +107,10 @@ int		check_prg_live(t_vm **vm)
     }
   gere_prog_live(live, vm);
   if (there_is_last_champ(live, *vm))
-    return (0);
+    {
+      if ((*vm)->option[0].dump != -1)
+	dump_memory(*vm);
+      return (0);
+    }
   return (1);
 }

@@ -5,7 +5,7 @@
 ** Login   <bridou_n@epitech.net>
 **
 ** Started on  Wed Jan 16 17:58:40 2013 nicolas bridoux
-** Last update Fri Mar 29 22:58:03 2013 remi
+** Last update Sun Mar 31 17:50:51 2013 remi
 */
 
 #ifndef VM_H_
@@ -25,6 +25,7 @@ typedef	struct	s_prog
   int		load_add;
   int		debug;
   int		mem;
+  int		dump;
 }		t_prog;
 
 typedef struct	s_options
@@ -71,9 +72,9 @@ typedef struct	s_vm
 */
 int		syntax_error(char *msg);
 void		initialize_tab(t_prog *tab);
-int		parsing_param(char **av, t_prog *tab);
+int		parsing_param(char **av, t_prog *tab, int dump);
 int		my_get_nbr_hex(char *str);
-int		fill_prog_tab(char **av, t_prog *tab, int rk);
+int		fill_prog_tab(char **av, t_prog *tab, int rk, int ret);
 int		fill_prog_name(char **av, t_prog *tab, int rk);
 t_prog		prog_name(char **av);
 t_prog		prog_number(char **av);
@@ -88,8 +89,8 @@ void		my_put_nbr(int nb);
 void		free_champ(header_t *header, int nb);
 void		free_vm(t_vm *vm);
 void		my_putstr(char *str);
-void		print_champion(int, t_vm *);
-void		init_option_number_proc(t_proc *, int);
+void		print_champion(int nb, t_vm *vm);
+void		init_option_number_proc(t_proc *lproc , int option);
 
 /*
 ** open_file.c
@@ -101,7 +102,7 @@ char		*get_champ(char *file, int *size);
 /*
 ** wait_proc.c
 */
-int		wait_proc(int);
+int		wait_proc(int nb_proc);
 
 /*
 ** list.c
@@ -185,6 +186,7 @@ void		get_reg_reg(t_vm *, t_proc **, int *, char *);
 int		get_direct_ldi(t_vm *, t_proc **, int, int *);
 int		get_adress_ldi(t_vm *, t_proc **, int, int *);
 void		debug(t_vm *, t_proc **);
+void		print_debug(int, char *, int);
 int		get_last_num_proc(t_vm *, int);
 void		init_cmd_proc(t_vm *);
 

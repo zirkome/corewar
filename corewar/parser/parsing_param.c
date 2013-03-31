@@ -5,7 +5,7 @@
 ** Login   <linard_f@epitech.net>
 **
 ** Started on  Tue Mar 12 17:24:38 2013 fabien linardon
-** Last update Fri Mar 29 22:59:13 2013 remi
+** Last update Sun Mar 31 17:18:30 2013 remi
 */
 
 #include "lib.h"
@@ -29,16 +29,15 @@ void	initialize_tab(t_prog *tab)
       tab[rk].load_add = -1;
       tab[rk].debug = -1;
       tab[rk].mem = -1;
+      tab[rk].dump = -1;
     }
 }
 
-int	parsing_param(char **av, t_prog *tab)
+int	parsing_param(char **av, t_prog *tab, int dump)
 {
-  int	dump;
   int	rk;
   int	j;
 
-  dump = 0;
   rk = -1;
   j = 0;
   while (av[++rk])
@@ -52,9 +51,10 @@ int	parsing_param(char **av, t_prog *tab)
 	}
       else
 	{
-	  if ((j = fill_prog_tab(&av[rk], tab, j)) == -1)
+	  if ((j = fill_prog_tab(&av[rk], tab, j, 0)) == -1)
 	    return (-1);
-	  if (av[rk][0] == '-')
+	  if (av[rk][0] == '-' && av[rk][1] && (av[rk][1] != 'v') &&
+	      (av[rk][1] != 'z'))
 	    ++rk;
 	}
     }
