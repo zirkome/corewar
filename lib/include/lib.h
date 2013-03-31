@@ -5,11 +5,13 @@
 ** Login   <bridou_n@epitech.net>
 **
 ** Started on  Wed Jan 16 17:58:40 2013 nicolas bridoux
-** Last update Tue Jan 22 13:16:17 2013 remi robert
+** Last update Sat Mar 30 21:49:41 2013 guillaume fillon
 */
 
 #ifndef LIB_H_
 # define LIB_H_
+
+# define DEBUG
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -24,5 +26,7 @@ int	my_strcmp(char *s1, char *s2);
 void	my_strcpy(char *dest, char *src);
 int	my_strncmp(char *s1, char *s2, int n);
 char	*my_strdup(char *str);
+char	*my_itoa(int i, char b[]);
+void	my_strcat(char *dest, char *src);
 
 #endif /* LIB_H_ */

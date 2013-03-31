@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 21 18:34:30 2013 remi robert
-** Last update Tue Jan 22 15:35:17 2013 remi robert
+** Last update Tue Jan 29 18:05:59 2013 remi robert
 */
 
 #include <sys/stat.h>
@@ -13,41 +13,70 @@
 #include "lib.h"
 #include "vm.h"
 
+char	*get_champ(char *path, int *size)
+{
+  char	buf[2];
+  char	*file;
+  int	fd;
+  int	ret;
+
+  file = NULL;
+  buf[1] = '\0';
+  *size = 0;
+  if ((fd = open(path, O_RDONLY)) == -1)
+    my_error("File not found\n", 1);
+  if (lseek(fd, HEADER_LENGTH, SEEK_CUR) == -1)
+    my_error("Error lseek\n", 1);
+  ret = 1;
+  while ((ret = read(fd, buf, 1)) != 0)
+    {
+      if (ret == -1)
+	my_error("Error read file\n", 1);
+      if ((file = realloc(file, (*size + ret) * sizeof(char))) == NULL)
+	my_error("Can’t perform malloc\n", 1);
+      file[*size] = buf[0];
+      *size += ret;
+    }
+  close(fd);
+  return (file);
+}
+
 char	*read_file(const int fd, int *nb_carac)
 {
-  int	size_read;
-  char	buff[2];
+  int	ret;
+  char	buf[2];
   char	*file;
 
   *nb_carac = 0;
-  size_read = 1;
   file = NULL;
-  buff[1] = '\0';
-  while ((size_read = read(fd, buff, 1)) != 0)
+  buf[1] = '\0';
+  while ((ret = read(fd, buf, 1)) != 0)
     {
-      if (size_read == -1)
+      if (ret == -1)
 	my_error("Error read file\n", 1);
-      if ((file = realloc(file, *nb_carac + size_read)) == NULL)
-	my_error("Error malloc\n", 1);
-      file[*nb_carac] = buff[0];
-      *nb_carac = *nb_carac + size_read;
+      if ((file = realloc(file, *nb_carac + ret)) == NULL)
+	my_error("Can't perform malloc\n", 1);
+      file[*nb_carac] = buf[0];
+      *nb_carac += ret;
     }
   return (file);
 }
 
-t_champion	*open_file_champion(char *path, t_champion *champion)
+int	open_file_champion(char *path, header_t *header)
 {
-  int		fd;
+  int	fd;
 
-  champion->nb_carac = 0;
-  fd = open(path, O_RDONLY);
-  if (fd == -1)
-    my_error("File not found\n", 1);
-  champion->file = read_file(fd, &(champion->nb_carac));
-  check_magic_code(champion->file, champion->nb_carac);
-  champion->name = extract_name(champion->file, champion->nb_carac);
-  extract_comment(champion->file, champion->nb_carac, &(champion->nb_cmd));
-  printf("Name champion : %s\n", champion->name);
-  printf("Nb_cmd : %d\n", champion->nb_cmd);
-  return (champion);
+  if ((fd = open(path, O_RDONLY)) == -1)
+    {
+      my_error("File ", 0);
+      my_error(path, 0);
+      my_error(" not accessible\n", 1);
+    }
+  if ((header = check_header(fd, header)) == NULL)
+    {
+      my_error(path, 0);
+      my_error(" is not a corewar executable\n", 1);
+    }
+  close(fd);
+  return (0);
 }

@@ -5,7 +5,7 @@
 ## Login   <bridou_n@epitech.net>
 ## 
 ## Started on  Fri Nov  9 20:29:49 2012 nicolas bridoux
-## Last update Tue Jan 22 13:50:22 2013 guillaume fillon
+## Last update Sat Mar 30 21:41:28 2013 guillaume fillon
 ##
 
 NAME	= corewar
@@ -16,15 +16,46 @@ RM	= rm -f
 
 LPATH	= ../lib
 
-SRCS	= main.c			\
-	  check_header.c		\
-	  open_file.c			\
-	  print_file.c			\
-	  check_command.c		\
+SRCS	= main.c				\
+	  check_header.c			\
+	  open_file.c				\
+	  launch_vm.c				\
+	  vm_utils.c				\
+	  parser.c				\
+	  free_champ.c				\
+	  run_cycle.c				\
+	  check_prog_live.c			\
+	  wait_proc.c				\
+	  sdl_gui.c				\
+	  list/list.c				\
+	  instructions/instruction.c		\
+	  instructions/live.c			\
+	  instructions/ld.c			\
+	  instructions/st.c			\
+	  instructions/add.c			\
+	  instructions/sub.c			\
+	  instructions/and.c			\
+	  instructions/or.c			\
+	  instructions/xor.c			\
+	  instructions/zjmp.c			\
+	  instructions/ldi.c			\
+	  instructions/sti.c			\
+	  instructions/fork.c			\
+	  instructions/lld.c			\
+	  instructions/lldi.c			\
+	  instructions/lfork.c			\
+	  instructions/get_sti.c		\
+	  instructions/aff.c			\
+	  instructions/interval_mem.c		\
+	  instructions/set_carry.c		\
+	  instructions/check_carry_champion.c	\
+	  instructions/debug.c			\
 
 LSRCS	= $(LPATH)/my_putchar.c		\
 	  $(LPATH)/my_string.c		\
 	  $(LPATH)/read_fd.c		\
+	  $(LPATH)/op.c			\
+	  $(LPATH)/my_itoa.c		\
 
 OBJS	= $(SRCS:.c=.o)
 
@@ -33,8 +64,10 @@ LOBJS	= $(LSRCS:.c=.o)
 CFLAGS	+= -g -Wall -Werror
 CFLAGS	+= -I../lib/include
 
+LDFLAGS += -lSDL -lSDL_ttf -lSDL_mixer
+
 $(NAME): $(OBJS) $(LOBJS)
-	$(CC) -o $(NAME) $(CFLAGS) $(OBJS) $(LOBJS)
+	$(CC) -o $(NAME) $(CFLAGS) $(LDFLAGS) $(OBJS) $(LOBJS)
 
 all: $(NAME)
 

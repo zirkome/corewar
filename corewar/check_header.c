@@ -1,61 +1,37 @@
 /*
-** check_header.c for check_header in /home/robert_r//Corewar/Corewar/vm
+** check_header.c for Corewar in /home/fillon_g/projets/groups/corewar/corewar
 **
-** Made by remi robert
-** Login   <robert_r@epitech.net>
+** Made by guillaume fillon
+** Login   <fillon_g@epitech.net>
 **
-** Started on  Tue Jan 22 10:57:56 2013 remi robert
-** Last update Tue Jan 22 16:09:33 2013 remi robert
+** Started on  Thu Jan 24 21:46:54 2013 guillaume fillon
+** Last update Thu Mar 28 12:28:19 2013 remi
 */
 
-#include "op.h"
 #include "lib.h"
+#include "vm.h"
 
-int	check_magic_code(char *tab, int nb_carac)
+int	little_to_big_endian(int val)
 {
-  if (nb_carac < COMMENT_LENGTH)
-    my_error("Error header file\n", 1);
-  my_putstr("MAGIC NUMBER : ");
-  if (((tab[0] & 0xFF) << 24) + ((tab[1] & 0xFF) << 16)
-      + ((tab[2] & 0xFF) << 8) + ((tab[3] & 0xFF)) != COREWAR_EXEC_MAGIC)
-    my_error("fail\n", 1);
-  my_putstr("OK\n");
-  return (0);
+  val = ((val << 8) & 0xFF00FF00) | ((val >> 8) & 0xFF00FF );
+  return (val << 16) | ((val >> 16) & 0xFFFF);
 }
 
-char	*extract_comment(char *tab, int nb_carac, int *nb_cmd)
+header_t	*check_header(const int fd, header_t *header)
 {
-  int	i;
+  int		i;
 
-  if (nb_carac < COMMENT_LENGTH)
-    my_error("Error header file\n", 1);
-  *nb_cmd = ((tab[126 + 12] & 0xFF) << 8) + (tab[127 + 12] & 0xFF);
-  i = 128 + 12;
-  my_putstr("COMMENT : ");
-  while (i < COMMENT_LENGTH)
-    {
-      if ((tab[i] & 0xFF) < 127 && (tab[i] & 0xFF) >= 32)
-	my_putchar(tab[i]);
-      i = i + 1;
-    }
-  my_putstr("\n");
-  return (tab);
-}
-
-char	*extract_name(char *tab, int nb_carac)
-{
-  char	*name;
-  int	i;
-
-  if (nb_carac < COMMENT_LENGTH ||
-      (name = malloc(sizeof(128 * sizeof(char *)))) == NULL)
-    my_error("Error hearder file\n", 1);
-  i = 0;
-  while (i < 128 && tab[i + 4] != 0x0)
-    {
-      name[i] = tab[i + 4];
-      i = i + 1;
-    }
-  name[i] = '\0';
-  return (name);
+  i = read(fd, header, sizeof(header_t));
+  if (i < sizeof(header_t))
+    return (NULL);
+  if ((header->magic = little_to_big_endian(header->magic))
+      != COREWAR_EXEC_MAGIC)
+    return (NULL);
+  if (header->prog_name == NULL)
+    return (NULL);
+  if ((header->prog_size = little_to_big_endian(header->prog_size)) < 0)
+    return (NULL);
+  if (header->comment == NULL)
+    return (NULL);
+  return (header);
 }

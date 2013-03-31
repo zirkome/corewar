@@ -5,7 +5,7 @@
 ** Login   <bridou_n@epitech.net>
 **
 ** Started on  Tue Oct  9 09:33:48 2012 nicolas bridoux
-** Last update Tue Jan 22 18:16:54 2013 guillaume fillon
+** Last update Thu Mar 28 17:15:43 2013 remi
 */
 
 #include "lib.h"
@@ -27,6 +27,8 @@ int	my_strlen(char *str)
   int	i;
 
   i = -1;
+  if (str == NULL)
+    return (0);
   while (str[++i]);
   return (i);
 }
@@ -51,6 +53,6 @@ void	my_put_nbr(int nb)
   if (nb >= 10 || nb <= -10)
     my_put_nbr(div);
   if (modulo < 0)
-    modulo = - modulo;
+    modulo = modulo * -1;
   my_putchar(modulo + '0');
 }

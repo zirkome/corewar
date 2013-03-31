@@ -5,43 +5,11 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 21 18:27:28 2013 remi robert
-** Last update Tue Jan 22 23:03:03 2013 guillaume fillon
+** Last update Fri Mar 29 18:02:51 2013 guillaume fillon
 */
 
 #include "lib.h"
 #include "vm.h"
-#include "op.h"
-
-void	init_vm(t_vm **vm)
-{
-  int	i;
-
-  i = 0;
-  if ((((*vm) = malloc(sizeof(t_vm))) == NULL) ||
-      ((*vm)->mem = malloc(sizeof(mem_t) * MEM_SIZE)) == NULL)
-    my_error("Error malloc\n", 1);
-  while (i++ < MEM_SIZE)
-    (*vm)->mem[i - 1] = 0;
-  (*vm)->size_rempl = 0;
-}
-
-void	fill_mem(t_vm **vm, t_champion *champion)
-{
-  int	i;
-
-  if ((*vm)->mem[0] == 0)
-    i = 0;
-  if ((*vm)->mem[MEM_SIZE / 4] == 0)
-    i = MEM_SIZE / 4;
-  if ((*vm)->mem[MEM_SIZE / 2] == 0)
-    i = MEM_SIZE / 2;
-  if (MEM_SIZE - (*vm)->size_rempl < champion->nb_cmd)
-    my_error("Error memory\n", 1);
-  while (i++ < champion->nb_cmd)
-    (*vm)->mem[i - 1] = 
-      champion->file[i -1 + (champion->nb_carac - champion->nb_cmd)] & 0xFF;
-  (*vm)->size_rempl = i;
-}
 
 void		display_usage()
 {
@@ -49,19 +17,68 @@ void		display_usage()
   my_error("[[-n prog_number] [-a load_address ] prog_name] ...\n", 1);
 }
 
-int		main(int argc, char **argv)
+int	check_value_vm()
 {
-  t_champion	*champion1;
-  t_vm		*vm;
+  if (MEM_SIZE <= 0)
+    {
+      my_putstr("Error MEM_SIZE vm is to small\n");
+      return (0);
+    }
+  if (REG_NUMBER <= 0)
+    {
+      my_putstr("Error there are 0 or less, instructions on the vm\n");
+      return (0);
+    }
+  if (REG_SIZE <= 0)
+    {
+      my_putstr("Error not egal 4\n");
+      return (0);
+    }
+  return (1);
+}
 
-  if (argc == 1)
-    display_usage();
-  if ((champion1 = malloc(sizeof(t_champion))) == NULL)
-    return (0);
-  open_file_champion(argv[1], champion1);
-  init_vm(&vm);
-  rempl_mem(&vm, champion1);
-  print_file(champion1->file, champion1);
-  print_memory(vm);
+/* #ifdef DEBUG */
+/*       printf("HEADER CHAMPION N°%d\n", i); */
+/*       printf("MAGIC_CODE : 0x%X\n", header[i - 1].magic); */
+/*       printf("NAME : %s\n", header[i - 1].prog_name); */
+/*       printf("SIZE : %d octets\n", header[i - 1].prog_size); */
+/*       printf("COMMENT : %s\n\n", header[i - 1].comment); */
+/* #endif */
+
+int		check_display(char **envp)
+{
+  int		i;
+
+  i = 0;
+  while (envp[i] != NULL)
+    {
+      if (my_strncmp("DISPLAY", envp[i], my_strlen("DISPLAY")) == 0)
+	return (1);
+      ++i;
+    }
   return (0);
+}
+
+int		main(int argc, char **argv, char **envp)
+{
+  header_t	*header;
+  int		i;
+
+  if (argc == 1 || argc > 5 || check_value_vm() == 0)
+    display_usage();
+  if (!check_display(envp))
+    my_error("$DISPLAY is not set appropriately. "	\
+	     "Can't open display, sorry. Abort.\n", 1);
+  i = 1;
+  header = NULL;
+  while (i < argc)
+    {
+      if ((header = realloc(header, sizeof(*header) * i)) == NULL)
+	return (0);
+      open_file_champion(argv[i], &header[i - 1]);
+      i = i + 1;
+    }
+  launch_vm(header, argv, argc - 1);
+  SDL_WaitEvent(NULL);
+  return (EXIT_SUCCESS);
 }
