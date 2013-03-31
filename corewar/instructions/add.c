@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:28:50 2013 guillaume fillon
-** Last update Sun Mar 31 03:19:06 2013 guillaume fillon
+** Last update Sun Mar 31 13:21:20 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -13,7 +13,7 @@
 
 void		op_add(t_vm *vm, t_proc **lproc)
 {
-  debug(vm, lproc);
+  debug(vm, lproc, -1);
   if ((*lproc)->cmd[1] > REG_NUMBER || (*lproc)->cmd[2] > REG_NUMBER ||
       (*lproc)->cmd[3] > REG_NUMBER || (*lproc)->cmd[1] < 0 ||
       (*lproc)->cmd[2] < 0 || (*lproc)->cmd[3] < 0)

@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 21 18:27:28 2013 remi robert
-** Last update Sun Mar 31 03:56:43 2013 guillaume fillon
+** Last update Sun Mar 31 10:40:29 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -44,7 +44,6 @@ int	check_value_vm()
 /*       printf("SIZE : %d octets\n", header[i - 1].prog_size); */
 /*       printf("COMMENT : %s\n\n", header[i - 1].comment); */
 /* #endif */
-
 int		check_display(char **envp)
 {
   int		i;
@@ -59,8 +58,25 @@ int		check_display(char **envp)
   return (0);
 }
 
+void		handle_event2(SDL_Event *event)
+{
+  int		flag;
+
+  flag = 1;
+  while (flag)
+    {
+      SDL_WaitEvent(event);
+      if (event->type == SDL_KEYDOWN)
+	if (event->key.keysym.sym == SDLK_ESCAPE)
+	  flag = 0;
+      if (event->type == SDL_QUIT)
+	flag = 0;
+    }
+}
+
 int		main(int argc, char **argv, char **envp)
 {
+  SDL_Event	event;
   header_t	*header;
   int		i;
 
@@ -79,6 +95,6 @@ int		main(int argc, char **argv, char **envp)
       i = i + 1;
     }
   launch_vm(header, argv, argc - 1);
-  SDL_WaitEvent(NULL);
+  handle_event2(&event);
   return (EXIT_SUCCESS);
 }

@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 28 13:10:36 2013 remi robert
-** Last update Sun Mar 31 08:39:21 2013 guillaume fillon
+** Last update Sun Mar 31 11:18:55 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -83,7 +83,6 @@ int		handle_schedule(t_vm **vm)
 	  cur_proc->wait = wait_proc(cur_proc->code - 1);
 	  (*vm)->cycle_champion[cur_proc->nb_proc % 4] += cur_proc->wait;
       	}
-      usleep(10240);
       cur_proc = cur_proc->next;
     }
   return (1);
@@ -111,6 +110,7 @@ void		handle_event(SDL_Event *event, t_sdl *sdl)
 }
 
 void			display_sidebar(SDL_Surface *screen);
+void		display_champions(t_vm *vm);
 
 void		sync_cycle(t_vm *vm)
 {
@@ -123,6 +123,7 @@ void		sync_cycle(t_vm *vm)
   reset_live_prg(&vm);
   init_cmd_proc(vm);
   display_sidebar(vm->sdl->screen);
+  display_champions(vm);
   while (turn && vm->ctd > 0)
     {
       ++vm->cycle;
@@ -136,8 +137,6 @@ void		sync_cycle(t_vm *vm)
 	  vm->nb_live = 0;
 	  reset_live_prg(&vm);
 	  vm->ctd = vm->ctd - CYCLE_DELTA;
-	  if (vm->cycle <= 0)
-	    return ;
 	}
       n = n + 1;
     }

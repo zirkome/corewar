@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:28:10 2013 guillaume fillon
-** Last update Sun Mar 31 03:28:08 2013 guillaume fillon
+** Last update Sun Mar 31 13:20:51 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -56,7 +56,7 @@ void	op_ldi(t_vm *vm, t_proc **lproc)
   int	indice;
 
   indice = 2;
-  debug(vm, lproc);
+  debug(vm, lproc, -1);
   param1 = get_adress_ldi(vm, lproc, 6, &indice);
   param2 = get_adress_ldi(vm, lproc, 4, &indice);
   if (param1 < 0)

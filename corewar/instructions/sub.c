@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:27:09 2013 guillaume fillon
-** Last update Thu Mar 28 17:41:31 2013 remi
+** Last update Sun Mar 31 13:20:18 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -13,7 +13,7 @@
 
 void		op_sub(t_vm *vm, t_proc **lproc)
 {
-  debug(vm, lproc);
+  debug(vm, lproc, -1);
   if ((*lproc)->cmd[1] > 16 || (*lproc)->cmd[2] > 16 || (*lproc)->cmd[3] > 16)
     {
       (*lproc)->pc += 1;

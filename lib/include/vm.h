@@ -5,7 +5,7 @@
 ** Login   <bridou_n@epitech.net>
 **
 ** Started on  Wed Jan 16 17:58:40 2013 nicolas bridoux
-** Last update Sun Mar 31 08:39:05 2013 guillaume fillon
+** Last update Sun Mar 31 13:19:03 2013 guillaume fillon
 */
 
 #ifndef VM_H_
@@ -80,6 +80,14 @@ typedef struct	s_vm
 int	launch_sdl(t_sdl *sdl);
 
 /*
+** display_intro.c
+*/
+void		display_intro(char *label, char type, SDL_Surface *screen);
+void		display_sidebar(SDL_Surface *screen);
+void		display_octet(SDL_Surface *screen, int color, int i, int j);
+void		display_mem_grid(t_vm *vm, t_proc *lproc);
+
+/*
 ** display_data.c
 */
 void	display_data(SDL_Surface *sc, int value, char *(*f)(), char *name);
@@ -87,6 +95,7 @@ char	*display_nb_proc(char *name, int value, SDL_Rect *p);
 char	*display_nb_live(char *name, int value, SDL_Rect *p);
 char	*display_cycle(char *name, int value, SDL_Rect *p);
 char	*display_ctd(char *name, int value, SDL_Rect *p);
+
 /*
 ** tmp
 */
@@ -188,7 +197,7 @@ int	get_direct_reg(t_vm *, t_proc **, int *);
 void	get_reg_reg(t_vm *, t_proc **, int *, char *);
 int	get_direct_ldi(t_vm *, t_proc **, int, int *);
 int	get_adress_ldi(t_vm *, t_proc **, int, int *);
-void	debug(t_vm *, t_proc **);
+void	debug(t_vm *, t_proc **, int);
 int	get_last_num_proc(t_vm *, int);
 void	init_cmd_proc(t_vm *);
 

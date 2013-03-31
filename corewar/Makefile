@@ -5,7 +5,7 @@
 ## Login   <bridou_n@epitech.net>
 ## 
 ## Started on  Fri Nov  9 20:29:49 2012 nicolas bridoux
-## Last update Sun Mar 31 08:37:42 2013 guillaume fillon
+## Last update Sun Mar 31 09:37:19 2013 guillaume fillon
 ##
 
 NAME	= corewar
@@ -30,6 +30,7 @@ SRCS	= main.c				\
 	  print_champion.c			\
 	  list/list.c				\
 	  instructions/display_data.c		\
+	  instructions/display_intro.c		\
 	  instructions/instruction.c		\
 	  instructions/live.c			\
 	  instructions/ld.c			\
