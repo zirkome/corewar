@@ -5,7 +5,7 @@
 ## Login   <bridou_n@epitech.net>
 ## 
 ## Started on  Fri Nov  9 20:29:49 2012 nicolas bridoux
-## Last update Sun Mar 31 14:27:54 2013 guillaume fillon
+## Last update Sun Mar 31 17:57:47 2013 guillaume fillon
 ##
 
 NAME	= corewar
@@ -28,6 +28,8 @@ SRCS	= main.c				\
 	  wait_proc.c				\
 	  sdl_gui.c				\
 	  print_champion.c			\
+	  init_option_number_proc.c		\
+	  init_memory.c				\
 	  list/list.c				\
 	  instructions/display_data.c		\
 	  instructions/display_intro.c		\
@@ -54,12 +56,15 @@ SRCS	= main.c				\
 	  instructions/check_carry_champion.c	\
 	  instructions/debug.c			\
 	  instructions/get_last_num_proc.c	\
+	  parser/fill_prog_tab.c		\
+	  parser/parsing_param.c		\
 
 LSRCS	= $(LPATH)/my_putchar.c		\
 	  $(LPATH)/my_string.c		\
 	  $(LPATH)/read_fd.c		\
 	  $(LPATH)/op.c			\
 	  $(LPATH)/my_itoa.c		\
+	  $(LPATH)/my_getnbr.c		\
 
 OBJS	= $(SRCS:.c=.o)
 
@@ -83,3 +88,5 @@ fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
+
+.PHONY: all $(NAME) clean fclean re

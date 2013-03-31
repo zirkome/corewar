@@ -5,13 +5,18 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Tue Jan 29 04:05:43 2013 guillaume fillon
-** Last update Sun Mar 31 03:48:50 2013 guillaume fillon
+** Last update Sun Mar 31 18:39:39 2013 guillaume fillon
 */
 
 #include "lib.h"
 #include "vm.h"
 #include "couleur.h"
 
+/*
+** initialise les premiers processus wait de 1,
+** comme sur la vm de test pour commencer à parser
+** dés le premier tour.
+*/
 void		init_cmd_proc(t_vm *vm)
 {
   t_proc	*pcourant;
@@ -27,15 +32,21 @@ void		init_cmd_proc(t_vm *vm)
     }
 }
 
-void	reset_mem(t_vm **vm)
+void	print_value_memeory(char value)
 {
-  int	i;
-
-  i = 0;
-  while (i < MEM_SIZE)
-    (*vm)->mem[i++] = 0x0;
+  my_putstr(VERT);
+  my_putstr(INTENSITE);
+  my_putstr(INVERSE);
+  if ((value & 0xFF) < 10)
+    my_putstr("0");
+  my_put_nbr(value & 0xFF);
+  my_putstr(REZ);
+  my_putstr(" ");
 }
 
+/*
+** Dump memory => affiche la mémoire
+*/
 void	dump_memory(t_vm *vm)
 {
   int	i;
@@ -44,16 +55,22 @@ void	dump_memory(t_vm *vm)
   while (vm->mem != NULL && i < MEM_SIZE)
     {
       if (i % 64 == 0)
-      	printf("\n%s", REZ);
-      if (vm->mem[i])
-      	printf(" %s%s%s%02X", VERT, INVERSE, INTENSITE, vm->mem[i] & 0xFF);
+	{
+	  my_putstr("\n");
+	  my_putstr(REZ);
+	}
+      if (vm->mem[i % MEM_SIZE])
+	print_value_memeory(vm->mem[i % MEM_SIZE]);
       else
-      	printf("%s %02X", REZ, vm->mem[i] & 0xFF);
+	my_putstr(" 00");
       i = i + 1;
     }
-  printf("%s\n", REZ);
+  my_putstr("\n");
 }
 
+/*
+** calcul de l' interval entre les champions dans la memoire
+*/
 int	calc_interval(int prg_nb, int total_size)
 {
   int	interval;
@@ -65,15 +82,15 @@ int	calc_interval(int prg_nb, int total_size)
   interval = (MEM_SIZE - total_size) / prg_nb;
   if (prg_nb == 2)
     interval = (MEM_SIZE - total_size);
-#ifdef DEBUG
-  printf("Intervalle de mémoire calculer à %d octets\n", interval);
-#endif
   return (interval);
 }
 
-void		init_reg(int *buf, int cid)
+/*
+** initialise les registre de chaque proc
+*/
+void	init_reg(int *buf, int cid)
 {
-  int		i;
+  int	i;
 
   i = 0;
   while (i < REG_NUMBER)

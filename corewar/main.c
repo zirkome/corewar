@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 21 18:27:28 2013 remi robert
-** Last update Sun Mar 31 10:40:29 2013 guillaume fillon
+** Last update Sun Mar 31 18:17:39 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -20,30 +20,14 @@ void		display_usage()
 int	check_value_vm()
 {
   if (MEM_SIZE <= 0)
-    {
-      my_putstr("Error MEM_SIZE vm is to small\n");
-      return (0);
-    }
+    my_error("Error MEM_SIZE vm is to small\n", 1);
   if (REG_NUMBER <= 0)
-    {
-      my_putstr("Error there are 0 or less, instructions on the vm\n");
-      return (0);
-    }
+    my_error("Error there are 0 or less, instructions on the vm\n" , 1);
   if (REG_SIZE <= 0)
-    {
-      my_putstr("Error not egal 4\n");
-      return (0);
-    }
+    my_error("Error not egal 4\n" , 1);
   return (1);
 }
 
-/* #ifdef DEBUG */
-/*       printf("HEADER CHAMPION N°%d\n", i); */
-/*       printf("MAGIC_CODE : 0x%X\n", header[i - 1].magic); */
-/*       printf("NAME : %s\n", header[i - 1].prog_name); */
-/*       printf("SIZE : %d octets\n", header[i - 1].prog_size); */
-/*       printf("COMMENT : %s\n\n", header[i - 1].comment); */
-/* #endif */
 int		check_display(char **envp)
 {
   int		i;
@@ -56,6 +40,22 @@ int		check_display(char **envp)
       ++i;
     }
   return (0);
+}
+
+/*
+** recupére option parseur => Merci fabien !!!
+*/
+t_prog		*get_arg_parsing(int argc, char **av)
+{
+  t_prog	*tab;
+
+  if ((tab = malloc(4 * sizeof(t_prog))) == NULL)
+    return (NULL);
+  initialize_tab(tab);
+  if (parsing_param(&av[1], tab, 0) == -1 ||
+      tab[0].prog_name == NULL)
+    display_usage();
+  return (tab);
 }
 
 void		handle_event2(SDL_Event *event)
@@ -76,25 +76,29 @@ void		handle_event2(SDL_Event *event)
 
 int		main(int argc, char **argv, char **envp)
 {
+  t_proc	*lproc;
   SDL_Event	event;
   header_t	*header;
   int		i;
+  t_prog	*tab;
 
-  if (argc == 1 || argc > 5 || check_value_vm() == 0)
+  if (argc == 1 || check_value_vm() == 0 ||
+      (tab = get_arg_parsing(argc, argv)) == NULL)
     display_usage();
   if (!check_display(envp))
     my_error("$DISPLAY is not set appropriately. "	\
 	     "Can't open display, sorry. Abort.\n", 1);
-  i = 1;
+  i = 0;
+  lproc = NULL;
   header = NULL;
-  while (i < argc)
+  while (i < 4 && tab[i].prog_name != NULL)
     {
-      if ((header = realloc(header, sizeof(*header) * i)) == NULL)
-	return (0);
-      open_file_champion(argv[i], &header[i - 1]);
+      if ((header = realloc(header, sizeof(*header) * (i + 1))) == NULL)
+      	return (EXIT_FAILURE);
+      open_file_champion(tab[i].prog_name, &header[i]);
       i = i + 1;
     }
-  launch_vm(header, argv, argc - 1);
+  launch_vm(lproc, header, tab, i);
   handle_event2(&event);
   return (EXIT_SUCCESS);
 }

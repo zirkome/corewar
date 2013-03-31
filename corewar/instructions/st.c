@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:27:36 2013 guillaume fillon
-** Last update Sun Mar 31 13:13:59 2013 guillaume fillon
+** Last update Sun Mar 31 18:03:45 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -31,13 +31,11 @@ void	get_address_st(t_vm *vm, t_proc **lproc, int *address)
     *address = (*lproc)->cmd[2];
   if ((((*lproc)->cmd[0] >> 4) & 0x03) == 3)
     {
-      printf("DIRECT [%d][%d][%d][%d]\n", (*lproc)->cmd[2], (*lproc)->cmd[3], (*lproc)->cmd[4], (*lproc)->cmd[5]);
       *address = (((*lproc)->cmd[2] << 8) | ((*lproc)->cmd[3]) |
 		 ((*lproc)->cmd[4] << 8) | ((*lproc)->cmd[5])) & 0xFFFFFFFF;
     }
   if ((((*lproc)->cmd[0] >> 4) & 0x03) == 2)
     {
-      printf("INDIRECT\n");
       *address = (((*lproc)->cmd[2] << 8) | (*lproc)->cmd[3]) & 0xFFFF;
       if (*address < 0)
 	*address = MEM_SIZE - *address;
@@ -78,7 +76,8 @@ void		op_st(t_vm *vm, t_proc **lproc)
   load_reg_st(lproc, reg);
   get_address_st(vm, lproc, &address);
   debug(vm, lproc, address);
-  printf("[%d] %d \n", (*lproc)->reg[0], address % 0xFFFFFFFF);
   store_st(vm, reg, lproc, address);
+  if (vm->option[0].debug != -1)
+    print_debug(address, "address : ", 1);
   (*lproc)->pc += interval_memory((*lproc)->cmd, (*lproc)->code, 0, 0);
 }

@@ -5,11 +5,25 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Thu Mar 28 23:32:23 2013 remi
-** Last update Sun Mar 31 16:53:44 2013 guillaume fillon
+** Last update Sun Mar 31 18:46:23 2013 guillaume fillon
 */
 
 #include "vm.h"
 #include "lib.h"
+
+void		print_champ_data(header_t hdr)
+{
+  my_putstr("\n\n");
+  my_putstr(hdr.prog_name);
+  my_putstr(" ");
+  my_putstr(BLEU);
+  my_putstr(INTENSITE);
+  my_putstr(" (");
+  my_putstr(hdr.comment);
+  my_putstr(")");
+  my_putstr(REZ);
+  my_putstr(" a gagné !\n");
+}
 
 void			print_champion(int count, t_vm *vm)
 {
@@ -19,15 +33,7 @@ void			print_champion(int count, t_vm *vm)
   SDL_Rect		pos;
 
   font288 = TTF_OpenFont("game_over.ttf", 288);
-  my_putstr("\n\n");
-  my_putstr(vm->header[count % 4].prog_name);
-  my_putstr(BLEU);
-  my_putstr(INTENSITE);
-  my_putstr(" (");
-  my_putstr(vm->header[count % 4].comment);
-  my_putstr(")");
-  my_putstr(REZ);
-  my_putstr(" a gagné !\n");
+  print_champ_data(vm->header[count % 4]);
   surface = TTF_RenderText_Blended(font288, vm->header[count % 4].prog_name, color);
   pos.x = (WIDTH / 2) - (surface->w / 2);
   pos.y = (HEIGHT / 2) - (surface->h / 2);

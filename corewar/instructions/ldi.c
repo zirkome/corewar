@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:28:10 2013 guillaume fillon
-** Last update Sun Mar 31 13:20:51 2013 guillaume fillon
+** Last update Sun Mar 31 18:07:07 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -17,10 +17,10 @@ int	get_direct_ldi(t_vm *vm, t_proc **lproc, int octet, int *indice)
 
   if (*indice < 0)
     *indice = 0;
-  ret = ((((*lproc)->cmd[*indice] << 24) |
-	  ((*lproc)->cmd[*indice + 1] << 16) |
-	  ((*lproc)->cmd[*indice + 2] << 8) |
-	  ((*lproc)->cmd[*indice + 3])) & 0xFFFFFFFF);
+  ret = ((((*lproc)->cmd[*indice % 16] << 24) |
+  	  ((*lproc)->cmd[(*indice + 1) % 16] << 16) |
+  	  ((*lproc)->cmd[(*indice + 2) % 16] << 8) |
+  	  ((*lproc)->cmd[(*indice + 3) % 16])) & 0xFFFFFFFF);
   *indice = *indice + 4;
   return (ret);
 }
@@ -32,15 +32,15 @@ int	get_adress_ldi(t_vm *vm, t_proc **lproc, int octet, int *indice)
   val = 0;
   if ((((*lproc)->cmd[0] >> octet) & 0x03) == 1)
     {
-      val = (*lproc)->cmd[*indice];
+      val = (*lproc)->cmd[*indice % 16];
       *indice = *indice + 1;
     }
   if ((((*lproc)->cmd[0] >> octet) & 0x03) == 2)
     val = get_direct_ldi(vm, lproc, octet, indice);
   if ((((*lproc)->cmd[0] >> octet) & 0x03) == 3)
     {
-      val = (((*lproc)->cmd[*indice] << 8) |
-	     (*lproc)->cmd[*indice + 1]) & 0xFFFF;
+      val = (((*lproc)->cmd[*indice % 16] << 8) |
+	     (*lproc)->cmd[(*indice + 1) % 16]) & 0xFFFF;
       *indice = *indice + 2;
       if (val < 0)
 	val = MEM_SIZE - val;
@@ -63,13 +63,14 @@ void	op_ldi(t_vm *vm, t_proc **lproc)
     param1 = MEM_SIZE - param1;
   param1 = vm->mem[(int)((*lproc)->pc + (param1 % IDX_MOD)) % MEM_SIZE];
   param1 = param1 + param2;
-  set_carry(lproc, param1);
+  if (vm->option[0].debug != -1)
+    print_debug(param1, "value : ", 0);
   if (((*lproc)->cmd[indice + 1] - 1) % REG_NUMBER < 0)
     (*lproc)->cmd[indice + 1] = 1;
   if (param1 < 0)
     param1 = MEM_SIZE - param1;
-  (*lproc)->reg[((*lproc)->cmd[(indice + 1) %
-			       REG_NUMBER] - 1) % REG_NUMBER] =
-    vm->mem[(((*lproc)->pc + param1) % IDX_MOD) % MEM_SIZE];
+  (*lproc)->reg[((int)((*lproc)->cmd[(int)((1) % 16)] - 1)) % REG_NUMBER] =
+    vm->mem[(int)(((*lproc)->pc + param1) % IDX_MOD) % MEM_SIZE];
+  set_carry(lproc, param1);
   (*lproc)->pc += interval_memory((*lproc)->cmd, (*lproc)->code, 0, 0);
 }

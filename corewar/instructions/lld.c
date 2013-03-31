@@ -5,12 +5,15 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:29:37 2013 guillaume fillon
-** Last update Sun Mar 31 13:22:07 2013 guillaume fillon
+** Last update Sun Mar 31 18:09:07 2013 guillaume fillon
 */
 
 #include "lib.h"
 #include "vm.h"
 
+/*
+** recupére l adresse de lld en fonction du type de paraùtre
+*/
 void	get_adress_lld(t_vm *vm, t_proc **lproc, int *adress)
 {
   if ((((*lproc)->cmd[0] >> 6) & 0x03) == 1)
@@ -36,7 +39,9 @@ void		op_lld(t_vm *vm, t_proc **lproc)
   val = 0;
   debug(vm, lproc, -1);
   get_adress_lld(vm, lproc, &val);
-  set_carry(lproc, val);
   set_ld(vm, lproc, val);
+  if (vm->option[0].debug != -1)
+    print_debug(val, "value : ", 0);
+  set_carry(lproc, val);
   (*lproc)->pc += interval_memory((*lproc)->cmd, (*lproc)->code, 0, 0);
 }

@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:30:00 2013 guillaume fillon
-** Last update Sun Mar 31 13:17:33 2013 guillaume fillon
+** Last update Sun Mar 31 18:05:52 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -20,10 +20,14 @@ void	init_tab(char *reg)
   reg[3] = 0;
 }
 
+/*
+** load la valeur du registre en fonction du type d' argument
+*/
 void	load_reg(t_vm *vm, t_proc **lproc, char *reg, int *i)
 {
   int	adress;
 
+  adress = 0;
   if ((((*lproc)->cmd[0] >> 6) & 0x03) == 1)
     get_reg_reg(vm, lproc, i, reg);
   if ((((*lproc)->cmd[0] >> 6) & 0x03) == 2)
@@ -47,6 +51,9 @@ void	load_reg(t_vm *vm, t_proc **lproc, char *reg, int *i)
     }
 }
 
+/*
+** calcul la valeur du paramaétre en focntion de son type
+*/
 int	calc_offset(t_proc **lproc, int *i, int param)
 {
   int	offset;
@@ -58,7 +65,7 @@ int	calc_offset(t_proc **lproc, int *i, int param)
     (*lproc)->cmd[(*i + 1) % 16] = 0;
   if (((((*lproc)->cmd[0] & 0xFF) >> param) & 0x03) == 1)
     {
-      offset = (*lproc)->reg[(int)(((*lproc)->cmd[*i] - 1) &
+      offset = (*lproc)->reg[(int)(((*lproc)->cmd[*i]) &
 				   0xFF) % REG_NUMBER];
       ++(*i);
     }
@@ -85,7 +92,10 @@ void	op_sti(t_vm *vm, t_proc **lproc)
   offset += calc_offset(lproc, &i, 4);
   offset += calc_offset(lproc, &i, 2);
   debug(vm, lproc, offset);
-  printf("[%d] => %d\n", offset, (*lproc)->reg[0]);
+  if (vm->option[0].debug != -1)
+    print_debug(offset, "value : ", 0);
+  if (vm->option[0].debug != -1)
+    print_debug((*lproc)->reg[0], " r: ", 1);
   if (offset < 0)
     offset = (MEM_SIZE) - offset;
   if ((*lproc)->pc + offset < 0)

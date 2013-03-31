@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Thu Mar 28 17:05:43 2013 remi
-** Last update Sun Mar 31 14:47:19 2013 guillaume fillon
+** Last update Sun Mar 31 18:11:39 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -60,8 +60,34 @@ void			actualize_data(t_vm *vm, t_proc **lproc)
 	       "Number of live : ");
 }
 
+void	print_debug(int value, char *str, int type)
+{
+  my_putstr(" ");
+  if (str != NULL)
+    my_putstr(str);
+  if (type == 1)
+    {
+      my_putstr(ROUGE);
+      my_putstr(" [@ ");
+      my_put_nbr(value);
+      my_putstr("]");
+      my_putstr(REZ);
+    }
+  else
+    {
+      my_putstr(" ");
+      my_put_nbr(value);
+    }
+}
+
+/*
+** affiche des informations complémentaires.
+** pour activer cette option = -v
+*/
 void	debug(t_vm *vm, t_proc **lproc, int address)
 {
+  if (vm->option[0].debug != 1)
+    return ;
   my_putstr(INTENSITE);
   my_putstr("[wait : ");
   my_put_nbr(vm->cycle_champion[(*lproc)->nb_proc % 4]);

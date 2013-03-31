@@ -5,57 +5,57 @@
 ** Login   <linard_f@epitech.net>
 **
 ** Started on  Tue Mar 12 17:24:38 2013 fabien linardon
-** Last update Sat Mar 23 00:27:46 2013 Guillaume Fillon
+** Last update Sun Mar 31 18:49:03 2013 guillaume fillon
 */
 
 #include "lib.h"
 #include "vm.h"
 
-/* à virer si vous avez déjà une fonction qui fait ça. */
-
 int	syntax_error(char *msg)
 {
-  write(2, msg, strlen(msg));
+  write(2, msg, my_strlen(msg));
   return (-1);
 }
 
 void	initialize_tab(t_prog *tab)
 {
-  int	i;
+  int	rk;
 
-  i = -1;
-  while (++i < 4)
+  rk = -1;
+  while (++rk < 4)
     {
-      tab[i].prog_name = NULL;
-      tab[i].prog_numb = -1; /* j'initialise à -1 car on peut avoir 0 comme numéro. */
-      tab[i].load_add = -1; /* ici je en sais pas trop ce qu'il faut mettre comme adresse. */
+      tab[rk].prog_name = NULL;
+      tab[rk].prog_numb = -1;
+      tab[rk].load_add = -1;
+      tab[rk].debug = -1;
+      tab[rk].mem = -1;
+      tab[rk].dump = -1;
     }
 }
 
-int	parsing_param(char **av, t_prog *tab)
+int	parsing_param(char **av, t_prog *tab, int dump)
 {
-  int	dump;
-  int	i;
+  int	rk;
   int	j;
 
-  dump = 0;
-  i = -1;
+  rk = -1;
   j = 0;
-  while (av[++i])
+  while (av[++rk])
     {
-      if (!my_strcmp(av[i], "-dump"))
+      if (!my_strcmp(av[rk], "-dump"))
 	{
-	  if (av[++i])
-	    dump = atoi(av[i]); /* remplacer atoi par getnbr !*/
+	  if (av[++rk])
+	    dump = my_getnbr(av[rk]);
 	  else
 	    return (syntax_error("Syntax error.\n"));
 	}
       else
 	{
-	  if ((j = fill_prog_tab(&av[i], tab, j)) == -1)
+	  if ((j = fill_prog_tab(&av[rk], tab, j, 0)) == -1)
 	    return (-1);
-	  if (av[i][0] == '-')
-	    ++i;
+	  if (av[rk][0] == '-' && av[rk][1] && (av[rk][1] != 'v') &&
+	      (av[rk][1] != 'z'))
+	    ++rk;
 	}
     }
   return (dump);

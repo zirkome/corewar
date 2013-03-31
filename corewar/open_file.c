@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 21 18:34:30 2013 remi robert
-** Last update Tue Jan 29 18:05:59 2013 remi robert
+** Last update Fri Mar 29 22:35:30 2013 remi
 */
 
 #include <sys/stat.h>
@@ -13,6 +13,9 @@
 #include "lib.h"
 #include "vm.h"
 
+/*
+** ouvre les champions par rapport au path.
+*/
 char	*get_champ(char *path, int *size)
 {
   char	buf[2];
@@ -24,7 +27,7 @@ char	*get_champ(char *path, int *size)
   buf[1] = '\0';
   *size = 0;
   if ((fd = open(path, O_RDONLY)) == -1)
-    my_error("File not found\n", 1);
+      my_error("File not found\n", 1);
   if (lseek(fd, HEADER_LENGTH, SEEK_CUR) == -1)
     my_error("Error lseek\n", 1);
   ret = 1;

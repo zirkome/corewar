@@ -5,48 +5,15 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Sun Jan 27 20:48:10 2013 guillaume fillon
-** Last update Sun Mar 31 03:18:41 2013 guillaume fillon
+** Last update Sun Mar 31 17:59:20 2013 guillaume fillon
 */
 
 #include "lib.h"
 #include "vm.h"
 
-void		free_champ(header_t *header, int nb)
-{
-  int		i;
-
-  i = 0;
-  while (i < nb)
-    {
-      /* free(header[i].comment); */
-      /* free(header[i].prog_name); */
-      free(header);
-      i += 1;
-    }
-  free(header);
-}
-
-void	nb_proc_list(t_proc *ptete)
-{
-  t_proc	*pcourant;
-  int		indice;
-
-  pcourant = ptete;
-  indice = 0;
-  if (ptete == NULL)
-    {
-      printf("%sNULL = [%d]%s\n", F_ROUGE, 0, REZ);
-      return ;
-    }
-  while (pcourant != NULL)
-    {
-      if (pcourant != NULL && pcourant->next != NULL)
-	pcourant = pcourant->next;
-      indice = indice + 1;
-    }
-  printf("%s[%d]%s\n", F_ROUGE, indice, REZ);
-}
-
+/*
+** free la vm + les proc
+*/
 void		free_vm(t_vm *vm)
 {
   if (vm == NULL)
