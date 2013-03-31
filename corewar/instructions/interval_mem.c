@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Wed Jan 30 08:50:03 2013 remi robert
-** Last update Thu Mar 28 12:38:25 2013 remi
+** Last update Sun Mar 31 03:27:17 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -64,7 +64,7 @@ int	decoupage_pc(int pc, int cmd)
 
 int	interval_memory(char *cmd, int pc, int interval, int indice)
 {
-  if (cmd == NULL || (cmd[0] & 0x3) < 0 || (cmd[0] & 0x3) > 16)
+  if (cmd == NULL || (cmd[0] & 0x3) < 0 || (cmd[0] & 0x3) > REG_NUMBER)
     return (1);
   return (decoupage_pc((cmd[0] & 0xFF), pc));
 }

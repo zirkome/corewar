@@ -5,12 +5,27 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Tue Jan 29 04:05:43 2013 guillaume fillon
-** Last update Wed Mar 27 19:18:17 2013 remi
+** Last update Sun Mar 31 03:48:50 2013 guillaume fillon
 */
 
 #include "lib.h"
 #include "vm.h"
 #include "couleur.h"
+
+void		init_cmd_proc(t_vm *vm)
+{
+  t_proc	*pcourant;
+
+  if (vm == NULL || vm->proc == NULL)
+    return ;
+  pcourant = vm->proc;
+  while (pcourant != NULL)
+    {
+      parser(vm, pcourant, 0);
+      pcourant->wait = 1;
+      pcourant = pcourant->next;
+    }
+}
 
 void	reset_mem(t_vm **vm)
 {
@@ -36,8 +51,7 @@ void	dump_memory(t_vm *vm)
       	printf("%s %02X", REZ, vm->mem[i] & 0xFF);
       i = i + 1;
     }
-  printf("%s", REZ);
-  fflush(stdout);
+  printf("%s\n", REZ);
 }
 
 int	calc_interval(int prg_nb, int total_size)

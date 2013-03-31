@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:28:10 2013 guillaume fillon
-** Last update Thu Mar 28 17:41:12 2013 remi
+** Last update Sun Mar 31 03:28:08 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -44,7 +44,7 @@ int	get_adress_ldi(t_vm *vm, t_proc **lproc, int octet, int *indice)
       *indice = *indice + 2;
       if (val < 0)
 	val = MEM_SIZE - val;
-      val = vm->mem[(val) % MEM_SIZE];
+      val = vm->mem[((*lproc)->pc + (val)) % MEM_SIZE];
     }
   return (val);
 }
@@ -70,6 +70,6 @@ void	op_ldi(t_vm *vm, t_proc **lproc)
     param1 = MEM_SIZE - param1;
   (*lproc)->reg[((*lproc)->cmd[(indice + 1) %
 			       REG_NUMBER] - 1) % REG_NUMBER] =
-    vm->mem[(param1 % IDX_MOD) % MEM_SIZE];
+    vm->mem[(((*lproc)->pc + param1) % IDX_MOD) % MEM_SIZE];
   (*lproc)->pc += interval_memory((*lproc)->cmd, (*lproc)->code, 0, 0);
 }

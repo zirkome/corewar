@@ -5,7 +5,7 @@
 ## Login   <bridou_n@epitech.net>
 ## 
 ## Started on  Fri Nov  9 20:29:49 2012 nicolas bridoux
-## Last update Sat Mar 30 21:41:28 2013 guillaume fillon
+## Last update Sun Mar 31 03:17:02 2013 guillaume fillon
 ##
 
 NAME	= corewar
@@ -27,6 +27,7 @@ SRCS	= main.c				\
 	  check_prog_live.c			\
 	  wait_proc.c				\
 	  sdl_gui.c				\
+	  print_champion.c			\
 	  list/list.c				\
 	  instructions/instruction.c		\
 	  instructions/live.c			\
@@ -50,6 +51,7 @@ SRCS	= main.c				\
 	  instructions/set_carry.c		\
 	  instructions/check_carry_champion.c	\
 	  instructions/debug.c			\
+	  instructions/get_last_num_proc.c	\
 
 LSRCS	= $(LPATH)/my_putchar.c		\
 	  $(LPATH)/my_string.c		\

@@ -5,7 +5,7 @@
 ** Login   <bridou_n@epitech.net>
 **
 ** Started on  Wed Jan 16 17:58:40 2013 nicolas bridoux
-** Last update Sat Mar 30 21:49:41 2013 guillaume fillon
+** Last update Sun Mar 31 03:50:53 2013 guillaume fillon
 */
 
 #ifndef LIB_H_

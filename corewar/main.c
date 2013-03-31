@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 21 18:27:28 2013 remi robert
-** Last update Fri Mar 29 18:02:51 2013 guillaume fillon
+** Last update Sun Mar 31 03:40:40 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -61,6 +61,7 @@ int		check_display(char **envp)
 
 int		main(int argc, char **argv, char **envp)
 {
+  t_proc	*lproc;
   header_t	*header;
   int		i;
 

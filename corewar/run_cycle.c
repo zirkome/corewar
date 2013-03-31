@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 28 13:10:36 2013 remi robert
-** Last update Sat Mar 30 22:28:26 2013 guillaume fillon
+** Last update Sun Mar 31 03:48:21 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -76,6 +76,7 @@ int		handle_schedule(t_vm **vm)
       	{
       	  parser(*vm, cur_proc, 0);
 	  cur_proc->wait = wait_proc(cur_proc->code - 1);
+	  (*vm)->cycle_champion[cur_proc->nb_proc % 4] += cur_proc->wait;
       	}
       cur_proc->wait -= 1;
       if (cur_proc->wait <= 0)
@@ -83,6 +84,7 @@ int		handle_schedule(t_vm **vm)
 	  exec_instruction(*vm, &cur_proc);
       	  parser(*vm, cur_proc, 1);
 	  cur_proc->wait = wait_proc(cur_proc->code - 1);
+	  (*vm)->cycle_champion[cur_proc->nb_proc % 4] += cur_proc->wait;
       	}
       cur_proc = cur_proc->next;
     }
@@ -120,10 +122,8 @@ void		sync_cycle(t_vm *vm)
 
   n = 0;
   turn = 1;
-  vm->cycle_to_die = CYCLE_TO_DIE;
   reset_live_prg(&vm);
-  vm->nb_live = 0;
-  vm->cycle = 0;
+  init_cmd_proc(vm);
   display_sidebar(vm->sdl->screen);
   while (turn && vm->cycle_to_die > 0)
     {
@@ -138,6 +138,8 @@ void		sync_cycle(t_vm *vm)
 	  vm->nb_live = 0;
 	  reset_live_prg(&vm);
 	  vm->cycle_to_die = vm->cycle_to_die - CYCLE_DELTA;
+	  if (vm->cycle <= 0)
+	    return ;
 	}
       n = n + 1;
     }

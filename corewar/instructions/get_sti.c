@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Thu Mar 28 16:02:20 2013 remi
-** Last update Thu Mar 28 16:02:39 2013 remi
+** Last update Sun Mar 31 03:26:25 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -35,6 +35,7 @@ int	get_direct_reg(t_vm *vm, t_proc **lproc, int *i)
 
 void	get_reg_reg(t_vm *vm, t_proc **lproc, int *i, char *reg)
 {
+  *i = 2;
   reg[0] = ((*lproc)->reg[((int)(*lproc)->cmd[1] - 1) %
 			  REG_NUMBER] >> 24) & 0xFF;
   reg[1] = ((*lproc)->reg[((int)(*lproc)->cmd[1] - 1) %
@@ -43,5 +44,4 @@ void	get_reg_reg(t_vm *vm, t_proc **lproc, int *i, char *reg)
 			  REG_NUMBER] >> 8) & 0xFF;
   reg[3] = ((*lproc)->reg[((int)(*lproc)->cmd[1] - 1) %
 			  REG_NUMBER]) & 0xFF;
-  *i = 2;
 }

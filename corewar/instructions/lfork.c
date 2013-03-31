@@ -5,27 +5,28 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:29:24 2013 guillaume fillon
-** Last update Thu Mar 28 17:40:27 2013 remi
+** Last update Sun Mar 31 03:28:53 2013 guillaume fillon
 */
 
 #include "lib.h"
 #include "vm.h"
 
-void	init_new_proc_lfork(t_proc **new_proc, t_proc **proc_head, int new_pc)
+void	init_new_proc_lfork(t_vm *vm, t_proc **new_proc, t_proc **proc_head, int new_pc)
 {
   int	indice;
 
   indice = 0;
   while (indice < 16)
     {
-      (*new_proc)->reg[indice] = (*proc_head)->reg[indice];
+      (*new_proc)->reg[indice % REG_NUMBER] =
+	(*proc_head)->reg[indice % REG_NUMBER];
       indice = indice + 1;
     }
   (*new_proc)->code = 0;
-  (*new_proc)->wait = 0;
+  (*new_proc)->wait = -1;
   (*new_proc)->carry = 0;
   (*new_proc)->nb_proc = (*proc_head)->nb_proc;
-  (*new_proc)->num_proc = (*proc_head)->num_proc + 1;
+  (*new_proc)->num_proc = get_last_num_proc(vm, (*proc_head)->nb_proc);
   (*new_proc)->live = 0;
   (*new_proc)->pc = (((*proc_head)->pc + new_pc)) % MEM_SIZE;
   if ((*new_proc)->pc < 0)
@@ -37,13 +38,13 @@ void		op_lfork(t_vm *vm, t_proc **lproc)
   int		new_pc;
   t_proc	*new_proc;
 
-  debug(vm, lproc);
   new_pc = (((*lproc)->cmd[0] & 0xFF) << 8) | ((*lproc)->cmd[1] & 0xFF);
-  if ((new_proc = add_fork(&(vm->proc))) == NULL)
+  if ((vm->proc = add_fork(&(vm->proc), &new_proc)) == NULL)
     {
       (*lproc)->pc += 3;
       return ;
     }
-  init_new_proc_lfork(&new_proc, lproc, new_pc);
+  init_new_proc_lfork(vm, &new_proc, lproc, new_pc);
+  debug(vm, lproc);
   (*lproc)->pc += 3;
 }

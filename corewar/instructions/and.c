@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:28:57 2013 guillaume fillon
-** Last update Thu Mar 28 17:40:59 2013 remi
+** Last update Sun Mar 31 03:20:43 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -18,8 +18,8 @@ int	get_direct_param_op(t_proc **lproc, int *indice,
 
   if (*indice < 0)
     *indice = 0;
-  ret = (((int)(((((*lproc)->cmd[*indice + 1] & 0xFF) << 24))
-		| ((((*lproc)->cmd[*indice + 2] & 0xFF) << 16)) |
+  ret = (((int)(((((*lproc)->cmd[*indice + 1] & 0xFF) << 24)) |
+		((((*lproc)->cmd[*indice + 2] & 0xFF) << 16)) |
 		((((*lproc)->cmd[*indice + 3] & 0xFF) << 8)) |
 		(((*lproc)->cmd[*indice + 4]))) % MEM_SIZE));
   *indice = *indice + 4;
@@ -43,7 +43,7 @@ int	return_param_op(t_proc **lproc, int *indice,
 	       (((*lproc)->cmd[*indice + 1] & 0xFF)) % IDX_MOD)));
       if (var < 0)
 	var = MEM_SIZE - var;
-      ret = (vm->mem[var % MEM_SIZE]) & 0xFF;
+      ret = (vm->mem[((*lproc)->pc + var) % MEM_SIZE]) & 0xFF;
       *indice = *indice + 2;
       return (ret % IDX_MOD);
     }

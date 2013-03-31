@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:27:49 2013 guillaume fillon
-** Last update Thu Mar 28 17:41:19 2013 remi
+** Last update Sun Mar 31 03:30:17 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -31,6 +31,7 @@ void		op_lldi(t_vm *vm, t_proc **lproc)
   if (param1 < 0)
     param1 = MEM_SIZE - param1;
   (*lproc)->reg[((*lproc)->cmd[indice + 1] - 1) %
-		REG_NUMBER] = vm->mem[(param1 % IDX_MOD) % MEM_SIZE];
+		REG_NUMBER] = vm->mem[(((*lproc)->pc + param1) %
+				       IDX_MOD) % MEM_SIZE];
   (*lproc)->pc += interval_memory((*lproc)->cmd, (*lproc)->code, 0, 0);
 }

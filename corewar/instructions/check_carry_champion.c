@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Wed Mar 20 09:21:26 2013 remi
-** Last update Wed Mar 20 09:29:33 2013 remi
+** Last update Sun Mar 31 03:21:59 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -20,7 +20,7 @@ int		check_carry_champion(t_proc *ptete, int num_champion)
   pcourant = ptete;
   while (pcourant != NULL)
     {
-      if (pcourant->reg[0] == num_champion &&
+      if (pcourant->nb_proc == num_champion &&
 	  pcourant->carry == 1)
 	return (1);
       pcourant = pcourant->next;
