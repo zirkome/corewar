@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Thu Mar 28 17:05:43 2013 remi
-** Last update Sun Mar 31 13:33:12 2013 guillaume fillon
+** Last update Sun Mar 31 14:47:19 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -16,6 +16,7 @@ void		actualize_memory(t_vm *vm, t_proc **lproc, int address)
   static int	pc_color[] = {0xFF0000, 0x00FF00, 0x0000FF, 0xFFE600};
   static int	cmd_color[] = {0xFF6666, 0x66FF66, 0x6666FF, 0xFBEC5D};
   static int	first = 1;
+  int		color;
   int		i;
 
   i = -1;
@@ -29,7 +30,9 @@ void		actualize_memory(t_vm *vm, t_proc **lproc, int address)
 	{
 	  while (++i < 4)
 	    {
-	      display_octet(vm->sdl->screen, cmd_color[(*lproc)->nb_proc % 4],
+	      color = ((*lproc)->nb_proc != (*lproc)->reg[0]) ?
+		0xFFFFFF : cmd_color[(*lproc)->nb_proc % 4];
+	      display_octet(vm->sdl->screen, color,
 			    (((*lproc)->pc + address + i) % MEM_SIZE) % 113,
 			    (((*lproc)->pc + address + i) % MEM_SIZE) / 113);
 	    }
