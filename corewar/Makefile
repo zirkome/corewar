@@ -5,7 +5,7 @@
 ## Login   <bridou_n@epitech.net>
 ## 
 ## Started on  Fri Nov  9 20:29:49 2012 nicolas bridoux
-## Last update Sun Mar 31 09:37:19 2013 guillaume fillon
+## Last update Sun Mar 31 14:27:54 2013 guillaume fillon
 ##
 
 NAME	= corewar
@@ -68,7 +68,7 @@ LOBJS	= $(LSRCS:.c=.o)
 CFLAGS	+= -g -Wall -Werror
 CFLAGS	+= -I../lib/include
 
-LDFLAGS += -lSDL -lSDL_ttf -lSDL_mixer
+LDFLAGS += -L../lib -lSDL -lSDL_ttf -lSDL_mixer
 
 $(NAME): $(OBJS) $(LOBJS)
 	$(CC) -o $(NAME) $(CFLAGS) $(LDFLAGS) $(OBJS) $(LOBJS)
