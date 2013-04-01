@@ -50,13 +50,8 @@ Usage
 make asm
 echo ./asm file_name[.s] ...
 ```
-###Machine Virtuel
+###Machine Virtuel (SDL requise)
 ```sh
 make corewar
 echo ./corewar [-v] [-z][-dump nbr_cycle] [[-n prog_number] [-a load_address ] prog_name] ...
-```
-###Machine Virtuel Graphique (SDL requis)
-```sh
-make bonus
-echo ./corewar [-v] [-z] [-dump nbr_cycle] [[-n prog_number] [-a load_address ] prog_name] ...
 ```
