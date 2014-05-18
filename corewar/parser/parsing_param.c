@@ -1,13 +1,3 @@
-/*
-** parsing_param.c for parsing_param$ in /home/linard_f//corewar/homework/vm
-**
-** Made by fabien linardon
-** Login   <linard_f@epitech.net>
-**
-** Started on  Tue Mar 12 17:24:38 2013 fabien linardon
-** Last update Sun Mar 31 19:15:08 2013 guillaume fillon
-*/
-
 #include "lib.h"
 #include "vm.h"
 

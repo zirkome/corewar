@@ -1,13 +1,3 @@
-/*
-** my_parsing.c for my_parsing in /home/linard_f//corewar/homework/asm
-**
-** Made by fabien linardon
-** Login   <linard_f@epitech.net>
-**
-** Started on  Mon Jan 21 19:23:51 2013 fabien linardon
-** Last update Wed Mar 13 15:16:38 2013 nicolas bridoux
-*/
-
 #include "asm.h"
 
 /*

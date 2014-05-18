@@ -1,13 +1,3 @@
-/*
-** check_instruct.c for check_instruct in /home/linard_f//corewar/homework/asm/corewar
-**
-** Made by fabien linardon
-** Login   <linard_f@epitech.net>
-**
-** Started on  Thu Jan 24 14:41:20 2013 fabien linardon
-** Last update Wed Mar 27 19:55:19 2013 guillaume fillon
-*/
-
 #include "asm.h"
 
 extern op_t	op_tab[];

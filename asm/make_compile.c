@@ -1,13 +1,3 @@
-/*
-** make_compile2.c for make_compile2 in /home/linard_f//corewar/homework/asm
-**
-** Made by fabien linardon
-** Login   <linard_f@epitech.net>
-**
-** Started on  Thu Feb  7 13:37:13 2013 fabien linardon
-** Last update Thu Mar 14 01:14:39 2013 nicolas bridoux
-*/
-
 #include "asm.h"
 
 extern op_t	op_tab[];

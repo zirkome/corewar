@@ -1,13 +1,3 @@
-/*
-** vm_utils.c for Corewar in /home/fillon_g/projets/groups/corewar/corewar
-**
-** Made by guillaume fillon
-** Login   <fillon_g@epitech.net>
-**
-** Started on  Tue Jan 29 04:05:43 2013 guillaume fillon
-** Last update Sun Mar 31 18:39:39 2013 guillaume fillon
-*/
-
 #include "lib.h"
 #include "vm.h"
 #include "couleur.h"

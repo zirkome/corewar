@@ -1,13 +1,3 @@
-/*
-** fork_lfork.c for fork_lfork in /home/linard_f//corewar/homework/asm
-**
-** Made by fabien linardon
-** Login   <linard_f@epitech.net>
-**
-** Started on  Fri Feb  1 16:26:41 2013 fabien linardon
-** Last update Wed Mar 13 14:15:15 2013 nicolas bridoux
-*/
-
 #include "asm.h"
 
 /*

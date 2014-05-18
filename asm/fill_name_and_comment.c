@@ -1,13 +1,3 @@
-/*
-** fill_name_and_comment.c for fill_name_and_comment.c in /home/bridou_n//corewar
-** 
-** Made by nicolas bridoux
-** Login   <bridou_n@epitech.net>
-** 
-** Started on  Wed Jan 23 21:39:23 2013 nicolas bridoux
-** Last update Thu Mar 14 11:14:39 2013 nicolas bridoux
-*/
-
 #include "asm.h"
 
 /*
@@ -59,7 +49,7 @@ void	display_name_and_comment(header_t *header)
   my_putchar('\n');
   my_putstr(MAGENTA);
   my_putstr("[Comment] => ");
-  my_putstr(INIT);  
+  my_putstr(INIT);
   my_putstr(header->comment);
   my_putchar('\n');
 }

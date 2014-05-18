@@ -1,13 +1,3 @@
-/*
-** interval_mem.c for interval_mem in /home/remi/Projet/corewar/corewar/instructions
-**
-** Made by remi robert
-** Login   <robert_r@epitech.net>
-**
-** Started on  Wed Jan 30 08:50:03 2013 remi robert
-** Last update Sun Mar 31 18:07:38 2013 guillaume fillon
-*/
-
 #include "lib.h"
 #include "vm.h"
 

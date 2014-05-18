@@ -1,13 +1,3 @@
-/*
-** sti.c for sti in /home/linard_f//corewar/homework/asm
-**
-** Made by fabien linardon
-** Login   <linard_f@epitech.net>
-**
-** Started on  Thu Feb  7 12:37:25 2013 fabien linardon
-** Last update Wed Mar 13 14:13:13 2013 nicolas bridoux
-*/
-
 #include "asm.h"
 
 /*

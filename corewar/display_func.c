@@ -1,13 +1,3 @@
-/*
-** display_func.c for Corewar in /home/kokaz/projets/corewar/corewar
-**
-** Made by guillaume fillon
-** Login   <kokaz@epitech.net>
-**
-** Started on  Sun Mar 31 19:26:17 2013 guillaume fillon
-** Last update Sun Mar 31 19:26:30 2013 guillaume fillon
-*/
-
 #include "lib.h"
 #include "vm.h"
 

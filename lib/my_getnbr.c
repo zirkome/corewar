@@ -1,13 +1,3 @@
-/*
-** my_getnbr.c for my_getnbr.c in /home/bridou_n//Lib/fichiers.c
-**
-** Made by nicolas bridoux
-** Login   <bridou_n@epitech.net>
-**
-** Started on  Thu Oct 25 11:39:51 2012 nicolas bridoux
-** Last update Fri Mar 29 17:19:40 2013 remi
-*/
-
 #include "lib.h"
 
 int	my_getnbr(char *str)

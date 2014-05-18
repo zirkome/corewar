@@ -1,13 +1,3 @@
-/*
-** check_header.c for Corewar in /home/fillon_g/projets/groups/corewar/corewar
-**
-** Made by guillaume fillon
-** Login   <fillon_g@epitech.net>
-**
-** Started on  Thu Jan 24 21:46:54 2013 guillaume fillon
-** Last update Fri Mar 29 22:32:04 2013 remi
-*/
-
 #include "lib.h"
 #include "vm.h"
 

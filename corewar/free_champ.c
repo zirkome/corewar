@@ -1,13 +1,3 @@
-/*
-** free_champ.c for CoreWar in /home/fillon_g/projets/groups/corewar/corewar
-**
-** Made by guillaume fillon
-** Login   <fillon_g@epitech.net>
-**
-** Started on  Sun Jan 27 20:48:10 2013 guillaume fillon
-** Last update Sun Mar 31 17:59:20 2013 guillaume fillon
-*/
-
 #include "lib.h"
 #include "vm.h"
 

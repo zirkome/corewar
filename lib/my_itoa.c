@@ -1,13 +1,3 @@
-/*
-** my_itoa.c for RTv1 in /home/fillon_g/projets/rtv1/src
-**
-** Made by guillaume fillon
-** Login   <fillon_g@epitech.net>
-**
-** Started on  Sun Mar 17 16:07:35 2013 guillaume fillon
-** Last update Sat Mar 30 21:23:01 2013 guillaume fillon
-*/
-
 #include "lib.h"
 
 char		*my_itoa(int i, char b[])

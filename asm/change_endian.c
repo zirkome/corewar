@@ -1,13 +1,3 @@
-/*
-** change_endian.c for change_endian.c in /home/bridou_n/corewar
-** 
-** Made by nicolas bridoux
-** Login   <bridou_n@epitech.net>
-** 
-** Started on  Wed Mar 13 23:26:54 2013 nicolas bridoux
-** Last update Wed Mar 20 14:35:36 2013 nicolas bridoux
-*/
-
 #include "asm.h"
 
 /*

@@ -1,13 +1,3 @@
-/*
-** main.c for main.c in /home/bridou_n//corewar
-**
-** Made by nicolas bridoux
-** Login   <bridou_n@epitech.net>
-**
-** Started on  Wed Jan 16 17:57:04 2013 nicolas bridou
-** Last update Wed Mar 13 15:34:32 2013 nicolas bridoux
-*/
-
 #include "asm.h"
 
 /*

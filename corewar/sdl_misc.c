@@ -1,13 +1,3 @@
-/*
-** sdl_misc.c for Corewar in /home/kokaz/projets/corewar/corewar
-**
-** Made by guillaume fillon
-** Login   <kokaz@epitech.net>
-**
-** Started on  Sun Mar 31 19:28:56 2013 guillaume fillon
-** Last update Sun Mar 31 19:33:20 2013 guillaume fillon
-*/
-
 #include "lib.h"
 #include "vm.h"
 

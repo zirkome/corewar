@@ -1,13 +1,3 @@
-/*
-** check_prog_live.c for check_prog_live in /home/remi/Projet/corewar/corewar/corewar
-**
-** Made by remi
-** Login   <remi@epitech.net>
-**
-** Started on  Mon Mar 11 08:18:24 2013 remi
-** Last update Sun Mar 31 17:58:38 2013 guillaume fillon
-*/
-
 #include "lib.h"
 #include "vm.h"
 #include "couleur.h"

@@ -1,13 +1,3 @@
-/*
-** display_data.c for CoreWar in /home/kokaz/projets/corewar/corewar
-**
-** Made by guillaume fillon
-** Login   <kokaz@epitech.net>
-**
-** Started on  Sun Mar 31 07:51:57 2013 guillaume fillon
-** Last update Sun Mar 31 08:50:37 2013 guillaume fillon
-*/
-
 #include "lib.h"
 #include "vm.h"
 

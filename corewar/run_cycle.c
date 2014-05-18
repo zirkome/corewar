@@ -1,13 +1,3 @@
-/*
-** boucle.c for boucle in /home/remi/Projet/corewar/corewar
-**
-** Made by remi robert
-** Login   <robert_r@epitech.net>
-**
-** Started on  Mon Jan 28 13:10:36 2013 remi robert
-** Last update Sun Mar 31 19:36:50 2013 guillaume fillon
-*/
-
 #include "lib.h"
 #include "vm.h"
 #include "couleur.h"

@@ -1,18 +1,8 @@
-/*
-** my_list.c for my_list in /home/linard_f//corewar/homework/asm/corewar
-**
-** Made by fabien linardon
-** Login   <linard_f@epitech.net>
-**
-** Started on  Thu Jan 24 11:17:03 2013 fabien linardon
-** Last update Wed Mar 13 14:56:10 2013 nicolas bridoux
-*/
-
 #include "asm.h"
 
 /*
 ** Fonctions de manip des listes chainées, ajoute l'élément en début de liste
-*/ 
+*/
 
 void		my_put_in_list(t_list **list, char *name, int pos, int pos_label)
 {

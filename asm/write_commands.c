@@ -1,13 +1,3 @@
-/*
-** write_commands.c for write_commands.c in /home/bridou_n//corewar
-**
-** Made by nicolas bridoux
-** Login   <bridou_n@epitech.net>
-**
-** Started on  Thu Jan 24 17:20:15 2013 nicolas bridoux
-** Last update Wed Mar 13 19:24:45 2013 nicolas bridoux
-*/
-
 #include "asm.h"
 
 /*

@@ -1,13 +1,3 @@
-/*
-** my_putchar.c for my_putchar.c in /home/bridou_n//Jour_07
-**
-** Made by nicolas bridoux
-** Login   <bridou_n@epitech.net>
-**
-** Started on  Tue Oct  9 09:33:48 2012 nicolas bridoux
-** Last update Thu Mar 28 17:15:43 2013 remi
-*/
-
 #include "lib.h"
 
 void	my_putchar(char c)

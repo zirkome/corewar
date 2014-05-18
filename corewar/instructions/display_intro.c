@@ -1,13 +1,3 @@
-/*
-** display_intro.c for Corewar in /home/kokaz/projets/corewar/corewar
-**
-** Made by guillaume fillon
-** Login   <kokaz@epitech.net>
-**
-** Started on  Sun Mar 31 09:36:31 2013 guillaume fillon
-** Last update Sun Mar 31 19:37:59 2013 guillaume fillon
-*/
-
 #include "lib.h"
 #include "vm.h"
 

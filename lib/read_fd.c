@@ -1,13 +1,3 @@
-/*
-** main.c for main.c in /home/bridou_n//corewar
-**
-** Made by nicolas bridoux
-** Login   <bridou_n@epitech.net>
-**
-** Started on  Wed Jan 16 17:57:04 2013 nicolas bridou
-** Last update Tue Jan 22 12:55:27 2013 guillaume fillon
-*/
-
 #include "asm.h"
 
 char	*read_fd(const int fd)

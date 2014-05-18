@@ -1,13 +1,3 @@
-/*
-** ld_lld.c for ld_lld in /home/linard_f//corewar/homework/asm
-**
-** Made by fabien linardon
-** Login   <linard_f@epitech.net>
-**
-** Started on  Fri Feb  1 14:54:54 2013 fabien linardon
-** Last update Wed Mar 13 14:35:49 2013 nicolas bridoux
-*/
-
 #include "asm.h"
 
 /*

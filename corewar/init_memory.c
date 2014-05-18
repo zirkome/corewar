@@ -1,13 +1,3 @@
-/*
-** init_memory.c for init_memory in /home/remi/Projet/save_projet/corewar/corewar
-**
-** Made by remi
-** Login   <remi@epitech.net>
-**
-** Started on  Fri Mar 29 22:49:54 2013 remi
-** Last update Sun Mar 31 19:09:08 2013 guillaume fillon
-*/
-
 #include "lib.h"
 #include "vm.h"
 

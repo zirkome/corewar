@@ -1,13 +1,3 @@
-/*
-** main.c for main$ in /home/robert_r//Corewar/Corewar/vm
-**
-** Made by remi robert
-** Login   <robert_r@epitech.net>
-**
-** Started on  Mon Jan 21 18:27:28 2013 remi robert
-** Last update Sun Mar 31 19:30:17 2013 guillaume fillon
-*/
-
 #include "lib.h"
 #include "vm.h"
 

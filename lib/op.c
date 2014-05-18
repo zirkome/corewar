@@ -1,17 +1,3 @@
-/*
-** op.c for  korewar
-**
-** Made by Astek
-** Login   <astek@epitech.net>
-**
-** Started on  Mon Mar 30 11:14:31 2009 Astek
-** Last update Sun Mar 31 03:52:27 2013 guillaume fillon
-*/
-
-/*
-** Ne pas passer ce fichier dans la moulinette de Norme.
-*/
-
 #include "op.h"
 
 op_t    op_tab[] =

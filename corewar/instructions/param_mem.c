@@ -1,13 +1,3 @@
-/*
-** param_mem.c for param_mem in /home/remi/Projet/corewar/corewar/instructions
-**
-** Made by remi robert
-** Login   <robert_r@epitech.net>
-**
-** Started on  Wed Jan 30 09:21:35 2013 remi robert
-** Last update Thu Mar 28 12:39:58 2013 remi
-*/
-
 #include "lib.h"
 #include "vm.h"
 

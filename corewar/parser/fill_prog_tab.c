@@ -1,13 +1,3 @@
-/*
-** fill_prog_tab.c for fill_prog_tab in /home/linard_f//corewar/homework/vm
-**
-** Made by fabien linardon
-** Login   <linard_f@epitech.net>
-**
-** Started on  Tue Mar 12 20:02:45 2013 fabien linardon
-** Last update Sun Mar 31 18:48:13 2013 guillaume fillon
-*/
-
 #include "lib.h"
 #include "vm.h"
 

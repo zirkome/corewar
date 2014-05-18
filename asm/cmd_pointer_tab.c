@@ -1,13 +1,3 @@
-/*
-** cmd_pointer_tab.c for cmd_pointer_tab in /home/linard_f//corewar/homework/asm
-**
-** Made by fabien linardon
-** Login   <linard_f@epitech.net>
-**
-** Started on  Fri Feb  1 13:20:47 2013 fabien linardon
-** Last update Wed Mar 13 14:36:16 2013 nicolas bridoux
-*/
-
 #include "asm.h"
 
 /*

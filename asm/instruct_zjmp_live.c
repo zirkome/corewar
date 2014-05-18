@@ -1,13 +1,3 @@
-/*
-** zjmp.c for zjmp in /home/linard_f//corewar/homework/asm
-**
-** Made by fabien linardon
-** Login   <linard_f@epitech.net>
-**
-** Started on  Fri Feb  1 15:51:59 2013 fabien linardon
-** Last update Wed Mar 13 14:18:04 2013 nicolas bridoux
-*/
-
 #include "asm.h"
 
 /*

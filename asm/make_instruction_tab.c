@@ -1,13 +1,3 @@
-/*
-** make_instruction_tab.c for make_instruction_tab.c in /home/bridou_n//corewar
-**
-** Made by nicolas bridoux
-** Login   <bridou_n@epitech.net>
-**
-** Started on  Wed Jan 23 23:10:41 2013 nicolas bridoux
-** Last update Wed Mar 13 23:08:09 2013 nicolas bridoux
-*/
-
 #include "asm.h"
 
 /*

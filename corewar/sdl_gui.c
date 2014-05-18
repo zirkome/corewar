@@ -1,13 +1,3 @@
-/*
-** main.c for SDL in /home/kokaz/projets/corewar_sdl
-**
-** Made by guillaume fillon
-** Login   <kokaz@epitech.net>
-**
-** Started on  Tue Mar 26 10:24:47 2013 guillaume fillon
-** Last update Sun Mar 31 19:32:45 2013 guillaume fillon
-*/
-
 #include "lib.h"
 #include "vm.h"
 

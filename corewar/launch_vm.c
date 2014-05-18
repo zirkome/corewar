@@ -1,13 +1,3 @@
-/*
-** init_vm.c for init_vm in /home/remi/Projet/corewar/corewar
-**
-** Made by remi
-** Login   <remi@epitech.net>
-**
-** Started on  Thu Jan 24 23:12:01 2013 remi
-** Last update Sun Mar 31 19:14:22 2013 guillaume fillon
-*/
-
 #include "lib.h"
 #include "vm.h"
 #include "couleur.h"

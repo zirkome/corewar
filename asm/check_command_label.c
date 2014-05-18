@@ -1,13 +1,3 @@
-/*
-** make_compile.c for make_compile.c in /home/bridou_n//corewar
-**
-** Made by nicolas bridoux
-** Login   <bridou_n@epitech.net>
-**
-** Started on  Thu Jan 24 11:02:04 2013 nicolas bridoux
-** Last update Wed Mar 13 16:21:01 2013 nicolas bridoux
-*/
-
 #include "asm.h"
 
 extern op_t	op_tab[];

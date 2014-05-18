@@ -1,13 +1,3 @@
-/*
-** list.c for list in /home/remi/Projet/corewar/corewar/corewar
-**
-** Made by remi
-** Login   <remi@epitech.net>
-**
-** Started on  Mon Mar 11 09:18:32 2013 remi
-** Last update Sun Mar 31 18:14:44 2013 guillaume fillon
-*/
-
 #include "lib.h"
 #include "vm.h"
 

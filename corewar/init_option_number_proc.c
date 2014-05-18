@@ -1,13 +1,3 @@
-/*
-** init_option_number_proc.c for init in /home/remi/Projet/save_projet/corewar/corewar
-**
-** Made by remi
-** Login   <remi@epitech.net>
-**
-** Started on  Fri Mar 29 21:25:40 2013 remi
-** Last update Fri Mar 29 22:29:51 2013 remi
-*/
-
 #include "lib.h"
 #include "vm.h"
 

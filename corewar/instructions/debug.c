@@ -1,13 +1,3 @@
-/*
-** debug.c for debug in /home/remi/Projet/save_projet/corewar/corewar
-**
-** Made by remi
-** Login   <remi@epitech.net>
-**
-** Started on  Thu Mar 28 17:05:43 2013 remi
-** Last update Sun Mar 31 19:16:49 2013 guillaume fillon
-*/
-
 #include "lib.h"
 #include "vm.h"
 

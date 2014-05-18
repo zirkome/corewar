@@ -1,13 +1,3 @@
-/*
-** compilation_errors.c for compilation_errors.c in /home/bridou_n/corewar
-** 
-** Made by nicolas bridoux
-** Login   <bridou_n@epitech.net>
-** 
-** Started on  Wed Mar 13 10:15:55 2013 nicolas bridoux
-** Last update Thu Mar 14 11:09:55 2013 nicolas bridoux
-*/
-
 #include "asm.h"
 
 /*

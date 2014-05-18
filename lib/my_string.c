@@ -1,13 +1,3 @@
-/*
-** my_string.c for my_string.c in /home/bridou_n//corewar
-**
-** Made by nicolas bridoux
-** Login   <bridou_n@epitech.net>
-**
-** Started on  Wed Jan 16 17:59:57 2013 nicolas bridoux
-** Last update Sun Mar 31 03:52:06 2013 guillaume fillon
-*/
-
 #include "lib.h"
 
 int	my_strcmp(char *s1, char *s2)

@@ -1,13 +1,3 @@
-/*
-** replace_label.c for replace_label.c in /home/bridou_n//corewar
-** 
-** Made by nicolas bridoux
-** Login   <bridou_n@epitech.net>
-** 
-** Started on  Fri Jan 25 21:36:22 2013 nicolas bridoux
-** Last update Wed Mar 13 16:20:38 2013 nicolas bridoux
-*/
-
 #include "asm.h"
 
 /*

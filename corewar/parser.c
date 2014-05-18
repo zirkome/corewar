@@ -1,13 +1,3 @@
-/*
-** parser.c for parser in /home/remi/corewar
-**
-** Made by remi robert
-** Login   <robert_r@epitech.net>
-**
-** Started on  Tue Jan 29 13:13:40 2013 remi robert
-** Last update Sun Mar 31 18:26:29 2013 guillaume fillon
-*/
-
 #include "lib.h"
 #include "vm.h"
 

@@ -1,13 +1,3 @@
-/*
-** instruction.c for Corewar in /home/fillon_g/projets/groups/corewar/corewar
-**
-** Made by guillaume fillon
-** Login   <fillon_g@epitech.net>
-**
-** Started on  Tue Jan 29 07:29:27 2013 guillaume fillon
-** Last update Sun Mar 31 03:26:47 2013 guillaume fillon
-*/
-
 #include "vm.h"
 #include "lib.h"
 #include "instruction.h"

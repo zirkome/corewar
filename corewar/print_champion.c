@@ -1,13 +1,3 @@
-/*
-** print_champion.c for print_champion in /home/remi/Projet/save_projet/corewar/corewar
-**
-** Made by remi
-** Login   <remi@epitech.net>
-**
-** Started on  Thu Mar 28 23:32:23 2013 remi
-** Last update Sun Mar 31 19:24:45 2013 guillaume fillon
-*/
-
 #include "vm.h"
 #include "lib.h"
 

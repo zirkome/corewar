@@ -1,13 +1,3 @@
-/*
-** make_header.c for make_header.c in /home/bridou_n//corewar
-**
-** Made by nicolas bridoux
-** Login   <bridou_n@epitech.net>
-**
-** Started on  Wed Jan 23 15:00:56 2013 nicolas bridoux
-** Last update Wed Mar 13 23:14:55 2013 nicolas bridoux
-*/
-
 #include "asm.h"
 
 /*
@@ -41,7 +31,7 @@ void		make_header(char *file, char *name)
 
 /*
 ** Vérifie qu'il n'y a pas d'erreur dans le .comment et remplit la taille sur 4 octets
-*/ 
+*/
 
 int	make_comment_and_size(char *comment, char *file, char *champ_name)
 {

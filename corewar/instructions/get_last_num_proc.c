@@ -1,13 +1,3 @@
-/*
-** get_last_num_proc.c for getnumproc in /home/remi/Projet/save_projet/corewar/corewar
-**
-** Made by remi
-** Login   <remi@epitech.net>
-**
-** Started on  Fri Mar 29 00:33:51 2013 remi
-** Last update Fri Mar 29 22:41:32 2013 remi
-*/
-
 #include "lib.h"
 #include "vm.h"
 
