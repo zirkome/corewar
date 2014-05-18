@@ -1,11 +1,11 @@
 /*
-** parser.c for parser in /home/remi/corewar-ce1098f977d5a07e4c8c55c6a935fb2962d4b8a7/corewar
+** parser.c for parser in /home/remi/corewar
 **
 ** Made by remi robert
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Tue Jan 29 13:13:40 2013 remi robert
-** Last update Sun Mar 31 15:50:33 2013 remi
+** Last update Sun Mar 31 18:26:29 2013 guillaume fillon
 */
 
 #include "lib.h"

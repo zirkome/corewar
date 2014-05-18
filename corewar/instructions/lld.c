@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:29:37 2013 guillaume fillon
-** Last update Sat Mar 30 14:11:33 2013 remi
+** Last update Sun Mar 31 18:09:07 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -37,7 +37,7 @@ void		op_lld(t_vm *vm, t_proc **lproc)
   int	val;
 
   val = 0;
-  debug(vm, lproc);
+  debug(vm, lproc, -1);
   get_adress_lld(vm, lproc, &val);
   set_ld(vm, lproc, val);
   if (vm->option[0].debug != -1)

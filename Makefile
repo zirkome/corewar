@@ -5,7 +5,7 @@
 ## Login   <bridou_n@epitech.net>
 ## 
 ## Started on  Fri Nov  9 20:29:49 2012 nicolas bridoux
-## Last update Tue Jan 22 13:51:12 2013 guillaume fillon
+## Last update Sun Mar 31 05:52:32 2013 guillaume fillon
 ##
 
 all: corewar asm
@@ -27,3 +27,5 @@ fclean:
 re:
 	make re -Ccorewar
 	make re -Casm
+
+.PHONY: all clean fclean re asm corewar

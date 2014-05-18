@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Thu Jan 24 23:12:01 2013 remi
-** Last update Sun Mar 31 14:57:41 2013 remi
+** Last update Sun Mar 31 19:14:22 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -16,7 +16,8 @@
 ** initialisation de la vm.
 ** malloc de la memoire virtuelle
 */
-t_vm		*init_vm(int mem_tmp, t_proc *lproc)
+t_vm		*init_vm(int mem_tmp, t_proc *lproc,
+			 int prg_nb, header_t *header)
 {
   t_vm		*vm;
 
@@ -24,16 +25,16 @@ t_vm		*init_vm(int mem_tmp, t_proc *lproc)
     my_error("File is too big.\n", 1);
   if ((vm->mem = malloc(sizeof(char) * MEM_SIZE)) == NULL)
     my_error("Can’t perform malloc\n", 1);
-  vm->prg_alive[0] = 1;
-  vm->prg_alive[1] = 1;
-  vm->prg_alive[2] = 1;
-  vm->prg_alive[3] = 1;
-  vm->cycle_champion[0] = 0;
-  vm->cycle_champion[1] = 0;
-  vm->cycle_champion[2] = 0;
-  vm->cycle_champion[3] = 0;
+  my_memset(vm->prg_alive, 1, 4);
+  my_memset(vm->cycle_champion, 0, 4);
   vm->proc = lproc;
   vm->old_live = -1;
+  vm->nb_live = 0;
+  vm->cycle = 0;
+  vm->ctd = CYCLE_TO_DIE;
+  vm->prg_nb = prg_nb;
+  vm->nb_proc = prg_nb;
+  vm->header = header;
   return (vm);
 }
 
@@ -90,6 +91,7 @@ t_proc		*load_champions(t_vm *vm, t_prog *tab,
 int		launch_vm(t_proc *lproc, header_t *header,
 			  t_prog *tab, int prg_nb)
 {
+  t_sdl		sdl;
   t_vm		*vm;
   int		i;
   int		mem_tmp;
@@ -99,10 +101,13 @@ int		launch_vm(t_proc *lproc, header_t *header,
   vm = NULL;
   while (i < prg_nb)
     mem_tmp += header[i++].prog_size;
-  vm = init_vm(mem_tmp, lproc);
-  vm->prg_nb = prg_nb;
-  vm->nb_proc = prg_nb;
-  vm->header = header;
+  vm = init_vm(mem_tmp, lproc, prg_nb, header);
+  vm->sdl = &sdl;
+  if (launch_sdl(&sdl) == EXIT_FAILURE)
+   {
+      free_vm(vm);
+      exit(EXIT_FAILURE);
+    }
   vm->option = tab;
   reset_mem(&vm);
   vm->proc = load_champions(vm, tab, header, mem_tmp);

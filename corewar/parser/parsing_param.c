@@ -5,7 +5,7 @@
 ** Login   <linard_f@epitech.net>
 **
 ** Started on  Tue Mar 12 17:24:38 2013 fabien linardon
-** Last update Sun Mar 31 17:18:30 2013 remi
+** Last update Sun Mar 31 19:15:08 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -27,7 +27,7 @@ void	initialize_tab(t_prog *tab)
       tab[rk].prog_name = NULL;
       tab[rk].prog_numb = -1;
       tab[rk].load_add = -1;
-      tab[rk].debug = -1;
+      tab[rk].debug = 1;
       tab[rk].mem = -1;
       tab[rk].dump = -1;
     }
