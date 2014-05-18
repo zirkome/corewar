@@ -10,23 +10,20 @@ Core War is a programming game created by D. G. Jones and A. K. Dewdney in which
 
 Compile the project
 ------------
-###Assembler
+
 ```sh
-$ make asm
-$ ./asm file_name[.s] ...
-```
-###Virtual Machine (SDL is required)
-####Debian
-```sh
+$ git clone git@github.com:kokaz/corewar.git
+$ cd corewar
 $ sudo apt-get install libsdl1.2-dev
-$ make corewar
-$ ./corewar [-v] [-z][-dump nbr_cycle] [[-n prog_number] [-a load_address ] prog_name] ...
+$ make
 ```
 
-####openSUSE
+###Assembler
 ```sh
-$ sudo zypper in libsdl1.2-devel
-$ make corewar
+$ ./asm file_name[.s] ...
+```
+###Virtual Machine
+```sh
 $ ./corewar [-v] [-z][-dump nbr_cycle] [[-n prog_number] [-a load_address ] prog_name] ...
 ```
 
