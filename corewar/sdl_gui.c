@@ -40,8 +40,10 @@ int			launch_sdl(t_sdl *sdl)
   sdl->music = NULL;
   if ((sdl->screen = init_sdl(sdl->screen)) == NULL)
     return (EXIT_FAILURE);
-  font288 = TTF_OpenFont("game_over.ttf", FONT_SIZE1);
-  font200 = TTF_OpenFont("game_over.ttf", 100);
+  if ((font288 = TTF_OpenFont("game_over.ttf", FONT_SIZE1)) == NULL)
+    abort();
+  if ((font200 = TTF_OpenFont("game_over.ttf", 100)) == NULL)
+    abort();
   intro_corewar(font288, "CoreWar", sdl->screen, 0);
   intro_corewar(font200, "An original game by Victor A. Vyssotsky, Robert " \
 		"Morris Sr. & M. Douglas McIlroy", sdl->screen, 100);
