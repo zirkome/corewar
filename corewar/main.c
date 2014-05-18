@@ -5,7 +5,7 @@
 ** Login   <robert_r@epitech.net>
 **
 ** Started on  Mon Jan 21 18:27:28 2013 remi robert
-** Last update Sun Mar 31 17:28:47 2013 remi
+** Last update Sun Mar 31 19:30:17 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -28,9 +28,20 @@ int	check_value_vm()
   return (1);
 }
 
-/*
-** recupére option parseur => Merci fabien !!!
-*/
+int		check_display(char **envp)
+{
+  int		i;
+
+  i = 0;
+  while (envp[i] != NULL)
+    {
+      if (my_strncmp("DISPLAY", envp[i], my_strlen("DISPLAY")) == 0)
+	return (1);
+      ++i;
+    }
+  return (0);
+}
+
 t_prog		*get_arg_parsing(int argc, char **av)
 {
   t_prog	*tab;
@@ -44,9 +55,10 @@ t_prog		*get_arg_parsing(int argc, char **av)
   return (tab);
 }
 
-int		main(int argc, char **argv)
+int		main(int argc, char **argv, char **envp)
 {
   t_proc	*lproc;
+  SDL_Event	event;
   header_t	*header;
   int		i;
   t_prog	*tab;
@@ -54,6 +66,9 @@ int		main(int argc, char **argv)
   if (argc == 1 || check_value_vm() == 0 ||
       (tab = get_arg_parsing(argc, argv)) == NULL)
     display_usage();
+  if (!check_display(envp))
+    my_error("$DISPLAY is not set appropriately. "	\
+	     "Can't open display, sorry. Abort.\n", 1);
   i = 0;
   lproc = NULL;
   header = NULL;
@@ -65,5 +80,6 @@ int		main(int argc, char **argv)
       i = i + 1;
     }
   launch_vm(lproc, header, tab, i);
+  handle_event2(&event);
   return (EXIT_SUCCESS);
 }

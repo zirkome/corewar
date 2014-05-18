@@ -5,7 +5,7 @@
 ** Login   <fillon_g@epitech.net>
 **
 ** Started on  Mon Jan 28 20:29:24 2013 guillaume fillon
-** Last update Sat Mar 30 15:24:41 2013 remi
+** Last update Sun Mar 31 18:09:14 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -51,6 +51,6 @@ void		op_lfork(t_vm *vm, t_proc **lproc)
   if (vm->option[0].debug != -1)
     print_debug(new_pc, "new pc : ", 1);
   init_new_proc_lfork(vm, &new_proc, lproc, new_pc);
-  debug(vm, lproc);
+  debug(vm, lproc, -1);
   (*lproc)->pc += 3;
 }

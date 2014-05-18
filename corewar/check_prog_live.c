@@ -5,7 +5,7 @@
 ** Login   <remi@epitech.net>
 **
 ** Started on  Mon Mar 11 08:18:24 2013 remi
-** Last update Sat Mar 30 20:20:49 2013 remi
+** Last update Sun Mar 31 17:58:38 2013 guillaume fillon
 */
 
 #include "lib.h"
@@ -45,12 +45,27 @@ void		gere_prog_live(char *live, t_vm **vm)
 
 int	get_condition_count(int count, t_vm *vm)
 {
+  static SDL_Color	color = {0, 255, 0};
+  TTF_Font		*font288;
+  SDL_Surface		*surface;
+  SDL_Rect		pos;
+
   if (count == 0)
     {
       if (vm->old_live != -1)
 	print_champion(count, vm);
       else
-	my_putstr("Aucun gagnant\n");
+	{
+	  font288 = TTF_OpenFont("game_over.ttf", 288);
+	  surface = TTF_RenderText_Blended(font288, "No winner", color);
+	  pos.x = (WIDTH / 2) - (surface->w / 2);
+	  pos.y = (HEIGHT / 2) - (surface->h / 6) + 50;
+	  SDL_BlitSurface(surface, NULL, vm->sdl->screen, &pos);
+	  SDL_FreeSurface(surface);
+	  TTF_CloseFont(font288);
+	  SDL_Flip(vm->sdl->screen);
+	  my_putstr("Aucun gagnant\n");
+	}
       return (1);
     }
   return (0);
