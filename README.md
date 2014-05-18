@@ -1,17 +1,51 @@
 CoreWar
 ==============
 
-Projet
+Project
 -------
-Projet CoreWar s'étalant sur 2 mois et demi, avec un groupe de 4 Membres composé de Fabien Linard (Chef de projet - Partie ASM), Nicolas Bridoux (Partie ASM), Rémi Robert (Partie VM), et Guillaume Fillon (Partie VM supplément SDL).
+The project is 2 months and a half project, with a 4 member team.
+The team was Fabien Linard (Project leader, worked on ASM), Nicolas Bridoux (worked on ASM), Rémi Robert (worked on VM), et Guillaume Fillon (worked on VM and the SDL).
 
-Core War est un jeu de programmation dans lequel deux programmes informatiques (ou plus) sont en concurrence pour le contrôle d'une machine virtuelle appelée MARS, pour Memory Array Redcode Simulator.
-Ces programmes sont écrits en un Assembleur spécial CoreWar. Le but du jeu est de faire se terminer toutes les instances du (ou des) programme(s) adverse(s), de façon à ce que son programme soit le seul à s'exécuter.
+Core War is a programming game created by D. G. Jones and A. K. Dewdney in which two or more battle programs (called "warriors") compete for control of a virtual computer. These battle programs are written in an abstract assembly language called Redcode.
 
-Instructions pour l'assembleur
+Compile the project
+------------
+###Assembler
+```sh
+$ make asm
+$ ./asm file_name[.s] ...
+```
+###Virtual Machine (SDL is required)
+####Debian
+```sh
+$ sudo apt-get install libsdl1.2-dev
+$ make corewar
+$ ./corewar [-v] [-z][-dump nbr_cycle] [[-n prog_number] [-a load_address ] prog_name] ...
+```
+
+####openSUSE
+```sh
+$ sudo zypper in libsdl1.2-devel
+$ make corewar
+$ ./corewar [-v] [-z][-dump nbr_cycle] [[-n prog_number] [-a load_address ] prog_name] ...
+```
+
+Example of Redcode program
+------------
+```asm
+.name "zork"
+.comment "just a basic living prog"
+
+l2:     sti r1,%:live,%1
+        and r1,%0,r1
+live:   live %1
+        zjmp %:live
+```
+
+Assembler instructions (in French)
 --------
 
-| Mnémonique |                               Effets                        |
+| Mnemonic |                               Effects                        |
 |:----------:| ----------------------------------------------------------- |
 | 0x01 (live)|Suivie de 4 octets qui représente le numéro du joueur. Cette instruction indique que ce joueur est en vie. (pas d’octet de codage des paramètres).                                    |
 |0x02 (ld)|Cette instruction prend 2 paramètres le deuxième est forcement un registre (pas le PC). Elle load la valeur du premier paramètre dans le registre. Cette opération modifie le carry. ``ld 34,r3`` charge les `REG_SIZE` octets a partir de l’adresse `(PC + (34 % IDX_MOD))` dans le registre r3.|
@@ -29,29 +63,3 @@ Instructions pour l'assembleur
 0x0E (lldi)|Comme ldi sans le `%IDX_MOD` Cette opération modifie le carry.|
 0x0F (lfork)|Comme fork sans le `%IDX_MOD` Cette opération modifie le carry.|
 0x10 (aff)|Cette instruction est suivi d’un octet de paramétrage pour décrire les paramètres. Elle prend en paramètre un registre et affiche le caractère dont le code ascii est présent dans ce registre. (un modulo 256 est applique au code ascii, le caractère est affiché sur la sortie standard).<br>Ex :` ld %42,r3` puis `aff r3` affiche ’*’ sur la sortie standard.|
-
-
-Exemple de programme assembleur
-------------
-```asm
-.name "zork"
-.comment "just a basic living prog"
-
-l2:     sti r1,%:live,%1
-        and r1,%0,r1
-live:   live %1
-        zjmp %:live
-```
-
-Usage
-------------
-###Compilateur assembleur
-```sh
-make asm
-echo ./asm file_name[.s] ...
-```
-###Machine Virtuel (SDL requise)
-```sh
-make corewar
-echo ./corewar [-v] [-z][-dump nbr_cycle] [[-n prog_number] [-a load_address ] prog_name] ...
-```
