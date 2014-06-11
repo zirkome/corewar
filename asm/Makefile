@@ -5,7 +5,7 @@
 ## Login   <bridou_n@epitech.net>
 ## 
 ## Started on  Fri Nov  9 20:29:49 2012 nicolas bridoux
-## Last update Wed Mar 13 23:27:11 2013 nicolas bridoux
+## Last update Wed Jun 11 11:12:35 2014 guillaume fillon
 ##
 
 SRCS	=	main.c \
@@ -39,7 +39,7 @@ NAME	= 	asm
 
 OBJS	=	$(SRCS:.c=.o)
 
-CC	= 	gcc -g
+CC	= 	gcc
 
 CFLAGS	= 	-Wall -Wextra -pedantic -ansi
 
