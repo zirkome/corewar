@@ -26,7 +26,7 @@ void	remove_comment(char *f)
 	  || !my_strncmp(&f[i], NAME_CMD_STRING, my_strlen(NAME_CMD_STRING)))
 	while (f[++i] != '\n');
       if (f[i] == COMMENT_CHAR)
-	while (f[i] != '\n')
+	while (f[i] != '\n' && f[i])
 	  shift_string(f, i);
     }
   remove_spaces_added(f);
@@ -111,4 +111,3 @@ void	remove_space_and_tab(char *f)
       	shift_string(f, i + 1);
     }
 }
-
